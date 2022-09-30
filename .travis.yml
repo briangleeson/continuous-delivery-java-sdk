@@ -22,9 +22,9 @@ env:
 
 stages:
   - name: Build-Test
+  - name: Semantic-Release
+    if: (branch = main) AND (type IN (push, api)) AND (fork = false)
 # Uncomment these stages when you're ready to use them.
- - name: Semantic-Release
-   if: (branch = main) AND (type IN (push, api)) AND (fork = false)
 #  - name: Publish-Release
 #    if: (tag IS present) AND (fork = false)
 
@@ -43,17 +43,17 @@ jobs:
         - mvn verify -fae -DskipITs $MVN_ARGS
 
 # Uncomment these stages when you're ready to use them.
-  - stage: Semantic-Release
-    install:
-      - nvm install 14
-      - npm install -g npm@6.x
-      - npm install @semantic-release/changelog
-      - npm install @semantic-release/exec
-      - npm install @semantic-release/git
-      - npm install @semantic-release/github
-      - pip install --user bump2version
-    script:
-      - npx semantic-release
+    - stage: Semantic-Release
+      install:
+        - nvm install 14
+        - npm install -g npm@6.x
+        - npm install @semantic-release/changelog
+        - npm install @semantic-release/exec
+        - npm install @semantic-release/git
+        - npm install @semantic-release/github
+        - pip install --user bump2version
+      script:
+        - npx semantic-release
 
 #    - stage: Publish-Release
 #      jdk: openjdk8
