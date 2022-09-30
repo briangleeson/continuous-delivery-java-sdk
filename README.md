@@ -1,7 +1,10 @@
-[![Build Status](https://travis-ci.com/IBM/continuous-delivery-java-sdk.svg?token=eW5FVD71iyte6tTby8gr&branch=main)](https://travis-ci.com/IBM/continuous-delivery-java-sdk)
+# IBM Cloud Continuous Delivery Java SDK Version 0.0.1
+
+[![Build Status](https://app.travis-ci.com/IBM/continuous-delivery-java-sdk.svg?branch=main)](https://app.travis-ci.com/IBM/continuous-delivery-java-sdk)
+[![Release](https://img.shields.io/github/v/release/IBM/continuous-delivery-java-sdk)](https://github.com/IBM/continuous-delivery-java-sdk/releases/latest)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-# IBM Cloud Continuous Delivery Java SDK Version 0.0.1
 Java client library to interact with various [IBM Cloud Continuous Delivery](https://cloud.ibm.com/apidocs?category=continuous-delivery).
 
 Disclaimer: this SDK is being released initially as a **pre-release** version.
@@ -24,8 +27,8 @@ Changes might occur which impact applications that use this SDK.
 - [Overview](#overview)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-  * [Maven](#maven)
-  * [Gradle](#gradle)
+  - [Maven](#maven)
+  - [Gradle](#gradle)
 - [Using the SDK](#using-the-sdk)
 - [Questions](#questions)
 - [Issues](#issues)
@@ -47,11 +50,12 @@ Service Name | Artifact Coordinates
 
 [ibm-cloud-onboarding]: https://cloud.ibm.com/registration
 
-* An [IBM Cloud][ibm-cloud-onboarding] account.
-* An IAM API key to allow the SDK to access your account. Create one [here](https://cloud.ibm.com/iam/apikeys).
-* Java 8 or above.
+- An [IBM Cloud][ibm-cloud-onboarding] account.
+- An IAM API key to allow the SDK to access your account. Create one [here](https://cloud.ibm.com/iam/apikeys).
+- Java 8 or above.
 
 ## Installation
+
 The current version of this SDK is: 0.0.1
 
 Each service's artifact coordinates are listed in the table above.
@@ -76,11 +80,13 @@ Here are examples for maven and gradle:
 ```
 
 ### Gradle
+
 ```gradle
 compile 'com.ibm.cloud:example-service:0.0.1'
 ```
 
 ## Using the SDK
+
 For general SDK usage information, please see [this link](https://github.com/IBM/ibm-cloud-sdk-common/blob/main/README.md)
 
 ## Questions
@@ -90,14 +96,17 @@ please ask a question at
 [Stack Overflow](http://stackoverflow.com/questions/ask?tags=ibm-cloud).
 
 ## Issues
+
 If you encounter an issue with the project, you are welcome to submit a
 [bug report](https://github.com/IBM/continuous-delivery-java-sdk/issues).
 Before that, please search for similar issues. It's possible that someone has already reported the problem.
 
 ## Open source @ IBM
+
 Find more open source projects on the [IBM Github Page](http://ibm.github.io/)
 
 ## Contributing
+
 See [CONTRIBUTING](CONTRIBUTING.md).
 
 ## License
