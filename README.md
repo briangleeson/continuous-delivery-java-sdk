@@ -1,4 +1,4 @@
-# IBM Cloud Continuous Delivery Java SDK Version 0.0.1
+# IBM Cloud Continuous Delivery Java SDK Version 0.0.2
 
 [![Build Status](https://app.travis-ci.com/IBM/continuous-delivery-java-sdk.svg?branch=main)](https://app.travis-ci.com/IBM/continuous-delivery-java-sdk)
 [![Release](https://img.shields.io/github/v/release/IBM/continuous-delivery-java-sdk)](https://github.com/IBM/continuous-delivery-java-sdk/releases/latest)
@@ -42,9 +42,12 @@ Changes might occur which impact applications that use this SDK.
 
 The IBM Cloud Continuous Delivery Java SDK allows developers to programmatically interact with the following IBM Cloud services:
 
-Service Name | Artifact Coordinates
+Service Name | Import Path
 --- | ---
-<!-- [Example Service](https://cloud.ibm.com/apidocs/example-service) | com.ibm.cloud:example-service:0.0.1 -->
+[Toolchain API](https://cloud.ibm.com/apidocs/toolchain?code=go) | cdtoolchainv2
+[Tekton Pipeline API](https://cloud.ibm.com/apidocs/tekton-pipeline?code=go) | cdtektonpipelinev2
+
+Table 1. IBM Cloud services
 
 ## Prerequisites
 
@@ -56,7 +59,7 @@ Service Name | Artifact Coordinates
 
 ## Installation
 
-The current version of this SDK is: 0.0.1
+The current version of this SDK is: 0.0.2
 
 Each service's artifact coordinates are listed in the table above.
 
