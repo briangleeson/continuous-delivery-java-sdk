@@ -11,7 +11,6 @@
  * specific language governing permissions and limitations under the License.
  */
 
-// >>> Replace "continuous_delivery" with the correct value for your project
 package com.ibm.cloud.continuous_delivery.common;
 
 import java.io.InputStream;
@@ -36,7 +35,6 @@ public class SdkCommon {
     private static String projectName;
     private static String version;
 
-    // >>> Replace "continuous-delivery" with the parent project's artifactId (e.g. platform-services)
     private static String parentArtifactId = "continuous-delivery";
 
     static {
