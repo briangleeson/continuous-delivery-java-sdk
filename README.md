@@ -1,4 +1,4 @@
-# IBM Cloud Continuous Delivery Java SDK Version 0.0.2
+# IBM Cloud Continuous Delivery Java SDK Version 0.1.0
 
 [![Build Status](https://app.travis-ci.com/IBM/continuous-delivery-java-sdk.svg?branch=main)](https://app.travis-ci.com/IBM/continuous-delivery-java-sdk)
 [![Release](https://img.shields.io/github/v/release/IBM/continuous-delivery-java-sdk)](https://github.com/IBM/continuous-delivery-java-sdk/releases/latest)
@@ -59,7 +59,7 @@ Table 1. IBM Cloud services
 
 ## Installation
 
-The current version of this SDK is: 0.0.2
+The current version of this SDK is: 0.1.0
 
 Each service's artifact coordinates are listed in the table above.
 
