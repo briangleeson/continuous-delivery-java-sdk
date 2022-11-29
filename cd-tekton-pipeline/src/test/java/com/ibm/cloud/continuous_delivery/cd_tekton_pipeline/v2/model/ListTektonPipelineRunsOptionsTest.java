@@ -35,14 +35,12 @@ public class ListTektonPipelineRunsOptionsTest {
       .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
       .start("testString")
       .limit(Long.valueOf("1"))
-      .offset(Long.valueOf("26"))
       .status("succeeded")
       .triggerName("manual-trigger")
       .build();
     assertEquals(listTektonPipelineRunsOptionsModel.pipelineId(), "94619026-912b-4d92-8f51-6c74f0692d90");
     assertEquals(listTektonPipelineRunsOptionsModel.start(), "testString");
     assertEquals(listTektonPipelineRunsOptionsModel.limit(), Long.valueOf("1"));
-    assertEquals(listTektonPipelineRunsOptionsModel.offset(), Long.valueOf("26"));
     assertEquals(listTektonPipelineRunsOptionsModel.status(), "succeeded");
     assertEquals(listTektonPipelineRunsOptionsModel.triggerName(), "manual-trigger");
   }

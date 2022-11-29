@@ -24,7 +24,6 @@ public class PipelineRunsCollection extends GenericModel {
 
   @SerializedName("pipeline_runs")
   protected List<PipelineRunsCollectionPipelineRunsItem> pipelineRuns;
-  protected Long offset;
   protected Long limit;
   protected PipelineRunsCollectionFirst first;
   protected PipelineRunsCollectionNext next;
@@ -41,17 +40,6 @@ public class PipelineRunsCollection extends GenericModel {
    */
   public List<PipelineRunsCollectionPipelineRunsItem> getPipelineRuns() {
     return pipelineRuns;
-  }
-
-  /**
-   * Gets the offset.
-   *
-   * Skip a specified number of pipeline runs.
-   *
-   * @return the offset
-   */
-  public Long getOffset() {
-    return offset;
   }
 
   /**
@@ -79,8 +67,7 @@ public class PipelineRunsCollection extends GenericModel {
   /**
    * Gets the next.
    *
-   * Next page of pipeline runs relative to the `start` and `limit` params, or relative to the `offset` and `limit`
-   * params, depending on which of `start` or `offset` were used in the request. Only included when there are more pages
+   * Next page of pipeline runs relative to the `start` and `limit` params. Only included when there are more pages
    * available.
    *
    * @return the next
@@ -92,9 +79,8 @@ public class PipelineRunsCollection extends GenericModel {
   /**
    * Gets the last.
    *
-   * Last page of pipeline runs relative to the `start` and `limit` params, or relative to the `offset` and `limit`
-   * params, depending on which of `start` or `offset` were used in the request. Only included when the last page has
-   * been reached.
+   * Last page of pipeline runs relative to the `start` and `limit` params. Only included when the last page has been
+   * reached.
    *
    * @return the last
    */

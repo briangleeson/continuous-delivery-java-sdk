@@ -178,7 +178,6 @@ public class CdTektonPipelineExamples {
       ListTektonPipelineRunsOptions listTektonPipelineRunsOptions = new ListTektonPipelineRunsOptions.Builder()
         .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
         .limit(Long.valueOf("10"))
-        .offset(Long.valueOf("26"))
         .status("succeeded")
         .triggerName("manual-trigger")
         .build();

@@ -39,20 +39,20 @@ public class TektonPipelinePatchTest {
     assertEquals(workerIdentityModel.id(), "testString");
 
     TektonPipelinePatch tektonPipelinePatchModel = new TektonPipelinePatch.Builder()
-      .enableNotifications(false)
-      .enablePartialCloning(false)
+      .enableNotifications(true)
+      .enablePartialCloning(true)
       .worker(workerIdentityModel)
       .build();
-    assertEquals(tektonPipelinePatchModel.enableNotifications(), Boolean.valueOf(false));
-    assertEquals(tektonPipelinePatchModel.enablePartialCloning(), Boolean.valueOf(false));
+    assertEquals(tektonPipelinePatchModel.enableNotifications(), Boolean.valueOf(true));
+    assertEquals(tektonPipelinePatchModel.enablePartialCloning(), Boolean.valueOf(true));
     assertEquals(tektonPipelinePatchModel.worker(), workerIdentityModel);
 
     String json = TestUtilities.serialize(tektonPipelinePatchModel);
 
     TektonPipelinePatch tektonPipelinePatchModelNew = TestUtilities.deserialize(json, TektonPipelinePatch.class);
     assertTrue(tektonPipelinePatchModelNew instanceof TektonPipelinePatch);
-    assertEquals(tektonPipelinePatchModelNew.enableNotifications(), Boolean.valueOf(false));
-    assertEquals(tektonPipelinePatchModelNew.enablePartialCloning(), Boolean.valueOf(false));
+    assertEquals(tektonPipelinePatchModelNew.enableNotifications(), Boolean.valueOf(true));
+    assertEquals(tektonPipelinePatchModelNew.enablePartialCloning(), Boolean.valueOf(true));
     assertEquals(tektonPipelinePatchModelNew.worker().toString(), workerIdentityModel.toString());
   }
   @Test
@@ -62,8 +62,8 @@ public class TektonPipelinePatchTest {
       .build();
 
     TektonPipelinePatch tektonPipelinePatchModel = new TektonPipelinePatch.Builder()
-      .enableNotifications(false)
-      .enablePartialCloning(false)
+      .enableNotifications(true)
+      .enablePartialCloning(true)
       .worker(workerIdentityModel)
       .build();
 

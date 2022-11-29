@@ -383,7 +383,7 @@ public class TriggerPatch extends GenericModel {
   /**
    * Gets the enabled.
    *
-   * Defines if this trigger is enabled. If omitted the trigger is enabled by default.
+   * Defines if this trigger is enabled.
    *
    * @return the enabled
    */

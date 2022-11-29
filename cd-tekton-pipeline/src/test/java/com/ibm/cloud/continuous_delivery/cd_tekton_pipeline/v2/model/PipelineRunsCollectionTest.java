@@ -44,7 +44,6 @@ public class PipelineRunsCollectionTest {
   public void testPipelineRunsCollection() throws Throwable {
     PipelineRunsCollection pipelineRunsCollectionModel = new PipelineRunsCollection();
     assertNull(pipelineRunsCollectionModel.getPipelineRuns());
-    assertNull(pipelineRunsCollectionModel.getOffset());
     assertNull(pipelineRunsCollectionModel.getLimit());
     assertNull(pipelineRunsCollectionModel.getFirst());
     assertNull(pipelineRunsCollectionModel.getNext());

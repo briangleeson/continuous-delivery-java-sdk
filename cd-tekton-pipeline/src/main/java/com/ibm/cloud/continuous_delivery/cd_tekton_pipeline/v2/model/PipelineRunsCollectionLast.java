@@ -15,8 +15,7 @@ package com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
- * Last page of pipeline runs relative to the `start` and `limit` params, or relative to the `offset` and `limit`
- * params, depending on which of `start` or `offset` were used in the request. Only included when the last page has been
+ * Last page of pipeline runs relative to the `start` and `limit` params. Only included when the last page has been
  * reached.
  */
 public class PipelineRunsCollectionLast extends GenericModel {

@@ -273,8 +273,8 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
 
     // Construct an instance of the TektonPipelinePatch model
     TektonPipelinePatch tektonPipelinePatchModel = new TektonPipelinePatch.Builder()
-      .enableNotifications(false)
-      .enablePartialCloning(false)
+      .enableNotifications(true)
+      .enablePartialCloning(true)
       .worker(workerIdentityModel)
       .build();
     Map<String, Object> tektonPipelinePatchModelAsPatch = tektonPipelinePatchModel.asPatch();
@@ -374,7 +374,7 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
   @Test
   public void testListTektonPipelineRunsWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"pipeline_runs\": [{\"id\": \"id\", \"user_info\": {\"iam_id\": \"iamId\", \"sub\": \"sub\"}, \"status\": \"pending\", \"definition_id\": \"definitionId\", \"worker\": {\"name\": \"name\", \"agent_id\": \"agentId\", \"service_id\": \"serviceId\", \"id\": \"id\"}, \"pipeline_id\": \"pipelineId\", \"listener_name\": \"listenerName\", \"trigger\": {\"type\": \"type\", \"name\": \"start-deploy\", \"href\": \"href\", \"event_listener\": \"eventListener\", \"id\": \"id\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\", \"href\": \"href\"}], \"tags\": [\"tags\"], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"max_concurrent_runs\": 4, \"enabled\": true}, \"event_params_blob\": \"eventParamsBlob\", \"trigger_headers\": \"triggerHeaders\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"created_at\": \"2019-01-01T12:00:00.000Z\", \"updated_at\": \"2019-01-01T12:00:00.000Z\", \"run_url\": \"runUrl\", \"href\": \"href\"}], \"offset\": 20, \"limit\": 20, \"first\": {\"href\": \"href\"}, \"next\": {\"href\": \"href\"}, \"last\": {\"href\": \"href\"}}";
+    String mockResponseBody = "{\"pipeline_runs\": [{\"id\": \"id\", \"user_info\": {\"iam_id\": \"iamId\", \"sub\": \"sub\"}, \"status\": \"pending\", \"definition_id\": \"definitionId\", \"worker\": {\"name\": \"name\", \"agent_id\": \"agentId\", \"service_id\": \"serviceId\", \"id\": \"id\"}, \"pipeline_id\": \"pipelineId\", \"listener_name\": \"listenerName\", \"trigger\": {\"type\": \"type\", \"name\": \"start-deploy\", \"href\": \"href\", \"event_listener\": \"eventListener\", \"id\": \"id\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\", \"href\": \"href\"}], \"tags\": [\"tags\"], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"max_concurrent_runs\": 4, \"enabled\": true}, \"event_params_blob\": \"eventParamsBlob\", \"trigger_headers\": \"triggerHeaders\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"created_at\": \"2019-01-01T12:00:00.000Z\", \"updated_at\": \"2019-01-01T12:00:00.000Z\", \"run_url\": \"runUrl\", \"href\": \"href\"}], \"limit\": 20, \"first\": {\"href\": \"href\"}, \"next\": {\"href\": \"href\"}, \"last\": {\"href\": \"href\"}}";
     String listTektonPipelineRunsPath = "/tekton_pipelines/94619026-912b-4d92-8f51-6c74f0692d90/pipeline_runs";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -386,7 +386,6 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
       .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
       .start("testString")
       .limit(Long.valueOf("10"))
-      .offset(Long.valueOf("26"))
       .status("succeeded")
       .triggerName("manual-trigger")
       .build();
@@ -409,7 +408,6 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
     assertNotNull(query);
     assertEquals(query.get("start"), "testString");
     assertEquals(Long.valueOf(query.get("limit")), Long.valueOf("10"));
-    assertEquals(Long.valueOf(query.get("offset")), Long.valueOf("26"));
     assertEquals(query.get("status"), "succeeded");
     assertEquals(query.get("trigger.name"), "manual-trigger");
   }
@@ -453,7 +451,6 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
     ListTektonPipelineRunsOptions listTektonPipelineRunsOptions = new ListTektonPipelineRunsOptions.Builder()
       .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
       .limit(Long.valueOf("10"))
-      .offset(Long.valueOf("26"))
       .status("succeeded")
       .triggerName("manual-trigger")
       .build();
@@ -490,7 +487,6 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
     ListTektonPipelineRunsOptions listTektonPipelineRunsOptions = new ListTektonPipelineRunsOptions.Builder()
       .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
       .limit(Long.valueOf("10"))
-      .offset(Long.valueOf("26"))
       .status("succeeded")
       .triggerName("manual-trigger")
       .build();

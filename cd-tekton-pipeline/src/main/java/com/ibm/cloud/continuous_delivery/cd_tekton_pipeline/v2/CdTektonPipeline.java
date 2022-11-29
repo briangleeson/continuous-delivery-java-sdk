@@ -323,9 +323,6 @@ public class CdTektonPipeline extends BaseService {
     if (listTektonPipelineRunsOptions.limit() != null) {
       builder.query("limit", String.valueOf(listTektonPipelineRunsOptions.limit()));
     }
-    if (listTektonPipelineRunsOptions.offset() != null) {
-      builder.query("offset", String.valueOf(listTektonPipelineRunsOptions.offset()));
-    }
     if (listTektonPipelineRunsOptions.status() != null) {
       builder.query("status", String.valueOf(listTektonPipelineRunsOptions.status()));
     }

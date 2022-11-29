@@ -15,8 +15,7 @@ package com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
- * Next page of pipeline runs relative to the `start` and `limit` params, or relative to the `offset` and `limit`
- * params, depending on which of `start` or `offset` were used in the request. Only included when there are more pages
+ * Next page of pipeline runs relative to the `start` and `limit` params. Only included when there are more pages
  * available.
  */
 public class PipelineRunsCollectionNext extends GenericModel {

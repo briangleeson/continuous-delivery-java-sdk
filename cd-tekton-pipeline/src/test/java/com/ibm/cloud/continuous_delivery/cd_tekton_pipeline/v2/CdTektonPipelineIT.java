@@ -205,8 +205,8 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
         .build();
 
       TektonPipelinePatch tektonPipelinePatchModel = new TektonPipelinePatch.Builder()
-        .enableNotifications(false)
-        .enablePartialCloning(false)
+        .enableNotifications(true)
+        .enablePartialCloning(true)
         .worker(workerIdentityModel)
         .build();
       Map<String, Object> tektonPipelinePatchModelAsPatch = tektonPipelinePatchModel.asPatch();
@@ -238,7 +238,6 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
         .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
         .start("testString")
         .limit(Long.valueOf("10"))
-        .offset(Long.valueOf("26"))
         .status("succeeded")
         .triggerName("manual-trigger")
         .build();
@@ -264,7 +263,6 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
       ListTektonPipelineRunsOptions options = new ListTektonPipelineRunsOptions.Builder()
         .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
         .limit(Long.valueOf("10"))
-        .offset(Long.valueOf("26"))
         .status("succeeded")
         .triggerName("manual-trigger")
         .build();

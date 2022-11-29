@@ -46,7 +46,6 @@ public class ListTektonPipelineRunsOptions extends GenericModel {
   protected String pipelineId;
   protected String start;
   protected Long limit;
-  protected Long offset;
   protected String status;
   protected String triggerName;
 
@@ -57,7 +56,6 @@ public class ListTektonPipelineRunsOptions extends GenericModel {
     private String pipelineId;
     private String start;
     private Long limit;
-    private Long offset;
     private String status;
     private String triggerName;
 
@@ -70,7 +68,6 @@ public class ListTektonPipelineRunsOptions extends GenericModel {
       this.pipelineId = listTektonPipelineRunsOptions.pipelineId;
       this.start = listTektonPipelineRunsOptions.start;
       this.limit = listTektonPipelineRunsOptions.limit;
-      this.offset = listTektonPipelineRunsOptions.offset;
       this.status = listTektonPipelineRunsOptions.status;
       this.triggerName = listTektonPipelineRunsOptions.triggerName;
     }
@@ -133,17 +130,6 @@ public class ListTektonPipelineRunsOptions extends GenericModel {
     }
 
     /**
-     * Set the offset.
-     *
-     * @param offset the offset
-     * @return the ListTektonPipelineRunsOptions builder
-     */
-    public Builder offset(long offset) {
-      this.offset = offset;
-      return this;
-    }
-
-    /**
      * Set the status.
      *
      * @param status the status
@@ -174,7 +160,6 @@ public class ListTektonPipelineRunsOptions extends GenericModel {
     pipelineId = builder.pipelineId;
     start = builder.start;
     limit = builder.limit;
-    offset = builder.offset;
     status = builder.status;
     triggerName = builder.triggerName;
   }
@@ -202,8 +187,8 @@ public class ListTektonPipelineRunsOptions extends GenericModel {
   /**
    * Gets the start.
    *
-   * A page token that identifies the start point of the list of pipeline runs. This value is computed and included in
-   * the response body. Cannot be used in combination with `offset`.
+   * A page token that identifies the start point of the list of pipeline runs. This value is included in the response
+   * body of each request to fetch pipeline runs.
    *
    * @return the start
    */
@@ -220,17 +205,6 @@ public class ListTektonPipelineRunsOptions extends GenericModel {
    */
   public Long limit() {
     return limit;
-  }
-
-  /**
-   * Gets the offset.
-   *
-   * Skip the specified number of pipeline runs. Cannot be used in combination with `start`.
-   *
-   * @return the offset
-   */
-  public Long offset() {
-    return offset;
   }
 
   /**
