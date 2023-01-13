@@ -102,6 +102,7 @@ import com.ibm.cloud.sdk.core.util.RequestUtils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -521,8 +522,8 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
     CreateTektonPipelineRunOptions createTektonPipelineRunOptionsModel = new CreateTektonPipelineRunOptions.Builder()
       .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
       .triggerName("Generic Webhook Trigger - 0")
-      .triggerProperties(java.util.Arrays.asList("pipeline-debug":"false"))
-      .secureTriggerProperties(java.util.Arrays.asList("secure-property-key":"secure value"))
+      .triggerProperties(java.util.Collections.singletonMap("anyKey", "anyValue"))
+      .secureTriggerProperties(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .triggerHeaders(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .triggerBody(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .build();
@@ -2179,7 +2180,7 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
 
   // Creates a mock set of environment variables that are returned by EnvironmentUtils.getenv()
   private Map<String, String> getTestProcessEnvironment() {
-    Map<String, String> env = new HashMap<>();
+    Map<String, String> env = new HashMap<String, String>();
     env.put("TESTSERVICE_AUTH_TYPE", "noAuth");
     return env;
   }

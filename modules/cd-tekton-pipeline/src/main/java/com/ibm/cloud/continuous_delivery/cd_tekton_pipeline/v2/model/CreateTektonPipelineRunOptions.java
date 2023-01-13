@@ -12,8 +12,6 @@
  */
 package com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
@@ -77,38 +75,6 @@ public class CreateTektonPipelineRunOptions extends GenericModel {
      */
     public CreateTektonPipelineRunOptions build() {
       return new CreateTektonPipelineRunOptions(this);
-    }
-
-    /**
-     * Adds an inner to triggerProperties.
-     *
-     * @param inner the new inner
-     * @return the CreateTektonPipelineRunOptions builder
-     */
-    public Builder addInner(Object inner) {
-      com.ibm.cloud.sdk.core.util.Validator.notNull(inner,
-        "inner cannot be null");
-      if (this.triggerProperties == null) {
-        this.triggerProperties = new ArrayList<Object>();
-      }
-      this.triggerProperties.add(inner);
-      return this;
-    }
-
-    /**
-     * Adds an inner to secureTriggerProperties.
-     *
-     * @param inner the new inner
-     * @return the CreateTektonPipelineRunOptions builder
-     */
-    public Builder addInner(Object inner) {
-      com.ibm.cloud.sdk.core.util.Validator.notNull(inner,
-        "inner cannot be null");
-      if (this.secureTriggerProperties == null) {
-        this.secureTriggerProperties = new ArrayList<Object>();
-      }
-      this.secureTriggerProperties.add(inner);
-      return this;
     }
 
     /**

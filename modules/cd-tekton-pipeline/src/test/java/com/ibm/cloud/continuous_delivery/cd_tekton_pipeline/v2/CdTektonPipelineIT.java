@@ -100,6 +100,7 @@ import com.ibm.cloud.sdk.core.util.CredentialUtils;
 import com.ibm.cloud.sdk.core.util.DateUtils;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -305,8 +306,8 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
       CreateTektonPipelineRunOptions createTektonPipelineRunOptions = new CreateTektonPipelineRunOptions.Builder()
         .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
         .triggerName("Generic Webhook Trigger - 0")
-        .triggerProperties(java.util.Arrays.asList("pipeline-debug":"false"))
-        .secureTriggerProperties(java.util.Arrays.asList("secure-property-key":"secure value"))
+        .triggerProperties(java.util.Collections.singletonMap("anyKey", "anyValue"))
+        .secureTriggerProperties(java.util.Collections.singletonMap("anyKey", "anyValue"))
         .triggerHeaders(java.util.Collections.singletonMap("anyKey", "anyValue"))
         .triggerBody(java.util.Collections.singletonMap("anyKey", "anyValue"))
         .build();

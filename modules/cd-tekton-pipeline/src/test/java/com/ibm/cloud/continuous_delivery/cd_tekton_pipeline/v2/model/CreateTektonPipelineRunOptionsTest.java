@@ -18,6 +18,7 @@ import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.Property;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.utils.TestUtilities;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import java.io.InputStream;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import org.testng.annotations.Test;
@@ -48,15 +49,15 @@ public class CreateTektonPipelineRunOptionsTest {
     CreateTektonPipelineRunOptions createTektonPipelineRunOptionsModel = new CreateTektonPipelineRunOptions.Builder()
       .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
       .triggerName("start-deploy")
-      .triggerProperties(java.util.Arrays.asList("testString"))
-      .secureTriggerProperties(java.util.Arrays.asList("testString"))
+      .triggerProperties(java.util.Collections.singletonMap("anyKey", "anyValue"))
+      .secureTriggerProperties(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .triggerHeaders(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .triggerBody(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .build();
     assertEquals(createTektonPipelineRunOptionsModel.pipelineId(), "94619026-912b-4d92-8f51-6c74f0692d90");
     assertEquals(createTektonPipelineRunOptionsModel.triggerName(), "start-deploy");
-    assertEquals(createTektonPipelineRunOptionsModel.triggerProperties(), java.util.Arrays.asList("testString"));
-    assertEquals(createTektonPipelineRunOptionsModel.secureTriggerProperties(), java.util.Arrays.asList("testString"));
+    assertEquals(createTektonPipelineRunOptionsModel.triggerProperties(), java.util.Collections.singletonMap("anyKey", "anyValue"));
+    assertEquals(createTektonPipelineRunOptionsModel.secureTriggerProperties(), java.util.Collections.singletonMap("anyKey", "anyValue"));
     assertEquals(createTektonPipelineRunOptionsModel.triggerHeaders(), java.util.Collections.singletonMap("anyKey", "anyValue"));
     assertEquals(createTektonPipelineRunOptionsModel.triggerBody(), java.util.Collections.singletonMap("anyKey", "anyValue"));
   }
