@@ -1,4 +1,4 @@
-# IBM Cloud Continuous Delivery Java SDK Version 0.1.0
+# IBM Cloud Continuous Delivery Java SDK Version 0.1.1
 
 [![Build Status](https://app.travis-ci.com/IBM/continuous-delivery-java-sdk.svg?branch=main)](https://app.travis-ci.com/IBM/continuous-delivery-java-sdk)
 [![Release](https://img.shields.io/github/v/release/IBM/continuous-delivery-java-sdk)](https://github.com/IBM/continuous-delivery-java-sdk/releases/latest)
@@ -24,7 +24,7 @@ Changes might occur which impact applications that use this SDK.
 
 <!-- toc -->
 
-- [IBM Cloud Continuous Delivery Java SDK Version 0.1.0](#ibm-cloud-continuous-delivery-java-sdk-version-010)
+- [IBM Cloud Continuous Delivery Java SDK Version 0.1.1](#ibm-cloud-continuous-delivery-java-sdk-version-010)
   - [Table of Contents](#table-of-contents)
   - [Overview](#overview)
   - [Prerequisites](#prerequisites)
@@ -46,8 +46,8 @@ The IBM Cloud Continuous Delivery Java SDK allows developers to programmatically
 
 Service Name | Artifact Coordinates
 --- | ---
-[Toolchain API](https://cloud.ibm.com/apidocs/toolchain?code=java) | com.ibm.cloud:cd-toolchain:0.1.0
-[Tekton Pipeline API](https://cloud.ibm.com/apidocs/tekton-pipeline?code=java) | com.ibm.cloud:cd-tekton-pipeline:0.1.0
+[Toolchain API](https://cloud.ibm.com/apidocs/toolchain?code=java) | com.ibm.cloud:cd-toolchain:0.1.1
+[Tekton Pipeline API](https://cloud.ibm.com/apidocs/tekton-pipeline?code=java) | com.ibm.cloud:cd-tekton-pipeline:0.1.1
 
 Table 1. IBM Cloud services
 
@@ -61,7 +61,7 @@ Table 1. IBM Cloud services
 
 ## Installation
 
-The current version of this SDK is: 0.1.0
+The current version of this SDK is: 0.1.1
 
 Each service's artifact coordinates are listed in the table above.
 
@@ -80,14 +80,14 @@ Here are examples for maven and gradle:
 <dependency>
     <groupId>com.ibm.cloud</groupId>
     <artifactId>cd-toolchain</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```gradle
-compile 'com.ibm.cloud:cd-toolchain:0.1.0'
+compile 'com.ibm.cloud:cd-toolchain:0.1.1'
 ```
 
 ## Using the SDK
