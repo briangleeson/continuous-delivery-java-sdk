@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -12,7 +12,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 3.58.0-ac124633-20221004-152309
+ * IBM OpenAPI SDK Code Generator Version: 3.62.0-a2a22f95-20221115-162524
  */
 
 package com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2;
@@ -178,49 +178,29 @@ public class CdTektonPipeline extends BaseService {
    * @return a {@link ServiceCall} with a result of type {@link TektonPipeline}
    */
   public ServiceCall<TektonPipeline> createTektonPipeline(CreateTektonPipelineOptions createTektonPipelineOptions) {
-    boolean skipBody = false;
-    if (createTektonPipelineOptions == null) {
-      createTektonPipelineOptions = new CreateTektonPipelineOptions.Builder().build();
-      skipBody = true;
-    }
+    com.ibm.cloud.sdk.core.util.Validator.notNull(createTektonPipelineOptions,
+      "createTektonPipelineOptions cannot be null");
     RequestBuilder builder = RequestBuilder.post(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/tekton_pipelines"));
     Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("cd_tekton_pipeline", "v2", "createTektonPipeline");
     for (Entry<String, String> header : sdkHeaders.entrySet()) {
       builder.header(header.getKey(), header.getValue());
     }
     builder.header("Accept", "application/json");
-    if (!skipBody) {
-      final JsonObject contentJson = new JsonObject();
-      if (createTektonPipelineOptions.enableNotifications() != null) {
-        contentJson.addProperty("enable_notifications", createTektonPipelineOptions.enableNotifications());
-      }
-      if (createTektonPipelineOptions.enablePartialCloning() != null) {
-        contentJson.addProperty("enable_partial_cloning", createTektonPipelineOptions.enablePartialCloning());
-      }
-      if (createTektonPipelineOptions.id() != null) {
-        contentJson.addProperty("id", createTektonPipelineOptions.id());
-      }
-      if (createTektonPipelineOptions.worker() != null) {
-        contentJson.add("worker", com.ibm.cloud.sdk.core.util.GsonSingleton.getGson().toJsonTree(createTektonPipelineOptions.worker()));
-      }
-      builder.bodyJson(contentJson);
+    final JsonObject contentJson = new JsonObject();
+    contentJson.addProperty("id", createTektonPipelineOptions.id());
+    if (createTektonPipelineOptions.enableNotifications() != null) {
+      contentJson.addProperty("enable_notifications", createTektonPipelineOptions.enableNotifications());
     }
+    if (createTektonPipelineOptions.enablePartialCloning() != null) {
+      contentJson.addProperty("enable_partial_cloning", createTektonPipelineOptions.enablePartialCloning());
+    }
+    if (createTektonPipelineOptions.worker() != null) {
+      contentJson.add("worker", com.ibm.cloud.sdk.core.util.GsonSingleton.getGson().toJsonTree(createTektonPipelineOptions.worker()));
+    }
+    builder.bodyJson(contentJson);
     ResponseConverter<TektonPipeline> responseConverter =
       ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<TektonPipeline>() { }.getType());
     return createServiceCall(builder.build(), responseConverter);
-  }
-
-  /**
-   * Create Tekton pipeline.
-   *
-   * This request creates a Tekton pipeline. Requires a pipeline tool already created in the toolchain using the
-   * toolchain API https://cloud.ibm.com/apidocs/toolchain#create-tool, and use the tool ID to create the Tekton
-   * pipeline.
-   *
-   * @return a {@link ServiceCall} with a result of type {@link TektonPipeline}
-   */
-  public ServiceCall<TektonPipeline> createTektonPipeline() {
-    return createTektonPipeline(null);
   }
 
   /**
@@ -337,7 +317,7 @@ public class CdTektonPipeline extends BaseService {
   /**
    * Trigger a pipeline run.
    *
-   * Trigger a new pipeline run using the named trigger, using the provided additional or override properties.
+   * Trigger a new pipeline run using the named manual trigger, using the provided additional or override properties.
    *
    * @param createTektonPipelineRunOptions the {@link CreateTektonPipelineRunOptions} containing the options for the call
    * @return a {@link ServiceCall} with a result of type {@link PipelineRun}
@@ -368,6 +348,9 @@ public class CdTektonPipeline extends BaseService {
     }
     if (createTektonPipelineRunOptions.triggerBody() != null) {
       contentJson.add("trigger_body", com.ibm.cloud.sdk.core.util.GsonSingleton.getGson().toJsonTree(createTektonPipelineRunOptions.triggerBody()));
+    }
+    if (createTektonPipelineRunOptions.trigger() != null) {
+      contentJson.add("trigger", com.ibm.cloud.sdk.core.util.GsonSingleton.getGson().toJsonTree(createTektonPipelineRunOptions.trigger()));
     }
     builder.bodyJson(contentJson);
     ResponseConverter<PipelineRun> responseConverter =
@@ -588,9 +571,7 @@ public class CdTektonPipeline extends BaseService {
     }
     builder.header("Accept", "application/json");
     final JsonObject contentJson = new JsonObject();
-    if (createTektonPipelineDefinitionOptions.source() != null) {
-      contentJson.add("source", com.ibm.cloud.sdk.core.util.GsonSingleton.getGson().toJsonTree(createTektonPipelineDefinitionOptions.source()));
-    }
+    contentJson.add("source", com.ibm.cloud.sdk.core.util.GsonSingleton.getGson().toJsonTree(createTektonPipelineDefinitionOptions.source()));
     builder.bodyJson(contentJson);
     ResponseConverter<Definition> responseConverter =
       ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<Definition>() { }.getType());
@@ -644,9 +625,7 @@ public class CdTektonPipeline extends BaseService {
     }
     builder.header("Accept", "application/json");
     final JsonObject contentJson = new JsonObject();
-    if (replaceTektonPipelineDefinitionOptions.source() != null) {
-      contentJson.add("source", com.ibm.cloud.sdk.core.util.GsonSingleton.getGson().toJsonTree(replaceTektonPipelineDefinitionOptions.source()));
-    }
+    contentJson.add("source", com.ibm.cloud.sdk.core.util.GsonSingleton.getGson().toJsonTree(replaceTektonPipelineDefinitionOptions.source()));
     builder.bodyJson(contentJson);
     ResponseConverter<Definition> responseConverter =
       ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<Definition>() { }.getType());
@@ -729,17 +708,13 @@ public class CdTektonPipeline extends BaseService {
     }
     builder.header("Accept", "application/json");
     final JsonObject contentJson = new JsonObject();
-    if (createTektonPipelinePropertiesOptions.name() != null) {
-      contentJson.addProperty("name", createTektonPipelinePropertiesOptions.name());
-    }
+    contentJson.addProperty("name", createTektonPipelinePropertiesOptions.name());
+    contentJson.addProperty("type", createTektonPipelinePropertiesOptions.type());
     if (createTektonPipelinePropertiesOptions.value() != null) {
       contentJson.addProperty("value", createTektonPipelinePropertiesOptions.value());
     }
     if (createTektonPipelinePropertiesOptions.xEnum() != null) {
       contentJson.add("enum", com.ibm.cloud.sdk.core.util.GsonSingleton.getGson().toJsonTree(createTektonPipelinePropertiesOptions.xEnum()));
-    }
-    if (createTektonPipelinePropertiesOptions.type() != null) {
-      contentJson.addProperty("type", createTektonPipelinePropertiesOptions.type());
     }
     if (createTektonPipelinePropertiesOptions.path() != null) {
       contentJson.addProperty("path", createTektonPipelinePropertiesOptions.path());
@@ -797,17 +772,13 @@ public class CdTektonPipeline extends BaseService {
     }
     builder.header("Accept", "application/json");
     final JsonObject contentJson = new JsonObject();
-    if (replaceTektonPipelinePropertyOptions.name() != null) {
-      contentJson.addProperty("name", replaceTektonPipelinePropertyOptions.name());
-    }
+    contentJson.addProperty("name", replaceTektonPipelinePropertyOptions.name());
+    contentJson.addProperty("type", replaceTektonPipelinePropertyOptions.type());
     if (replaceTektonPipelinePropertyOptions.value() != null) {
       contentJson.addProperty("value", replaceTektonPipelinePropertyOptions.value());
     }
     if (replaceTektonPipelinePropertyOptions.xEnum() != null) {
       contentJson.add("enum", com.ibm.cloud.sdk.core.util.GsonSingleton.getGson().toJsonTree(replaceTektonPipelinePropertyOptions.xEnum()));
-    }
-    if (replaceTektonPipelinePropertyOptions.type() != null) {
-      contentJson.addProperty("type", replaceTektonPipelinePropertyOptions.type());
     }
     if (replaceTektonPipelinePropertyOptions.path() != null) {
       contentJson.addProperty("path", replaceTektonPipelinePropertyOptions.path());
@@ -906,15 +877,9 @@ public class CdTektonPipeline extends BaseService {
     }
     builder.header("Accept", "application/json");
     final JsonObject contentJson = new JsonObject();
-    if (createTektonPipelineTriggerOptions.type() != null) {
-      contentJson.addProperty("type", createTektonPipelineTriggerOptions.type());
-    }
-    if (createTektonPipelineTriggerOptions.name() != null) {
-      contentJson.addProperty("name", createTektonPipelineTriggerOptions.name());
-    }
-    if (createTektonPipelineTriggerOptions.eventListener() != null) {
-      contentJson.addProperty("event_listener", createTektonPipelineTriggerOptions.eventListener());
-    }
+    contentJson.addProperty("type", createTektonPipelineTriggerOptions.type());
+    contentJson.addProperty("name", createTektonPipelineTriggerOptions.name());
+    contentJson.addProperty("event_listener", createTektonPipelineTriggerOptions.eventListener());
     if (createTektonPipelineTriggerOptions.tags() != null) {
       contentJson.add("tags", com.ibm.cloud.sdk.core.util.GsonSingleton.getGson().toJsonTree(createTektonPipelineTriggerOptions.tags()));
     }
@@ -1046,9 +1011,7 @@ public class CdTektonPipeline extends BaseService {
     }
     builder.header("Accept", "application/json");
     final JsonObject contentJson = new JsonObject();
-    if (duplicateTektonPipelineTriggerOptions.name() != null) {
-      contentJson.addProperty("name", duplicateTektonPipelineTriggerOptions.name());
-    }
+    contentJson.addProperty("name", duplicateTektonPipelineTriggerOptions.name());
     builder.bodyJson(contentJson);
     ResponseConverter<Trigger> responseConverter =
       ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<Trigger>() { }.getType());
@@ -1110,17 +1073,13 @@ public class CdTektonPipeline extends BaseService {
     }
     builder.header("Accept", "application/json");
     final JsonObject contentJson = new JsonObject();
-    if (createTektonPipelineTriggerPropertiesOptions.name() != null) {
-      contentJson.addProperty("name", createTektonPipelineTriggerPropertiesOptions.name());
-    }
+    contentJson.addProperty("name", createTektonPipelineTriggerPropertiesOptions.name());
+    contentJson.addProperty("type", createTektonPipelineTriggerPropertiesOptions.type());
     if (createTektonPipelineTriggerPropertiesOptions.value() != null) {
       contentJson.addProperty("value", createTektonPipelineTriggerPropertiesOptions.value());
     }
     if (createTektonPipelineTriggerPropertiesOptions.xEnum() != null) {
       contentJson.add("enum", com.ibm.cloud.sdk.core.util.GsonSingleton.getGson().toJsonTree(createTektonPipelineTriggerPropertiesOptions.xEnum()));
-    }
-    if (createTektonPipelineTriggerPropertiesOptions.type() != null) {
-      contentJson.addProperty("type", createTektonPipelineTriggerPropertiesOptions.type());
     }
     if (createTektonPipelineTriggerPropertiesOptions.path() != null) {
       contentJson.addProperty("path", createTektonPipelineTriggerPropertiesOptions.path());
@@ -1179,17 +1138,13 @@ public class CdTektonPipeline extends BaseService {
     }
     builder.header("Accept", "application/json");
     final JsonObject contentJson = new JsonObject();
-    if (replaceTektonPipelineTriggerPropertyOptions.name() != null) {
-      contentJson.addProperty("name", replaceTektonPipelineTriggerPropertyOptions.name());
-    }
+    contentJson.addProperty("name", replaceTektonPipelineTriggerPropertyOptions.name());
+    contentJson.addProperty("type", replaceTektonPipelineTriggerPropertyOptions.type());
     if (replaceTektonPipelineTriggerPropertyOptions.value() != null) {
       contentJson.addProperty("value", replaceTektonPipelineTriggerPropertyOptions.value());
     }
     if (replaceTektonPipelineTriggerPropertyOptions.xEnum() != null) {
       contentJson.add("enum", com.ibm.cloud.sdk.core.util.GsonSingleton.getGson().toJsonTree(replaceTektonPipelineTriggerPropertyOptions.xEnum()));
-    }
-    if (replaceTektonPipelineTriggerPropertyOptions.type() != null) {
-      contentJson.addProperty("type", replaceTektonPipelineTriggerPropertyOptions.type());
     }
     if (replaceTektonPipelineTriggerPropertyOptions.path() != null) {
       contentJson.addProperty("path", replaceTektonPipelineTriggerPropertyOptions.path());

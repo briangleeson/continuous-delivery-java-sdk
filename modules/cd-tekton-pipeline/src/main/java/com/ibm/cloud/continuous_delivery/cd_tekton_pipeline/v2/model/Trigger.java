@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -48,7 +48,7 @@ public class Trigger extends GenericModel {
   protected String eventListener;
   protected String id;
   @SerializedName("properties")
-  protected List<TriggerPropertiesItem> xProperties;
+  protected List<TriggerProperty> xProperties;
   protected List<String> tags;
   protected Worker worker;
   @SerializedName("max_concurrent_runs")
@@ -112,7 +112,7 @@ public class Trigger extends GenericModel {
   /**
    * Gets the id.
    *
-   * ID.
+   * The Trigger ID.
    *
    * @return the id
    */
@@ -127,7 +127,7 @@ public class Trigger extends GenericModel {
    *
    * @return the xProperties
    */
-  public List<TriggerPropertiesItem> getXProperties() {
+  public List<TriggerProperty> getXProperties() {
     return xProperties;
   }
 

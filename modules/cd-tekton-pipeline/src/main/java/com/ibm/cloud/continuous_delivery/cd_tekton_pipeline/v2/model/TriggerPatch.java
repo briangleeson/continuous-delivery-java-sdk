@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -57,14 +57,14 @@ public class TriggerPatch extends GenericModel {
   @SerializedName("event_listener")
   protected String eventListener;
   protected List<String> tags;
-  protected Worker worker;
+  protected WorkerIdentity worker;
   @SerializedName("max_concurrent_runs")
   protected Long maxConcurrentRuns;
   protected Boolean enabled;
   protected GenericSecret secret;
   protected String cron;
   protected String timezone;
-  protected TriggerSource source;
+  protected TriggerSourcePrototype source;
   protected List<String> events;
 
   /**
@@ -75,13 +75,13 @@ public class TriggerPatch extends GenericModel {
     private String name;
     private String eventListener;
     private List<String> tags;
-    private Worker worker;
+    private WorkerIdentity worker;
     private Long maxConcurrentRuns;
     private Boolean enabled;
     private GenericSecret secret;
     private String cron;
     private String timezone;
-    private TriggerSource source;
+    private TriggerSourcePrototype source;
     private List<String> events;
 
     /**
@@ -202,7 +202,7 @@ public class TriggerPatch extends GenericModel {
      * @param worker the worker
      * @return the TriggerPatch builder
      */
-    public Builder worker(Worker worker) {
+    public Builder worker(WorkerIdentity worker) {
       this.worker = worker;
       return this;
     }
@@ -268,7 +268,7 @@ public class TriggerPatch extends GenericModel {
      * @param source the source
      * @return the TriggerPatch builder
      */
-    public Builder source(TriggerSource source) {
+    public Builder source(TriggerSourcePrototype source) {
       this.source = source;
       return this;
     }
@@ -364,7 +364,7 @@ public class TriggerPatch extends GenericModel {
    *
    * @return the worker
    */
-  public Worker worker() {
+  public WorkerIdentity worker() {
     return worker;
   }
 
@@ -437,7 +437,7 @@ public class TriggerPatch extends GenericModel {
    *
    * @return the source
    */
-  public TriggerSource source() {
+  public TriggerSourcePrototype source() {
     return source;
   }
 

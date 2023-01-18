@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -54,13 +54,13 @@ public class CreateTektonPipelineTriggerOptions extends GenericModel {
   protected String name;
   protected String eventListener;
   protected List<String> tags;
-  protected Worker worker;
+  protected WorkerIdentity worker;
   protected Long maxConcurrentRuns;
   protected Boolean enabled;
   protected GenericSecret secret;
   protected String cron;
   protected String timezone;
-  protected TriggerSource source;
+  protected TriggerSourcePrototype source;
   protected List<String> events;
 
   /**
@@ -72,13 +72,13 @@ public class CreateTektonPipelineTriggerOptions extends GenericModel {
     private String name;
     private String eventListener;
     private List<String> tags;
-    private Worker worker;
+    private WorkerIdentity worker;
     private Long maxConcurrentRuns;
     private Boolean enabled;
     private GenericSecret secret;
     private String cron;
     private String timezone;
-    private TriggerSource source;
+    private TriggerSourcePrototype source;
     private List<String> events;
 
     /**
@@ -112,9 +112,15 @@ public class CreateTektonPipelineTriggerOptions extends GenericModel {
      * Instantiates a new builder with required properties.
      *
      * @param pipelineId the pipelineId
+     * @param type the type
+     * @param name the name
+     * @param eventListener the eventListener
      */
-    public Builder(String pipelineId) {
+    public Builder(String pipelineId, String type, String name, String eventListener) {
       this.pipelineId = pipelineId;
+      this.type = type;
+      this.name = name;
+      this.eventListener = eventListener;
     }
 
     /**
@@ -220,7 +226,7 @@ public class CreateTektonPipelineTriggerOptions extends GenericModel {
      * @param worker the worker
      * @return the CreateTektonPipelineTriggerOptions builder
      */
-    public Builder worker(Worker worker) {
+    public Builder worker(WorkerIdentity worker) {
       this.worker = worker;
       return this;
     }
@@ -286,7 +292,7 @@ public class CreateTektonPipelineTriggerOptions extends GenericModel {
      * @param source the source
      * @return the CreateTektonPipelineTriggerOptions builder
      */
-    public Builder source(TriggerSource source) {
+    public Builder source(TriggerSourcePrototype source) {
       this.source = source;
       return this;
     }
@@ -309,6 +315,12 @@ public class CreateTektonPipelineTriggerOptions extends GenericModel {
   protected CreateTektonPipelineTriggerOptions(Builder builder) {
     com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.pipelineId,
       "pipelineId cannot be empty");
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.type,
+      "type cannot be null");
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
+      "name cannot be null");
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.eventListener,
+      "eventListener cannot be null");
     pipelineId = builder.pipelineId;
     type = builder.type;
     name = builder.name;
@@ -396,7 +408,7 @@ public class CreateTektonPipelineTriggerOptions extends GenericModel {
    *
    * @return the worker
    */
-  public Worker worker() {
+  public WorkerIdentity worker() {
     return worker;
   }
 
@@ -469,7 +481,7 @@ public class CreateTektonPipelineTriggerOptions extends GenericModel {
    *
    * @return the source
    */
-  public TriggerSource source() {
+  public TriggerSourcePrototype source() {
     return source;
   }
 

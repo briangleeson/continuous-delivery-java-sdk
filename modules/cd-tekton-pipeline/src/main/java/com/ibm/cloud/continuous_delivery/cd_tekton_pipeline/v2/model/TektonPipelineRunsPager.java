@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -66,9 +66,9 @@ public class TektonPipelineRunsPager {
 
   /**
    * Returns the next page of results.
-   * @return a List&lt;PipelineRunsCollectionPipelineRunsItem&gt; that contains the next page of results
+   * @return a List&lt;PipelineRun&gt; that contains the next page of results
    */
-  public List<PipelineRunsCollectionPipelineRunsItem> getNext() {
+  public List<PipelineRun> getNext() {
     if (!hasNext()) {
       throw new NoSuchElementException("No more results available");
     }
@@ -98,12 +98,12 @@ public class TektonPipelineRunsPager {
 
   /**
    * Returns all results by invoking getNext() repeatedly until all pages of results have been retrieved.
-   * @return a List&lt;PipelineRunsCollectionPipelineRunsItem&gt; containing all results returned by the "listTektonPipelineRuns" method
+   * @return a List&lt;PipelineRun&gt; containing all results returned by the "listTektonPipelineRuns" method
    */
-  public List<PipelineRunsCollectionPipelineRunsItem> getAll() {
-    List<PipelineRunsCollectionPipelineRunsItem> results = new ArrayList<>();
+  public List<PipelineRun> getAll() {
+    List<PipelineRun> results = new ArrayList<>();
     while (hasNext()) {
-      List<PipelineRunsCollectionPipelineRunsItem> nextPage = getNext();
+      List<PipelineRun> nextPage = getNext();
       results.addAll(nextPage);
     }
     return results;

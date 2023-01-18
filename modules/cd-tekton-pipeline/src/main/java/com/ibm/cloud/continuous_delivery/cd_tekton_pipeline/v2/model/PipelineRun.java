@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -48,14 +48,17 @@ public class PipelineRun extends GenericModel {
   }
 
   protected String id;
+  protected String href;
   @SerializedName("user_info")
   protected UserInfo userInfo;
   protected String status;
   @SerializedName("definition_id")
   protected String definitionId;
+  protected RunDefinition definition;
   protected PipelineRunWorker worker;
   @SerializedName("pipeline_id")
   protected String pipelineId;
+  protected RunPipeline pipeline;
   @SerializedName("listener_name")
   protected String listenerName;
   protected Trigger trigger;
@@ -86,6 +89,17 @@ public class PipelineRun extends GenericModel {
   }
 
   /**
+   * Gets the href.
+   *
+   * General href URL.
+   *
+   * @return the href
+   */
+  public String getHref() {
+    return href;
+  }
+
+  /**
    * Gets the userInfo.
    *
    * Information about the user that triggered a pipeline run. Only included for pipeline runs that were manually
@@ -111,12 +125,23 @@ public class PipelineRun extends GenericModel {
   /**
    * Gets the definitionId.
    *
-   * The aggregated definition ID used for this pipeline run.
+   * The aggregated definition ID.
    *
    * @return the definitionId
    */
   public String getDefinitionId() {
     return definitionId;
+  }
+
+  /**
+   * Gets the definition.
+   *
+   * Reference to the pipeline definition of a pipeline run.
+   *
+   * @return the definition
+   */
+  public RunDefinition getDefinition() {
+    return definition;
   }
 
   /**
@@ -133,12 +158,23 @@ public class PipelineRun extends GenericModel {
   /**
    * Gets the pipelineId.
    *
-   * UUID.
+   * The ID of the pipeline to which this pipeline run belongs.
    *
    * @return the pipelineId
    */
   public String getPipelineId() {
     return pipelineId;
+  }
+
+  /**
+   * Gets the pipeline.
+   *
+   * Reference to the pipeline to which a pipeline run belongs.
+   *
+   * @return the pipeline
+   */
+  public RunPipeline getPipeline() {
+    return pipeline;
   }
 
   /**

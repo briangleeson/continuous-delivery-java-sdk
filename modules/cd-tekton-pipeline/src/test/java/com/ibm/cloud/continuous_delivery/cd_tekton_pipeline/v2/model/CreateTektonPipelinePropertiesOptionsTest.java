@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -34,16 +34,16 @@ public class CreateTektonPipelinePropertiesOptionsTest {
     CreateTektonPipelinePropertiesOptions createTektonPipelinePropertiesOptionsModel = new CreateTektonPipelinePropertiesOptions.Builder()
       .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
       .name("testString")
+      .type("secure")
       .value("testString")
       .xEnum(java.util.Arrays.asList("testString"))
-      .type("secure")
       .path("testString")
       .build();
     assertEquals(createTektonPipelinePropertiesOptionsModel.pipelineId(), "94619026-912b-4d92-8f51-6c74f0692d90");
     assertEquals(createTektonPipelinePropertiesOptionsModel.name(), "testString");
+    assertEquals(createTektonPipelinePropertiesOptionsModel.type(), "secure");
     assertEquals(createTektonPipelinePropertiesOptionsModel.value(), "testString");
     assertEquals(createTektonPipelinePropertiesOptionsModel.xEnum(), java.util.Arrays.asList("testString"));
-    assertEquals(createTektonPipelinePropertiesOptionsModel.type(), "secure");
     assertEquals(createTektonPipelinePropertiesOptionsModel.path(), "testString");
   }
 

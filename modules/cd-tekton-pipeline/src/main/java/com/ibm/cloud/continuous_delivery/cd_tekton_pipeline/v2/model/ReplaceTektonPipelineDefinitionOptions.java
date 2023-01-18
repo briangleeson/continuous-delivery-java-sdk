@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -53,10 +53,12 @@ public class ReplaceTektonPipelineDefinitionOptions extends GenericModel {
      *
      * @param pipelineId the pipelineId
      * @param definitionId the definitionId
+     * @param source the source
      */
-    public Builder(String pipelineId, String definitionId) {
+    public Builder(String pipelineId, String definitionId, DefinitionSource source) {
       this.pipelineId = pipelineId;
       this.definitionId = definitionId;
+      this.source = source;
     }
 
     /**
@@ -109,6 +111,8 @@ public class ReplaceTektonPipelineDefinitionOptions extends GenericModel {
       "pipelineId cannot be empty");
     com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.definitionId,
       "definitionId cannot be empty");
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.source,
+      "source cannot be null");
     pipelineId = builder.pipelineId;
     definitionId = builder.definitionId;
     source = builder.source;

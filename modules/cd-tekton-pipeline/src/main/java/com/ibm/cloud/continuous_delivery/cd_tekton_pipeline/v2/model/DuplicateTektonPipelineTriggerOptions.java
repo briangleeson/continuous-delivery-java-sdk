@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -53,10 +53,12 @@ public class DuplicateTektonPipelineTriggerOptions extends GenericModel {
      *
      * @param pipelineId the pipelineId
      * @param sourceTriggerId the sourceTriggerId
+     * @param name the name
      */
-    public Builder(String pipelineId, String sourceTriggerId) {
+    public Builder(String pipelineId, String sourceTriggerId, String name) {
       this.pipelineId = pipelineId;
       this.sourceTriggerId = sourceTriggerId;
+      this.name = name;
     }
 
     /**
@@ -109,6 +111,8 @@ public class DuplicateTektonPipelineTriggerOptions extends GenericModel {
       "pipelineId cannot be empty");
     com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.sourceTriggerId,
       "sourceTriggerId cannot be empty");
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
+      "name cannot be null");
     pipelineId = builder.pipelineId;
     sourceTriggerId = builder.sourceTriggerId;
     name = builder.name;

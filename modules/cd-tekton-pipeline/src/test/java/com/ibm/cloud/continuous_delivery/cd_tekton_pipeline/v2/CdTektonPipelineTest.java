@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -23,9 +23,7 @@ import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.CreateTekto
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.Definition;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DefinitionSource;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DefinitionSourceProperties;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DefinitionSourcePropertiesTool;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DefinitionsCollection;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DefinitionsCollectionDefinitionsItem;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DeleteTektonPipelineDefinitionOptions;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DeleteTektonPipelineOptions;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DeleteTektonPipelinePropertyOptions;
@@ -50,41 +48,39 @@ import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.ListTektonP
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.Log;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.LogsCollection;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRun;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRunTrigger;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRunWorker;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRunsCollection;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRunsCollectionFirst;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRunsCollectionLast;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRunsCollectionNext;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRunsCollectionPipelineRunsItem;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PropertiesCollection;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.Property;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.ReplaceTektonPipelineDefinitionOptions;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.ReplaceTektonPipelinePropertyOptions;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.ReplaceTektonPipelineTriggerPropertyOptions;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.RerunTektonPipelineRunOptions;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.ResourceGroupReference;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.RunDefinition;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.RunPipeline;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.RunsFirstPage;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.RunsLastPage;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.RunsNextPage;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.StepLog;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TektonPipeline;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TektonPipelinePatch;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TektonPipelineResourceGroup;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TektonPipelineRunsPager;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.Tool;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.ToolchainReference;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.Trigger;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerGenericTrigger;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerGenericTriggerPropertiesItem;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerManualTrigger;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerManualTriggerPropertiesItem;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerPatch;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerPropertiesCollection;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerPropertiesCollectionPropertiesItem;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerPropertiesItem;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerProperty;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerScmTrigger;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerScmTriggerPropertiesItem;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerSource;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerSourceProperties;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerSourcePropertiesTool;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerSourcePropertiesPrototype;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerSourcePrototype;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerTimerTrigger;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerTimerTriggerPropertiesItem;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggersCollection;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.UpdateTektonPipelineOptions;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.UpdateTektonPipelineTriggerOptions;
@@ -157,7 +153,7 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
   @Test
   public void testCreateTektonPipelineWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"name\": \"name\", \"status\": \"configured\", \"resource_group\": {\"id\": \"id\"}, \"toolchain\": {\"id\": \"id\", \"crn\": \"crn:v1:staging:public:toolchain:us-south:a/0ba224679d6c697f9baee5e14ade83ac:bf5fa00f-ddef-4298-b87b-aa8b6da0e1a6::\"}, \"id\": \"id\", \"definitions\": [{\"source\": {\"type\": \"type\", \"properties\": {\"url\": \"url\", \"branch\": \"branch\", \"tag\": \"tag\", \"path\": \"path\", \"tool\": {\"id\": \"id\"}}}, \"id\": \"id\"}], \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"updated_at\": \"2019-01-01T12:00:00.000Z\", \"created_at\": \"2019-01-01T12:00:00.000Z\", \"triggers\": [{\"type\": \"type\", \"name\": \"start-deploy\", \"href\": \"href\", \"event_listener\": \"eventListener\", \"id\": \"id\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\", \"href\": \"href\"}], \"tags\": [\"tags\"], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"max_concurrent_runs\": 4, \"enabled\": true}], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"runs_url\": \"runsUrl\", \"build_number\": 1, \"enable_notifications\": false, \"enable_partial_cloning\": true, \"enabled\": true}";
+    String mockResponseBody = "{\"name\": \"name\", \"status\": \"configured\", \"resource_group\": {\"id\": \"id\"}, \"toolchain\": {\"id\": \"id\", \"crn\": \"crn:v1:staging:public:toolchain:us-south:a/0ba224679d6c697f9baee5e14ade83ac:bf5fa00f-ddef-4298-b87b-aa8b6da0e1a6::\"}, \"id\": \"id\", \"definitions\": [{\"source\": {\"type\": \"type\", \"properties\": {\"url\": \"url\", \"branch\": \"branch\", \"tag\": \"tag\", \"path\": \"path\", \"tool\": {\"id\": \"id\"}}}, \"href\": \"href\", \"id\": \"id\"}], \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"updated_at\": \"2019-01-01T12:00:00.000Z\", \"created_at\": \"2019-01-01T12:00:00.000Z\", \"triggers\": [{\"type\": \"type\", \"name\": \"start-deploy\", \"href\": \"href\", \"event_listener\": \"eventListener\", \"id\": \"id\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"tags\": [\"tags\"], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"max_concurrent_runs\": 4, \"enabled\": true}], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"runs_url\": \"runsUrl\", \"href\": \"href\", \"build_number\": 1, \"enable_notifications\": false, \"enable_partial_cloning\": true, \"enabled\": true}";
     String createTektonPipelinePath = "/tekton_pipelines";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -171,9 +167,9 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
 
     // Construct an instance of the CreateTektonPipelineOptions model
     CreateTektonPipelineOptions createTektonPipelineOptionsModel = new CreateTektonPipelineOptions.Builder()
+      .id("94619026-912b-4d92-8f51-6c74f0692d90")
       .enableNotifications(false)
       .enablePartialCloning(false)
-      .id("94619026-912b-4d92-8f51-6c74f0692d90")
       .worker(workerIdentityModel)
       .build();
 
@@ -205,11 +201,18 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
     testCreateTektonPipelineWOptions();
   }
 
+  // Test the createTektonPipeline operation with a null options model (negative test)
+  @Test(expectedExceptions = IllegalArgumentException.class)
+  public void testCreateTektonPipelineNoOptions() throws Throwable {
+    server.enqueue(new MockResponse());
+    cdTektonPipelineService.createTektonPipeline(null).execute();
+  }
+
   // Test the getTektonPipeline operation with a valid options model parameter
   @Test
   public void testGetTektonPipelineWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"name\": \"name\", \"status\": \"configured\", \"resource_group\": {\"id\": \"id\"}, \"toolchain\": {\"id\": \"id\", \"crn\": \"crn:v1:staging:public:toolchain:us-south:a/0ba224679d6c697f9baee5e14ade83ac:bf5fa00f-ddef-4298-b87b-aa8b6da0e1a6::\"}, \"id\": \"id\", \"definitions\": [{\"source\": {\"type\": \"type\", \"properties\": {\"url\": \"url\", \"branch\": \"branch\", \"tag\": \"tag\", \"path\": \"path\", \"tool\": {\"id\": \"id\"}}}, \"id\": \"id\"}], \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"updated_at\": \"2019-01-01T12:00:00.000Z\", \"created_at\": \"2019-01-01T12:00:00.000Z\", \"triggers\": [{\"type\": \"type\", \"name\": \"start-deploy\", \"href\": \"href\", \"event_listener\": \"eventListener\", \"id\": \"id\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\", \"href\": \"href\"}], \"tags\": [\"tags\"], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"max_concurrent_runs\": 4, \"enabled\": true}], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"runs_url\": \"runsUrl\", \"build_number\": 1, \"enable_notifications\": false, \"enable_partial_cloning\": true, \"enabled\": true}";
+    String mockResponseBody = "{\"name\": \"name\", \"status\": \"configured\", \"resource_group\": {\"id\": \"id\"}, \"toolchain\": {\"id\": \"id\", \"crn\": \"crn:v1:staging:public:toolchain:us-south:a/0ba224679d6c697f9baee5e14ade83ac:bf5fa00f-ddef-4298-b87b-aa8b6da0e1a6::\"}, \"id\": \"id\", \"definitions\": [{\"source\": {\"type\": \"type\", \"properties\": {\"url\": \"url\", \"branch\": \"branch\", \"tag\": \"tag\", \"path\": \"path\", \"tool\": {\"id\": \"id\"}}}, \"href\": \"href\", \"id\": \"id\"}], \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"updated_at\": \"2019-01-01T12:00:00.000Z\", \"created_at\": \"2019-01-01T12:00:00.000Z\", \"triggers\": [{\"type\": \"type\", \"name\": \"start-deploy\", \"href\": \"href\", \"event_listener\": \"eventListener\", \"id\": \"id\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"tags\": [\"tags\"], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"max_concurrent_runs\": 4, \"enabled\": true}], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"runs_url\": \"runsUrl\", \"href\": \"href\", \"build_number\": 1, \"enable_notifications\": false, \"enable_partial_cloning\": true, \"enabled\": true}";
     String getTektonPipelinePath = "/tekton_pipelines/94619026-912b-4d92-8f51-6c74f0692d90";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -260,7 +263,7 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
   @Test
   public void testUpdateTektonPipelineWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"name\": \"name\", \"status\": \"configured\", \"resource_group\": {\"id\": \"id\"}, \"toolchain\": {\"id\": \"id\", \"crn\": \"crn:v1:staging:public:toolchain:us-south:a/0ba224679d6c697f9baee5e14ade83ac:bf5fa00f-ddef-4298-b87b-aa8b6da0e1a6::\"}, \"id\": \"id\", \"definitions\": [{\"source\": {\"type\": \"type\", \"properties\": {\"url\": \"url\", \"branch\": \"branch\", \"tag\": \"tag\", \"path\": \"path\", \"tool\": {\"id\": \"id\"}}}, \"id\": \"id\"}], \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"updated_at\": \"2019-01-01T12:00:00.000Z\", \"created_at\": \"2019-01-01T12:00:00.000Z\", \"triggers\": [{\"type\": \"type\", \"name\": \"start-deploy\", \"href\": \"href\", \"event_listener\": \"eventListener\", \"id\": \"id\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\", \"href\": \"href\"}], \"tags\": [\"tags\"], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"max_concurrent_runs\": 4, \"enabled\": true}], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"runs_url\": \"runsUrl\", \"build_number\": 1, \"enable_notifications\": false, \"enable_partial_cloning\": true, \"enabled\": true}";
+    String mockResponseBody = "{\"name\": \"name\", \"status\": \"configured\", \"resource_group\": {\"id\": \"id\"}, \"toolchain\": {\"id\": \"id\", \"crn\": \"crn:v1:staging:public:toolchain:us-south:a/0ba224679d6c697f9baee5e14ade83ac:bf5fa00f-ddef-4298-b87b-aa8b6da0e1a6::\"}, \"id\": \"id\", \"definitions\": [{\"source\": {\"type\": \"type\", \"properties\": {\"url\": \"url\", \"branch\": \"branch\", \"tag\": \"tag\", \"path\": \"path\", \"tool\": {\"id\": \"id\"}}}, \"href\": \"href\", \"id\": \"id\"}], \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"updated_at\": \"2019-01-01T12:00:00.000Z\", \"created_at\": \"2019-01-01T12:00:00.000Z\", \"triggers\": [{\"type\": \"type\", \"name\": \"start-deploy\", \"href\": \"href\", \"event_listener\": \"eventListener\", \"id\": \"id\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"tags\": [\"tags\"], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"max_concurrent_runs\": 4, \"enabled\": true}], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"runs_url\": \"runsUrl\", \"href\": \"href\", \"build_number\": 1, \"enable_notifications\": false, \"enable_partial_cloning\": true, \"enabled\": true}";
     String updateTektonPipelinePath = "/tekton_pipelines/94619026-912b-4d92-8f51-6c74f0692d90";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -375,7 +378,7 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
   @Test
   public void testListTektonPipelineRunsWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"pipeline_runs\": [{\"id\": \"id\", \"user_info\": {\"iam_id\": \"iamId\", \"sub\": \"sub\"}, \"status\": \"pending\", \"definition_id\": \"definitionId\", \"worker\": {\"name\": \"name\", \"agent_id\": \"agentId\", \"service_id\": \"serviceId\", \"id\": \"id\"}, \"pipeline_id\": \"pipelineId\", \"listener_name\": \"listenerName\", \"trigger\": {\"type\": \"type\", \"name\": \"start-deploy\", \"href\": \"href\", \"event_listener\": \"eventListener\", \"id\": \"id\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\", \"href\": \"href\"}], \"tags\": [\"tags\"], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"max_concurrent_runs\": 4, \"enabled\": true}, \"event_params_blob\": \"eventParamsBlob\", \"trigger_headers\": \"triggerHeaders\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"created_at\": \"2019-01-01T12:00:00.000Z\", \"updated_at\": \"2019-01-01T12:00:00.000Z\", \"run_url\": \"runUrl\", \"href\": \"href\"}], \"limit\": 20, \"first\": {\"href\": \"href\"}, \"next\": {\"href\": \"href\"}, \"last\": {\"href\": \"href\"}}";
+    String mockResponseBody = "{\"pipeline_runs\": [{\"id\": \"id\", \"href\": \"href\", \"user_info\": {\"iam_id\": \"iamId\", \"sub\": \"sub\"}, \"status\": \"pending\", \"definition_id\": \"definitionId\", \"definition\": {\"id\": \"id\"}, \"worker\": {\"name\": \"name\", \"agent_id\": \"agentId\", \"service_id\": \"serviceId\", \"id\": \"id\"}, \"pipeline_id\": \"pipelineId\", \"pipeline\": {\"id\": \"id\"}, \"listener_name\": \"listenerName\", \"trigger\": {\"type\": \"type\", \"name\": \"start-deploy\", \"href\": \"href\", \"event_listener\": \"eventListener\", \"id\": \"id\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"tags\": [\"tags\"], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"max_concurrent_runs\": 4, \"enabled\": true}, \"event_params_blob\": \"eventParamsBlob\", \"trigger_headers\": \"triggerHeaders\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"created_at\": \"2019-01-01T12:00:00.000Z\", \"updated_at\": \"2019-01-01T12:00:00.000Z\", \"run_url\": \"runUrl\"}], \"limit\": 20, \"first\": {\"href\": \"href\"}, \"next\": {\"href\": \"href\"}, \"last\": {\"href\": \"href\"}}";
     String listTektonPipelineRunsPath = "/tekton_pipelines/94619026-912b-4d92-8f51-6c74f0692d90/pipeline_runs";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -434,8 +437,8 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
   @Test
   public void testListTektonPipelineRunsWithPagerGetNext() throws Throwable {
     // Set up the two-page mock response.
-    String mockResponsePage1 = "{\"next\":{\"href\":\"https://myhost.com/somePath?start=1\"},\"total_count\":2,\"limit\":1,\"pipeline_runs\":[{\"id\":\"id\",\"user_info\":{\"iam_id\":\"iamId\",\"sub\":\"sub\"},\"status\":\"pending\",\"definition_id\":\"definitionId\",\"worker\":{\"name\":\"name\",\"agent_id\":\"agentId\",\"service_id\":\"serviceId\",\"id\":\"id\"},\"pipeline_id\":\"pipelineId\",\"listener_name\":\"listenerName\",\"trigger\":{\"type\":\"type\",\"name\":\"start-deploy\",\"href\":\"href\",\"event_listener\":\"eventListener\",\"id\":\"id\",\"properties\":[{\"name\":\"name\",\"value\":\"value\",\"enum\":[\"xEnum\"],\"type\":\"secure\",\"path\":\"path\",\"href\":\"href\"}],\"tags\":[\"tags\"],\"worker\":{\"name\":\"name\",\"type\":\"type\",\"id\":\"id\"},\"max_concurrent_runs\":4,\"enabled\":true},\"event_params_blob\":\"eventParamsBlob\",\"trigger_headers\":\"triggerHeaders\",\"properties\":[{\"name\":\"name\",\"value\":\"value\",\"enum\":[\"xEnum\"],\"type\":\"secure\",\"path\":\"path\"}],\"created_at\":\"2019-01-01T12:00:00.000Z\",\"updated_at\":\"2019-01-01T12:00:00.000Z\",\"run_url\":\"runUrl\",\"href\":\"href\"}]}";
-    String mockResponsePage2 = "{\"total_count\":2,\"limit\":1,\"pipeline_runs\":[{\"id\":\"id\",\"user_info\":{\"iam_id\":\"iamId\",\"sub\":\"sub\"},\"status\":\"pending\",\"definition_id\":\"definitionId\",\"worker\":{\"name\":\"name\",\"agent_id\":\"agentId\",\"service_id\":\"serviceId\",\"id\":\"id\"},\"pipeline_id\":\"pipelineId\",\"listener_name\":\"listenerName\",\"trigger\":{\"type\":\"type\",\"name\":\"start-deploy\",\"href\":\"href\",\"event_listener\":\"eventListener\",\"id\":\"id\",\"properties\":[{\"name\":\"name\",\"value\":\"value\",\"enum\":[\"xEnum\"],\"type\":\"secure\",\"path\":\"path\",\"href\":\"href\"}],\"tags\":[\"tags\"],\"worker\":{\"name\":\"name\",\"type\":\"type\",\"id\":\"id\"},\"max_concurrent_runs\":4,\"enabled\":true},\"event_params_blob\":\"eventParamsBlob\",\"trigger_headers\":\"triggerHeaders\",\"properties\":[{\"name\":\"name\",\"value\":\"value\",\"enum\":[\"xEnum\"],\"type\":\"secure\",\"path\":\"path\"}],\"created_at\":\"2019-01-01T12:00:00.000Z\",\"updated_at\":\"2019-01-01T12:00:00.000Z\",\"run_url\":\"runUrl\",\"href\":\"href\"}]}";
+    String mockResponsePage1 = "{\"next\":{\"href\":\"https://myhost.com/somePath?start=1\"},\"total_count\":2,\"limit\":1,\"pipeline_runs\":[{\"id\":\"id\",\"href\":\"href\",\"user_info\":{\"iam_id\":\"iamId\",\"sub\":\"sub\"},\"status\":\"pending\",\"definition_id\":\"definitionId\",\"definition\":{\"id\":\"id\"},\"worker\":{\"name\":\"name\",\"agent_id\":\"agentId\",\"service_id\":\"serviceId\",\"id\":\"id\"},\"pipeline_id\":\"pipelineId\",\"pipeline\":{\"id\":\"id\"},\"listener_name\":\"listenerName\",\"trigger\":{\"type\":\"type\",\"name\":\"start-deploy\",\"href\":\"href\",\"event_listener\":\"eventListener\",\"id\":\"id\",\"properties\":[{\"name\":\"name\",\"value\":\"value\",\"href\":\"href\",\"enum\":[\"xEnum\"],\"type\":\"secure\",\"path\":\"path\"}],\"tags\":[\"tags\"],\"worker\":{\"name\":\"name\",\"type\":\"type\",\"id\":\"id\"},\"max_concurrent_runs\":4,\"enabled\":true},\"event_params_blob\":\"eventParamsBlob\",\"trigger_headers\":\"triggerHeaders\",\"properties\":[{\"name\":\"name\",\"value\":\"value\",\"href\":\"href\",\"enum\":[\"xEnum\"],\"type\":\"secure\",\"path\":\"path\"}],\"created_at\":\"2019-01-01T12:00:00.000Z\",\"updated_at\":\"2019-01-01T12:00:00.000Z\",\"run_url\":\"runUrl\"}]}";
+    String mockResponsePage2 = "{\"total_count\":2,\"limit\":1,\"pipeline_runs\":[{\"id\":\"id\",\"href\":\"href\",\"user_info\":{\"iam_id\":\"iamId\",\"sub\":\"sub\"},\"status\":\"pending\",\"definition_id\":\"definitionId\",\"definition\":{\"id\":\"id\"},\"worker\":{\"name\":\"name\",\"agent_id\":\"agentId\",\"service_id\":\"serviceId\",\"id\":\"id\"},\"pipeline_id\":\"pipelineId\",\"pipeline\":{\"id\":\"id\"},\"listener_name\":\"listenerName\",\"trigger\":{\"type\":\"type\",\"name\":\"start-deploy\",\"href\":\"href\",\"event_listener\":\"eventListener\",\"id\":\"id\",\"properties\":[{\"name\":\"name\",\"value\":\"value\",\"href\":\"href\",\"enum\":[\"xEnum\"],\"type\":\"secure\",\"path\":\"path\"}],\"tags\":[\"tags\"],\"worker\":{\"name\":\"name\",\"type\":\"type\",\"id\":\"id\"},\"max_concurrent_runs\":4,\"enabled\":true},\"event_params_blob\":\"eventParamsBlob\",\"trigger_headers\":\"triggerHeaders\",\"properties\":[{\"name\":\"name\",\"value\":\"value\",\"href\":\"href\",\"enum\":[\"xEnum\"],\"type\":\"secure\",\"path\":\"path\"}],\"created_at\":\"2019-01-01T12:00:00.000Z\",\"updated_at\":\"2019-01-01T12:00:00.000Z\",\"run_url\":\"runUrl\"}]}";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -456,10 +459,10 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
       .triggerName("manual-trigger")
       .build();
 
-    List<PipelineRunsCollectionPipelineRunsItem> allResults = new ArrayList<>();
+    List<PipelineRun> allResults = new ArrayList<>();
     TektonPipelineRunsPager pager = new TektonPipelineRunsPager(cdTektonPipelineService, listTektonPipelineRunsOptions);
     while (pager.hasNext()) {
-      List<PipelineRunsCollectionPipelineRunsItem> nextPage = pager.getNext();
+      List<PipelineRun> nextPage = pager.getNext();
       assertNotNull(nextPage);
       allResults.addAll(nextPage);
     }
@@ -470,8 +473,8 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
   @Test
   public void testListTektonPipelineRunsWithPagerGetAll() throws Throwable {
     // Set up the two-page mock response.
-    String mockResponsePage1 = "{\"next\":{\"href\":\"https://myhost.com/somePath?start=1\"},\"total_count\":2,\"limit\":1,\"pipeline_runs\":[{\"id\":\"id\",\"user_info\":{\"iam_id\":\"iamId\",\"sub\":\"sub\"},\"status\":\"pending\",\"definition_id\":\"definitionId\",\"worker\":{\"name\":\"name\",\"agent_id\":\"agentId\",\"service_id\":\"serviceId\",\"id\":\"id\"},\"pipeline_id\":\"pipelineId\",\"listener_name\":\"listenerName\",\"trigger\":{\"type\":\"type\",\"name\":\"start-deploy\",\"href\":\"href\",\"event_listener\":\"eventListener\",\"id\":\"id\",\"properties\":[{\"name\":\"name\",\"value\":\"value\",\"enum\":[\"xEnum\"],\"type\":\"secure\",\"path\":\"path\",\"href\":\"href\"}],\"tags\":[\"tags\"],\"worker\":{\"name\":\"name\",\"type\":\"type\",\"id\":\"id\"},\"max_concurrent_runs\":4,\"enabled\":true},\"event_params_blob\":\"eventParamsBlob\",\"trigger_headers\":\"triggerHeaders\",\"properties\":[{\"name\":\"name\",\"value\":\"value\",\"enum\":[\"xEnum\"],\"type\":\"secure\",\"path\":\"path\"}],\"created_at\":\"2019-01-01T12:00:00.000Z\",\"updated_at\":\"2019-01-01T12:00:00.000Z\",\"run_url\":\"runUrl\",\"href\":\"href\"}]}";
-    String mockResponsePage2 = "{\"total_count\":2,\"limit\":1,\"pipeline_runs\":[{\"id\":\"id\",\"user_info\":{\"iam_id\":\"iamId\",\"sub\":\"sub\"},\"status\":\"pending\",\"definition_id\":\"definitionId\",\"worker\":{\"name\":\"name\",\"agent_id\":\"agentId\",\"service_id\":\"serviceId\",\"id\":\"id\"},\"pipeline_id\":\"pipelineId\",\"listener_name\":\"listenerName\",\"trigger\":{\"type\":\"type\",\"name\":\"start-deploy\",\"href\":\"href\",\"event_listener\":\"eventListener\",\"id\":\"id\",\"properties\":[{\"name\":\"name\",\"value\":\"value\",\"enum\":[\"xEnum\"],\"type\":\"secure\",\"path\":\"path\",\"href\":\"href\"}],\"tags\":[\"tags\"],\"worker\":{\"name\":\"name\",\"type\":\"type\",\"id\":\"id\"},\"max_concurrent_runs\":4,\"enabled\":true},\"event_params_blob\":\"eventParamsBlob\",\"trigger_headers\":\"triggerHeaders\",\"properties\":[{\"name\":\"name\",\"value\":\"value\",\"enum\":[\"xEnum\"],\"type\":\"secure\",\"path\":\"path\"}],\"created_at\":\"2019-01-01T12:00:00.000Z\",\"updated_at\":\"2019-01-01T12:00:00.000Z\",\"run_url\":\"runUrl\",\"href\":\"href\"}]}";
+    String mockResponsePage1 = "{\"next\":{\"href\":\"https://myhost.com/somePath?start=1\"},\"total_count\":2,\"limit\":1,\"pipeline_runs\":[{\"id\":\"id\",\"href\":\"href\",\"user_info\":{\"iam_id\":\"iamId\",\"sub\":\"sub\"},\"status\":\"pending\",\"definition_id\":\"definitionId\",\"definition\":{\"id\":\"id\"},\"worker\":{\"name\":\"name\",\"agent_id\":\"agentId\",\"service_id\":\"serviceId\",\"id\":\"id\"},\"pipeline_id\":\"pipelineId\",\"pipeline\":{\"id\":\"id\"},\"listener_name\":\"listenerName\",\"trigger\":{\"type\":\"type\",\"name\":\"start-deploy\",\"href\":\"href\",\"event_listener\":\"eventListener\",\"id\":\"id\",\"properties\":[{\"name\":\"name\",\"value\":\"value\",\"href\":\"href\",\"enum\":[\"xEnum\"],\"type\":\"secure\",\"path\":\"path\"}],\"tags\":[\"tags\"],\"worker\":{\"name\":\"name\",\"type\":\"type\",\"id\":\"id\"},\"max_concurrent_runs\":4,\"enabled\":true},\"event_params_blob\":\"eventParamsBlob\",\"trigger_headers\":\"triggerHeaders\",\"properties\":[{\"name\":\"name\",\"value\":\"value\",\"href\":\"href\",\"enum\":[\"xEnum\"],\"type\":\"secure\",\"path\":\"path\"}],\"created_at\":\"2019-01-01T12:00:00.000Z\",\"updated_at\":\"2019-01-01T12:00:00.000Z\",\"run_url\":\"runUrl\"}]}";
+    String mockResponsePage2 = "{\"total_count\":2,\"limit\":1,\"pipeline_runs\":[{\"id\":\"id\",\"href\":\"href\",\"user_info\":{\"iam_id\":\"iamId\",\"sub\":\"sub\"},\"status\":\"pending\",\"definition_id\":\"definitionId\",\"definition\":{\"id\":\"id\"},\"worker\":{\"name\":\"name\",\"agent_id\":\"agentId\",\"service_id\":\"serviceId\",\"id\":\"id\"},\"pipeline_id\":\"pipelineId\",\"pipeline\":{\"id\":\"id\"},\"listener_name\":\"listenerName\",\"trigger\":{\"type\":\"type\",\"name\":\"start-deploy\",\"href\":\"href\",\"event_listener\":\"eventListener\",\"id\":\"id\",\"properties\":[{\"name\":\"name\",\"value\":\"value\",\"href\":\"href\",\"enum\":[\"xEnum\"],\"type\":\"secure\",\"path\":\"path\"}],\"tags\":[\"tags\"],\"worker\":{\"name\":\"name\",\"type\":\"type\",\"id\":\"id\"},\"max_concurrent_runs\":4,\"enabled\":true},\"event_params_blob\":\"eventParamsBlob\",\"trigger_headers\":\"triggerHeaders\",\"properties\":[{\"name\":\"name\",\"value\":\"value\",\"href\":\"href\",\"enum\":[\"xEnum\"],\"type\":\"secure\",\"path\":\"path\"}],\"created_at\":\"2019-01-01T12:00:00.000Z\",\"updated_at\":\"2019-01-01T12:00:00.000Z\",\"run_url\":\"runUrl\"}]}";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -493,7 +496,7 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
       .build();
 
     TektonPipelineRunsPager pager = new TektonPipelineRunsPager(cdTektonPipelineService, listTektonPipelineRunsOptions);
-    List<PipelineRunsCollectionPipelineRunsItem> allResults = pager.getAll();
+    List<PipelineRun> allResults = pager.getAll();
     assertNotNull(allResults);
     assertEquals(allResults.size(), 2);
   }
@@ -502,7 +505,7 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
   @Test
   public void testCreateTektonPipelineRunWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"id\": \"id\", \"user_info\": {\"iam_id\": \"iamId\", \"sub\": \"sub\"}, \"status\": \"pending\", \"definition_id\": \"definitionId\", \"worker\": {\"name\": \"name\", \"agent_id\": \"agentId\", \"service_id\": \"serviceId\", \"id\": \"id\"}, \"pipeline_id\": \"pipelineId\", \"listener_name\": \"listenerName\", \"trigger\": {\"type\": \"type\", \"name\": \"start-deploy\", \"href\": \"href\", \"event_listener\": \"eventListener\", \"id\": \"id\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\", \"href\": \"href\"}], \"tags\": [\"tags\"], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"max_concurrent_runs\": 4, \"enabled\": true}, \"event_params_blob\": \"eventParamsBlob\", \"trigger_headers\": \"triggerHeaders\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"created_at\": \"2019-01-01T12:00:00.000Z\", \"updated_at\": \"2019-01-01T12:00:00.000Z\", \"run_url\": \"runUrl\"}";
+    String mockResponseBody = "{\"id\": \"id\", \"href\": \"href\", \"user_info\": {\"iam_id\": \"iamId\", \"sub\": \"sub\"}, \"status\": \"pending\", \"definition_id\": \"definitionId\", \"definition\": {\"id\": \"id\"}, \"worker\": {\"name\": \"name\", \"agent_id\": \"agentId\", \"service_id\": \"serviceId\", \"id\": \"id\"}, \"pipeline_id\": \"pipelineId\", \"pipeline\": {\"id\": \"id\"}, \"listener_name\": \"listenerName\", \"trigger\": {\"type\": \"type\", \"name\": \"start-deploy\", \"href\": \"href\", \"event_listener\": \"eventListener\", \"id\": \"id\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"tags\": [\"tags\"], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"max_concurrent_runs\": 4, \"enabled\": true}, \"event_params_blob\": \"eventParamsBlob\", \"trigger_headers\": \"triggerHeaders\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"created_at\": \"2019-01-01T12:00:00.000Z\", \"updated_at\": \"2019-01-01T12:00:00.000Z\", \"run_url\": \"runUrl\"}";
     String createTektonPipelineRunPath = "/tekton_pipelines/94619026-912b-4d92-8f51-6c74f0692d90/pipeline_runs";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -513,19 +516,28 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
     Property propertyModel = new Property.Builder()
       .name("testString")
       .value("testString")
+      .href("testString")
       .xEnum(java.util.Arrays.asList("testString"))
       .type("secure")
       .path("testString")
       .build();
 
+    // Construct an instance of the PipelineRunTrigger model
+    PipelineRunTrigger pipelineRunTriggerModel = new PipelineRunTrigger.Builder()
+      .name("Generic Webhook Trigger - 0")
+      .headers(java.util.Collections.singletonMap("anyKey", "anyValue"))
+      .body(java.util.Collections.singletonMap("anyKey", "anyValue"))
+      .build();
+
     // Construct an instance of the CreateTektonPipelineRunOptions model
     CreateTektonPipelineRunOptions createTektonPipelineRunOptionsModel = new CreateTektonPipelineRunOptions.Builder()
       .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-      .triggerName("Generic Webhook Trigger - 0")
+      .triggerName("testString")
       .triggerProperties(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .secureTriggerProperties(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .triggerHeaders(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .triggerBody(java.util.Collections.singletonMap("anyKey", "anyValue"))
+      .trigger(pipelineRunTriggerModel)
       .build();
 
     // Invoke createTektonPipelineRun() with a valid options model and verify the result
@@ -567,7 +579,7 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
   @Test
   public void testGetTektonPipelineRunWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"id\": \"id\", \"user_info\": {\"iam_id\": \"iamId\", \"sub\": \"sub\"}, \"status\": \"pending\", \"definition_id\": \"definitionId\", \"worker\": {\"name\": \"name\", \"agent_id\": \"agentId\", \"service_id\": \"serviceId\", \"id\": \"id\"}, \"pipeline_id\": \"pipelineId\", \"listener_name\": \"listenerName\", \"trigger\": {\"type\": \"type\", \"name\": \"start-deploy\", \"href\": \"href\", \"event_listener\": \"eventListener\", \"id\": \"id\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\", \"href\": \"href\"}], \"tags\": [\"tags\"], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"max_concurrent_runs\": 4, \"enabled\": true}, \"event_params_blob\": \"eventParamsBlob\", \"trigger_headers\": \"triggerHeaders\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"created_at\": \"2019-01-01T12:00:00.000Z\", \"updated_at\": \"2019-01-01T12:00:00.000Z\", \"run_url\": \"runUrl\"}";
+    String mockResponseBody = "{\"id\": \"id\", \"href\": \"href\", \"user_info\": {\"iam_id\": \"iamId\", \"sub\": \"sub\"}, \"status\": \"pending\", \"definition_id\": \"definitionId\", \"definition\": {\"id\": \"id\"}, \"worker\": {\"name\": \"name\", \"agent_id\": \"agentId\", \"service_id\": \"serviceId\", \"id\": \"id\"}, \"pipeline_id\": \"pipelineId\", \"pipeline\": {\"id\": \"id\"}, \"listener_name\": \"listenerName\", \"trigger\": {\"type\": \"type\", \"name\": \"start-deploy\", \"href\": \"href\", \"event_listener\": \"eventListener\", \"id\": \"id\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"tags\": [\"tags\"], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"max_concurrent_runs\": 4, \"enabled\": true}, \"event_params_blob\": \"eventParamsBlob\", \"trigger_headers\": \"triggerHeaders\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"created_at\": \"2019-01-01T12:00:00.000Z\", \"updated_at\": \"2019-01-01T12:00:00.000Z\", \"run_url\": \"runUrl\"}";
     String getTektonPipelineRunPath = "/tekton_pipelines/94619026-912b-4d92-8f51-6c74f0692d90/pipeline_runs/94619026-912b-4d92-8f51-6c74f0692d90";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -672,7 +684,7 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
   @Test
   public void testCancelTektonPipelineRunWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"id\": \"id\", \"user_info\": {\"iam_id\": \"iamId\", \"sub\": \"sub\"}, \"status\": \"pending\", \"definition_id\": \"definitionId\", \"worker\": {\"name\": \"name\", \"agent_id\": \"agentId\", \"service_id\": \"serviceId\", \"id\": \"id\"}, \"pipeline_id\": \"pipelineId\", \"listener_name\": \"listenerName\", \"trigger\": {\"type\": \"type\", \"name\": \"start-deploy\", \"href\": \"href\", \"event_listener\": \"eventListener\", \"id\": \"id\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\", \"href\": \"href\"}], \"tags\": [\"tags\"], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"max_concurrent_runs\": 4, \"enabled\": true}, \"event_params_blob\": \"eventParamsBlob\", \"trigger_headers\": \"triggerHeaders\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"created_at\": \"2019-01-01T12:00:00.000Z\", \"updated_at\": \"2019-01-01T12:00:00.000Z\", \"run_url\": \"runUrl\"}";
+    String mockResponseBody = "{\"id\": \"id\", \"href\": \"href\", \"user_info\": {\"iam_id\": \"iamId\", \"sub\": \"sub\"}, \"status\": \"pending\", \"definition_id\": \"definitionId\", \"definition\": {\"id\": \"id\"}, \"worker\": {\"name\": \"name\", \"agent_id\": \"agentId\", \"service_id\": \"serviceId\", \"id\": \"id\"}, \"pipeline_id\": \"pipelineId\", \"pipeline\": {\"id\": \"id\"}, \"listener_name\": \"listenerName\", \"trigger\": {\"type\": \"type\", \"name\": \"start-deploy\", \"href\": \"href\", \"event_listener\": \"eventListener\", \"id\": \"id\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"tags\": [\"tags\"], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"max_concurrent_runs\": 4, \"enabled\": true}, \"event_params_blob\": \"eventParamsBlob\", \"trigger_headers\": \"triggerHeaders\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"created_at\": \"2019-01-01T12:00:00.000Z\", \"updated_at\": \"2019-01-01T12:00:00.000Z\", \"run_url\": \"runUrl\"}";
     String cancelTektonPipelineRunPath = "/tekton_pipelines/94619026-912b-4d92-8f51-6c74f0692d90/pipeline_runs/94619026-912b-4d92-8f51-6c74f0692d90/cancel";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -725,7 +737,7 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
   @Test
   public void testRerunTektonPipelineRunWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"id\": \"id\", \"user_info\": {\"iam_id\": \"iamId\", \"sub\": \"sub\"}, \"status\": \"pending\", \"definition_id\": \"definitionId\", \"worker\": {\"name\": \"name\", \"agent_id\": \"agentId\", \"service_id\": \"serviceId\", \"id\": \"id\"}, \"pipeline_id\": \"pipelineId\", \"listener_name\": \"listenerName\", \"trigger\": {\"type\": \"type\", \"name\": \"start-deploy\", \"href\": \"href\", \"event_listener\": \"eventListener\", \"id\": \"id\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\", \"href\": \"href\"}], \"tags\": [\"tags\"], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"max_concurrent_runs\": 4, \"enabled\": true}, \"event_params_blob\": \"eventParamsBlob\", \"trigger_headers\": \"triggerHeaders\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"created_at\": \"2019-01-01T12:00:00.000Z\", \"updated_at\": \"2019-01-01T12:00:00.000Z\", \"run_url\": \"runUrl\"}";
+    String mockResponseBody = "{\"id\": \"id\", \"href\": \"href\", \"user_info\": {\"iam_id\": \"iamId\", \"sub\": \"sub\"}, \"status\": \"pending\", \"definition_id\": \"definitionId\", \"definition\": {\"id\": \"id\"}, \"worker\": {\"name\": \"name\", \"agent_id\": \"agentId\", \"service_id\": \"serviceId\", \"id\": \"id\"}, \"pipeline_id\": \"pipelineId\", \"pipeline\": {\"id\": \"id\"}, \"listener_name\": \"listenerName\", \"trigger\": {\"type\": \"type\", \"name\": \"start-deploy\", \"href\": \"href\", \"event_listener\": \"eventListener\", \"id\": \"id\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"tags\": [\"tags\"], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"max_concurrent_runs\": 4, \"enabled\": true}, \"event_params_blob\": \"eventParamsBlob\", \"trigger_headers\": \"triggerHeaders\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"created_at\": \"2019-01-01T12:00:00.000Z\", \"updated_at\": \"2019-01-01T12:00:00.000Z\", \"run_url\": \"runUrl\"}";
     String rerunTektonPipelineRunPath = "/tekton_pipelines/94619026-912b-4d92-8f51-6c74f0692d90/pipeline_runs/94619026-912b-4d92-8f51-6c74f0692d90/rerun";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -882,7 +894,7 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
   @Test
   public void testListTektonPipelineDefinitionsWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"definitions\": [{\"source\": {\"type\": \"type\", \"properties\": {\"url\": \"url\", \"branch\": \"branch\", \"tag\": \"tag\", \"path\": \"path\", \"tool\": {\"id\": \"id\"}}}, \"id\": \"id\", \"href\": \"href\"}]}";
+    String mockResponseBody = "{\"definitions\": [{\"source\": {\"type\": \"type\", \"properties\": {\"url\": \"url\", \"branch\": \"branch\", \"tag\": \"tag\", \"path\": \"path\", \"tool\": {\"id\": \"id\"}}}, \"href\": \"href\", \"id\": \"id\"}]}";
     String listTektonPipelineDefinitionsPath = "/tekton_pipelines/94619026-912b-4d92-8f51-6c74f0692d90/definitions";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -933,15 +945,15 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
   @Test
   public void testCreateTektonPipelineDefinitionWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"source\": {\"type\": \"type\", \"properties\": {\"url\": \"url\", \"branch\": \"branch\", \"tag\": \"tag\", \"path\": \"path\", \"tool\": {\"id\": \"id\"}}}, \"id\": \"id\"}";
+    String mockResponseBody = "{\"source\": {\"type\": \"type\", \"properties\": {\"url\": \"url\", \"branch\": \"branch\", \"tag\": \"tag\", \"path\": \"path\", \"tool\": {\"id\": \"id\"}}}, \"href\": \"href\", \"id\": \"id\"}";
     String createTektonPipelineDefinitionPath = "/tekton_pipelines/94619026-912b-4d92-8f51-6c74f0692d90/definitions";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(201)
       .setBody(mockResponseBody));
 
-    // Construct an instance of the DefinitionSourcePropertiesTool model
-    DefinitionSourcePropertiesTool definitionSourcePropertiesToolModel = new DefinitionSourcePropertiesTool.Builder()
+    // Construct an instance of the Tool model
+    Tool toolModel = new Tool.Builder()
       .id("testString")
       .build();
 
@@ -951,7 +963,7 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
       .branch("master")
       .tag("testString")
       .path(".tekton")
-      .tool(definitionSourcePropertiesToolModel)
+      .tool(toolModel)
       .build();
 
     // Construct an instance of the DefinitionSource model
@@ -1005,7 +1017,7 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
   @Test
   public void testGetTektonPipelineDefinitionWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"source\": {\"type\": \"type\", \"properties\": {\"url\": \"url\", \"branch\": \"branch\", \"tag\": \"tag\", \"path\": \"path\", \"tool\": {\"id\": \"id\"}}}, \"id\": \"id\"}";
+    String mockResponseBody = "{\"source\": {\"type\": \"type\", \"properties\": {\"url\": \"url\", \"branch\": \"branch\", \"tag\": \"tag\", \"path\": \"path\", \"tool\": {\"id\": \"id\"}}}, \"href\": \"href\", \"id\": \"id\"}";
     String getTektonPipelineDefinitionPath = "/tekton_pipelines/94619026-912b-4d92-8f51-6c74f0692d90/definitions/94299034-d45f-4e9a-8ed5-6bd5c7bb7ada";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -1057,15 +1069,15 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
   @Test
   public void testReplaceTektonPipelineDefinitionWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"source\": {\"type\": \"type\", \"properties\": {\"url\": \"url\", \"branch\": \"branch\", \"tag\": \"tag\", \"path\": \"path\", \"tool\": {\"id\": \"id\"}}}, \"id\": \"id\"}";
+    String mockResponseBody = "{\"source\": {\"type\": \"type\", \"properties\": {\"url\": \"url\", \"branch\": \"branch\", \"tag\": \"tag\", \"path\": \"path\", \"tool\": {\"id\": \"id\"}}}, \"href\": \"href\", \"id\": \"id\"}";
     String replaceTektonPipelineDefinitionPath = "/tekton_pipelines/94619026-912b-4d92-8f51-6c74f0692d90/definitions/94299034-d45f-4e9a-8ed5-6bd5c7bb7ada";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
       .setBody(mockResponseBody));
 
-    // Construct an instance of the DefinitionSourcePropertiesTool model
-    DefinitionSourcePropertiesTool definitionSourcePropertiesToolModel = new DefinitionSourcePropertiesTool.Builder()
+    // Construct an instance of the Tool model
+    Tool toolModel = new Tool.Builder()
       .id("testString")
       .build();
 
@@ -1075,7 +1087,7 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
       .branch("testString")
       .tag("testString")
       .path("testString")
-      .tool(definitionSourcePropertiesToolModel)
+      .tool(toolModel)
       .build();
 
     // Construct an instance of the DefinitionSource model
@@ -1181,7 +1193,7 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
   @Test
   public void testListTektonPipelinePropertiesWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"properties\": [{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}]}";
+    String mockResponseBody = "{\"properties\": [{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}]}";
     String listTektonPipelinePropertiesPath = "/tekton_pipelines/94619026-912b-4d92-8f51-6c74f0692d90/properties";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -1238,7 +1250,7 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
   @Test
   public void testCreateTektonPipelinePropertiesWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}";
+    String mockResponseBody = "{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}";
     String createTektonPipelinePropertiesPath = "/tekton_pipelines/94619026-912b-4d92-8f51-6c74f0692d90/properties";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -1249,9 +1261,9 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
     CreateTektonPipelinePropertiesOptions createTektonPipelinePropertiesOptionsModel = new CreateTektonPipelinePropertiesOptions.Builder()
       .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
       .name("prop1")
+      .type("text")
       .value("https://github.com/open-toolchain/hello-tekton.git")
       .xEnum(java.util.Arrays.asList("testString"))
-      .type("text")
       .path("testString")
       .build();
 
@@ -1294,7 +1306,7 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
   @Test
   public void testGetTektonPipelinePropertyWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}";
+    String mockResponseBody = "{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}";
     String getTektonPipelinePropertyPath = "/tekton_pipelines/94619026-912b-4d92-8f51-6c74f0692d90/properties/debug-pipeline";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -1346,7 +1358,7 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
   @Test
   public void testReplaceTektonPipelinePropertyWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}";
+    String mockResponseBody = "{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}";
     String replaceTektonPipelinePropertyPath = "/tekton_pipelines/94619026-912b-4d92-8f51-6c74f0692d90/properties/debug-pipeline";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -1358,9 +1370,9 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
       .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
       .propertyName("debug-pipeline")
       .name("prop1")
+      .type("text")
       .value("https://github.com/open-toolchain/hello-tekton.git")
       .xEnum(java.util.Arrays.asList("testString"))
-      .type("text")
       .path("testString")
       .build();
 
@@ -1454,7 +1466,7 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
   @Test
   public void testListTektonPipelineTriggersWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"triggers\": [{\"type\": \"type\", \"name\": \"start-deploy\", \"href\": \"href\", \"event_listener\": \"eventListener\", \"id\": \"id\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\", \"href\": \"href\"}], \"tags\": [\"tags\"], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"max_concurrent_runs\": 4, \"enabled\": true}]}";
+    String mockResponseBody = "{\"triggers\": [{\"type\": \"type\", \"name\": \"start-deploy\", \"href\": \"href\", \"event_listener\": \"eventListener\", \"id\": \"id\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"tags\": [\"tags\"], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"max_concurrent_runs\": 4, \"enabled\": true}]}";
     String listTektonPipelineTriggersPath = "/tekton_pipelines/94619026-912b-4d92-8f51-6c74f0692d90/triggers";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -1519,17 +1531,15 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
   @Test
   public void testCreateTektonPipelineTriggerWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"type\": \"type\", \"name\": \"start-deploy\", \"href\": \"href\", \"event_listener\": \"eventListener\", \"id\": \"id\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\", \"href\": \"href\"}], \"tags\": [\"tags\"], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"max_concurrent_runs\": 4, \"enabled\": true}";
+    String mockResponseBody = "{\"type\": \"type\", \"name\": \"start-deploy\", \"href\": \"href\", \"event_listener\": \"eventListener\", \"id\": \"id\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"tags\": [\"tags\"], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"max_concurrent_runs\": 4, \"enabled\": true}";
     String createTektonPipelineTriggerPath = "/tekton_pipelines/94619026-912b-4d92-8f51-6c74f0692d90/triggers";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(201)
       .setBody(mockResponseBody));
 
-    // Construct an instance of the Worker model
-    Worker workerModel = new Worker.Builder()
-      .name("testString")
-      .type("testString")
+    // Construct an instance of the WorkerIdentity model
+    WorkerIdentity workerIdentityModel = new WorkerIdentity.Builder()
       .id("public")
       .build();
 
@@ -1542,25 +1552,17 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
       .algorithm("md4")
       .build();
 
-    // Construct an instance of the TriggerSourcePropertiesTool model
-    TriggerSourcePropertiesTool triggerSourcePropertiesToolModel = new TriggerSourcePropertiesTool.Builder()
-      .id("testString")
-      .build();
-
-    // Construct an instance of the TriggerSourceProperties model
-    TriggerSourceProperties triggerSourcePropertiesModel = new TriggerSourceProperties.Builder()
+    // Construct an instance of the TriggerSourcePropertiesPrototype model
+    TriggerSourcePropertiesPrototype triggerSourcePropertiesPrototypeModel = new TriggerSourcePropertiesPrototype.Builder()
       .url("testString")
       .branch("testString")
       .pattern("testString")
-      .blindConnection(true)
-      .hookId("testString")
-      .tool(triggerSourcePropertiesToolModel)
       .build();
 
-    // Construct an instance of the TriggerSource model
-    TriggerSource triggerSourceModel = new TriggerSource.Builder()
+    // Construct an instance of the TriggerSourcePrototype model
+    TriggerSourcePrototype triggerSourcePrototypeModel = new TriggerSourcePrototype.Builder()
       .type("testString")
-      .xProperties(triggerSourcePropertiesModel)
+      .xProperties(triggerSourcePropertiesPrototypeModel)
       .build();
 
     // Construct an instance of the CreateTektonPipelineTriggerOptions model
@@ -1570,13 +1572,13 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
       .name("Manual Trigger")
       .eventListener("pr-listener")
       .tags(java.util.Arrays.asList("testString"))
-      .worker(workerModel)
+      .worker(workerIdentityModel)
       .maxConcurrentRuns(Long.valueOf("3"))
       .enabled(true)
       .secret(genericSecretModel)
       .cron("testString")
       .timezone("testString")
-      .source(triggerSourceModel)
+      .source(triggerSourcePrototypeModel)
       .events(java.util.Arrays.asList("push"))
       .build();
 
@@ -1619,7 +1621,7 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
   @Test
   public void testGetTektonPipelineTriggerWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"type\": \"type\", \"name\": \"start-deploy\", \"href\": \"href\", \"event_listener\": \"eventListener\", \"id\": \"id\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\", \"href\": \"href\"}], \"tags\": [\"tags\"], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"max_concurrent_runs\": 4, \"enabled\": true}";
+    String mockResponseBody = "{\"type\": \"type\", \"name\": \"start-deploy\", \"href\": \"href\", \"event_listener\": \"eventListener\", \"id\": \"id\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"tags\": [\"tags\"], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"max_concurrent_runs\": 4, \"enabled\": true}";
     String getTektonPipelineTriggerPath = "/tekton_pipelines/94619026-912b-4d92-8f51-6c74f0692d90/triggers/1bb892a1-2e04-4768-a369-b1159eace147";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -1671,17 +1673,15 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
   @Test
   public void testUpdateTektonPipelineTriggerWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"type\": \"type\", \"name\": \"start-deploy\", \"href\": \"href\", \"event_listener\": \"eventListener\", \"id\": \"id\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\", \"href\": \"href\"}], \"tags\": [\"tags\"], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"max_concurrent_runs\": 4, \"enabled\": true}";
+    String mockResponseBody = "{\"type\": \"type\", \"name\": \"start-deploy\", \"href\": \"href\", \"event_listener\": \"eventListener\", \"id\": \"id\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"tags\": [\"tags\"], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"max_concurrent_runs\": 4, \"enabled\": true}";
     String updateTektonPipelineTriggerPath = "/tekton_pipelines/94619026-912b-4d92-8f51-6c74f0692d90/triggers/1bb892a1-2e04-4768-a369-b1159eace147";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
       .setBody(mockResponseBody));
 
-    // Construct an instance of the Worker model
-    Worker workerModel = new Worker.Builder()
-      .name("testString")
-      .type("testString")
+    // Construct an instance of the WorkerIdentity model
+    WorkerIdentity workerIdentityModel = new WorkerIdentity.Builder()
       .id("testString")
       .build();
 
@@ -1694,25 +1694,17 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
       .algorithm("md4")
       .build();
 
-    // Construct an instance of the TriggerSourcePropertiesTool model
-    TriggerSourcePropertiesTool triggerSourcePropertiesToolModel = new TriggerSourcePropertiesTool.Builder()
-      .id("testString")
-      .build();
-
-    // Construct an instance of the TriggerSourceProperties model
-    TriggerSourceProperties triggerSourcePropertiesModel = new TriggerSourceProperties.Builder()
+    // Construct an instance of the TriggerSourcePropertiesPrototype model
+    TriggerSourcePropertiesPrototype triggerSourcePropertiesPrototypeModel = new TriggerSourcePropertiesPrototype.Builder()
       .url("testString")
       .branch("testString")
       .pattern("testString")
-      .blindConnection(true)
-      .hookId("testString")
-      .tool(triggerSourcePropertiesToolModel)
       .build();
 
-    // Construct an instance of the TriggerSource model
-    TriggerSource triggerSourceModel = new TriggerSource.Builder()
+    // Construct an instance of the TriggerSourcePrototype model
+    TriggerSourcePrototype triggerSourcePrototypeModel = new TriggerSourcePrototype.Builder()
       .type("testString")
-      .xProperties(triggerSourcePropertiesModel)
+      .xProperties(triggerSourcePropertiesPrototypeModel)
       .build();
 
     // Construct an instance of the TriggerPatch model
@@ -1721,13 +1713,13 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
       .name("start-deploy")
       .eventListener("testString")
       .tags(java.util.Arrays.asList("testString"))
-      .worker(workerModel)
+      .worker(workerIdentityModel)
       .maxConcurrentRuns(Long.valueOf("4"))
       .enabled(true)
       .secret(genericSecretModel)
       .cron("testString")
       .timezone("America/Los_Angeles, CET, Europe/London, GMT, US/Eastern, or UTC")
-      .source(triggerSourceModel)
+      .source(triggerSourcePrototypeModel)
       .events(java.util.Arrays.asList("push", "pull_request"))
       .build();
     Map<String, Object> triggerPatchModelAsPatch = triggerPatchModel.asPatch();
@@ -1829,7 +1821,7 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
   @Test
   public void testDuplicateTektonPipelineTriggerWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"type\": \"type\", \"name\": \"start-deploy\", \"href\": \"href\", \"event_listener\": \"eventListener\", \"id\": \"id\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\", \"href\": \"href\"}], \"tags\": [\"tags\"], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"max_concurrent_runs\": 4, \"enabled\": true}";
+    String mockResponseBody = "{\"type\": \"type\", \"name\": \"start-deploy\", \"href\": \"href\", \"event_listener\": \"eventListener\", \"id\": \"id\", \"properties\": [{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}], \"tags\": [\"tags\"], \"worker\": {\"name\": \"name\", \"type\": \"type\", \"id\": \"id\"}, \"max_concurrent_runs\": 4, \"enabled\": true}";
     String duplicateTektonPipelineTriggerPath = "/tekton_pipelines/94619026-912b-4d92-8f51-6c74f0692d90/triggers/1bb892a1-2e04-4768-a369-b1159eace147/duplicate";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -1882,7 +1874,7 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
   @Test
   public void testListTektonPipelineTriggerPropertiesWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"properties\": [{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\", \"href\": \"href\"}]}";
+    String mockResponseBody = "{\"properties\": [{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}]}";
     String listTektonPipelineTriggerPropertiesPath = "/tekton_pipelines/94619026-912b-4d92-8f51-6c74f0692d90/triggers/1bb892a1-2e04-4768-a369-b1159eace147/properties";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -1940,7 +1932,7 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
   @Test
   public void testCreateTektonPipelineTriggerPropertiesWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}";
+    String mockResponseBody = "{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}";
     String createTektonPipelineTriggerPropertiesPath = "/tekton_pipelines/94619026-912b-4d92-8f51-6c74f0692d90/triggers/1bb892a1-2e04-4768-a369-b1159eace147/properties";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -1952,9 +1944,9 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
       .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
       .triggerId("1bb892a1-2e04-4768-a369-b1159eace147")
       .name("prop1")
+      .type("text")
       .value("https://github.com/open-toolchain/hello-tekton.git")
       .xEnum(java.util.Arrays.asList("testString"))
-      .type("text")
       .path("testString")
       .build();
 
@@ -1997,7 +1989,7 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
   @Test
   public void testGetTektonPipelineTriggerPropertyWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}";
+    String mockResponseBody = "{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}";
     String getTektonPipelineTriggerPropertyPath = "/tekton_pipelines/94619026-912b-4d92-8f51-6c74f0692d90/triggers/1bb892a1-2e04-4768-a369-b1159eace147/properties/debug-pipeline";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -2050,7 +2042,7 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
   @Test
   public void testReplaceTektonPipelineTriggerPropertyWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"name\": \"name\", \"value\": \"value\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}";
+    String mockResponseBody = "{\"name\": \"name\", \"value\": \"value\", \"href\": \"href\", \"enum\": [\"xEnum\"], \"type\": \"secure\", \"path\": \"path\"}";
     String replaceTektonPipelineTriggerPropertyPath = "/tekton_pipelines/94619026-912b-4d92-8f51-6c74f0692d90/triggers/1bb892a1-2e04-4768-a369-b1159eace147/properties/debug-pipeline";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -2063,9 +2055,9 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
       .triggerId("1bb892a1-2e04-4768-a369-b1159eace147")
       .propertyName("debug-pipeline")
       .name("prop1")
+      .type("text")
       .value("https://github.com/open-toolchain/hello-tekton.git")
       .xEnum(java.util.Arrays.asList("testString"))
-      .type("text")
       .path("testString")
       .build();
 
@@ -2180,7 +2172,7 @@ public class CdTektonPipelineTest extends PowerMockTestCase {
 
   // Creates a mock set of environment variables that are returned by EnvironmentUtils.getenv()
   private Map<String, String> getTestProcessEnvironment() {
-    Map<String, String> env = new HashMap<String, String>();
+    Map<String, String> env = new HashMap<>();
     env.put("TESTSERVICE_AUTH_TYPE", "noAuth");
     return env;
   }

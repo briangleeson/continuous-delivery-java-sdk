@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -19,18 +19,18 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class CreateTektonPipelineOptions extends GenericModel {
 
+  protected String id;
   protected Boolean enableNotifications;
   protected Boolean enablePartialCloning;
-  protected String id;
   protected WorkerIdentity worker;
 
   /**
    * Builder.
    */
   public static class Builder {
+    private String id;
     private Boolean enableNotifications;
     private Boolean enablePartialCloning;
-    private String id;
     private WorkerIdentity worker;
 
     /**
@@ -39,9 +39,9 @@ public class CreateTektonPipelineOptions extends GenericModel {
      * @param createTektonPipelineOptions the instance to initialize the Builder with
      */
     private Builder(CreateTektonPipelineOptions createTektonPipelineOptions) {
+      this.id = createTektonPipelineOptions.id;
       this.enableNotifications = createTektonPipelineOptions.enableNotifications;
       this.enablePartialCloning = createTektonPipelineOptions.enablePartialCloning;
-      this.id = createTektonPipelineOptions.id;
       this.worker = createTektonPipelineOptions.worker;
     }
 
@@ -52,12 +52,32 @@ public class CreateTektonPipelineOptions extends GenericModel {
     }
 
     /**
+     * Instantiates a new builder with required properties.
+     *
+     * @param id the id
+     */
+    public Builder(String id) {
+      this.id = id;
+    }
+
+    /**
      * Builds a CreateTektonPipelineOptions.
      *
      * @return the new CreateTektonPipelineOptions instance
      */
     public CreateTektonPipelineOptions build() {
       return new CreateTektonPipelineOptions(this);
+    }
+
+    /**
+     * Set the id.
+     *
+     * @param id the id
+     * @return the CreateTektonPipelineOptions builder
+     */
+    public Builder id(String id) {
+      this.id = id;
+      return this;
     }
 
     /**
@@ -83,17 +103,6 @@ public class CreateTektonPipelineOptions extends GenericModel {
     }
 
     /**
-     * Set the id.
-     *
-     * @param id the id
-     * @return the CreateTektonPipelineOptions builder
-     */
-    public Builder id(String id) {
-      this.id = id;
-      return this;
-    }
-
-    /**
      * Set the worker.
      *
      * @param worker the worker
@@ -108,9 +117,11 @@ public class CreateTektonPipelineOptions extends GenericModel {
   protected CreateTektonPipelineOptions() { }
 
   protected CreateTektonPipelineOptions(Builder builder) {
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.id,
+      "id cannot be null");
+    id = builder.id;
     enableNotifications = builder.enableNotifications;
     enablePartialCloning = builder.enablePartialCloning;
-    id = builder.id;
     worker = builder.worker;
   }
 
@@ -121,6 +132,18 @@ public class CreateTektonPipelineOptions extends GenericModel {
    */
   public Builder newBuilder() {
     return new Builder(this);
+  }
+
+  /**
+   * Gets the id.
+   *
+   * The ID for the associated pipeline tool, which was already created in the target toolchain. To get the pipeline ID
+   * call the toolchain API https://cloud.ibm.com/apidocs/toolchain#list-tools and find the pipeline tool.
+   *
+   * @return the id
+   */
+  public String id() {
+    return id;
   }
 
   /**
@@ -146,18 +169,6 @@ public class CreateTektonPipelineOptions extends GenericModel {
    */
   public Boolean enablePartialCloning() {
     return enablePartialCloning;
-  }
-
-  /**
-   * Gets the id.
-   *
-   * The ID for the associated pipeline tool, which was already created in the target toolchain. To get the pipeline ID
-   * call the toolchain API https://cloud.ibm.com/apidocs/toolchain#list-tools and find the pipeline tool.
-   *
-   * @return the id
-   */
-  public String id() {
-    return id;
   }
 
   /**

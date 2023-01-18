@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,6 +14,7 @@
 package com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model;
 
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.CreateTektonPipelineRunOptions;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRunTrigger;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.Property;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.utils.TestUtilities;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
@@ -36,15 +37,30 @@ public class CreateTektonPipelineRunOptionsTest {
     Property propertyModel = new Property.Builder()
       .name("testString")
       .value("testString")
+      .href("testString")
       .xEnum(java.util.Arrays.asList("testString"))
       .type("secure")
       .path("testString")
       .build();
     assertEquals(propertyModel.name(), "testString");
     assertEquals(propertyModel.value(), "testString");
+    assertEquals(propertyModel.href(), "testString");
     assertEquals(propertyModel.xEnum(), java.util.Arrays.asList("testString"));
     assertEquals(propertyModel.type(), "secure");
     assertEquals(propertyModel.path(), "testString");
+
+    PipelineRunTrigger pipelineRunTriggerModel = new PipelineRunTrigger.Builder()
+      .name("start-deploy")
+      .xProperties(java.util.Collections.singletonMap("anyKey", "anyValue"))
+      .secureProperties(java.util.Collections.singletonMap("anyKey", "anyValue"))
+      .headers(java.util.Collections.singletonMap("anyKey", "anyValue"))
+      .body(java.util.Collections.singletonMap("anyKey", "anyValue"))
+      .build();
+    assertEquals(pipelineRunTriggerModel.name(), "start-deploy");
+    assertEquals(pipelineRunTriggerModel.xProperties(), java.util.Collections.singletonMap("anyKey", "anyValue"));
+    assertEquals(pipelineRunTriggerModel.secureProperties(), java.util.Collections.singletonMap("anyKey", "anyValue"));
+    assertEquals(pipelineRunTriggerModel.headers(), java.util.Collections.singletonMap("anyKey", "anyValue"));
+    assertEquals(pipelineRunTriggerModel.body(), java.util.Collections.singletonMap("anyKey", "anyValue"));
 
     CreateTektonPipelineRunOptions createTektonPipelineRunOptionsModel = new CreateTektonPipelineRunOptions.Builder()
       .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
@@ -53,6 +69,7 @@ public class CreateTektonPipelineRunOptionsTest {
       .secureTriggerProperties(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .triggerHeaders(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .triggerBody(java.util.Collections.singletonMap("anyKey", "anyValue"))
+      .trigger(pipelineRunTriggerModel)
       .build();
     assertEquals(createTektonPipelineRunOptionsModel.pipelineId(), "94619026-912b-4d92-8f51-6c74f0692d90");
     assertEquals(createTektonPipelineRunOptionsModel.triggerName(), "start-deploy");
@@ -60,6 +77,7 @@ public class CreateTektonPipelineRunOptionsTest {
     assertEquals(createTektonPipelineRunOptionsModel.secureTriggerProperties(), java.util.Collections.singletonMap("anyKey", "anyValue"));
     assertEquals(createTektonPipelineRunOptionsModel.triggerHeaders(), java.util.Collections.singletonMap("anyKey", "anyValue"));
     assertEquals(createTektonPipelineRunOptionsModel.triggerBody(), java.util.Collections.singletonMap("anyKey", "anyValue"));
+    assertEquals(createTektonPipelineRunOptionsModel.trigger(), pipelineRunTriggerModel);
   }
 
   @Test(expectedExceptions = IllegalArgumentException.class)

@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -24,6 +24,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 public class Definition extends GenericModel {
 
   protected DefinitionSource source;
+  protected String href;
   protected String id;
 
   protected Definition() { }
@@ -40,9 +41,20 @@ public class Definition extends GenericModel {
   }
 
   /**
+   * Gets the href.
+   *
+   * API URL for interacting with the definition.
+   *
+   * @return the href
+   */
+  public String getHref() {
+    return href;
+  }
+
+  /**
    * Gets the id.
    *
-   * UUID.
+   * The aggregated definition ID.
    *
    * @return the id
    */

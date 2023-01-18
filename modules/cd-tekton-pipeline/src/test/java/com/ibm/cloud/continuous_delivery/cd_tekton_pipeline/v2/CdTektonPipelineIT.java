@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -23,9 +23,7 @@ import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.CreateTekto
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.Definition;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DefinitionSource;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DefinitionSourceProperties;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DefinitionSourcePropertiesTool;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DefinitionsCollection;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DefinitionsCollectionDefinitionsItem;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DeleteTektonPipelineDefinitionOptions;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DeleteTektonPipelineOptions;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DeleteTektonPipelinePropertyOptions;
@@ -50,41 +48,39 @@ import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.ListTektonP
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.Log;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.LogsCollection;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRun;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRunTrigger;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRunWorker;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRunsCollection;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRunsCollectionFirst;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRunsCollectionLast;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRunsCollectionNext;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRunsCollectionPipelineRunsItem;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PropertiesCollection;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.Property;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.ReplaceTektonPipelineDefinitionOptions;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.ReplaceTektonPipelinePropertyOptions;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.ReplaceTektonPipelineTriggerPropertyOptions;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.RerunTektonPipelineRunOptions;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.ResourceGroupReference;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.RunDefinition;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.RunPipeline;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.RunsFirstPage;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.RunsLastPage;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.RunsNextPage;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.StepLog;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TektonPipeline;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TektonPipelinePatch;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TektonPipelineResourceGroup;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TektonPipelineRunsPager;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.Tool;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.ToolchainReference;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.Trigger;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerGenericTrigger;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerGenericTriggerPropertiesItem;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerManualTrigger;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerManualTriggerPropertiesItem;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerPatch;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerPropertiesCollection;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerPropertiesCollectionPropertiesItem;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerPropertiesItem;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerProperty;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerScmTrigger;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerScmTriggerPropertiesItem;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerSource;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerSourceProperties;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerSourcePropertiesTool;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerSourcePropertiesPrototype;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerSourcePrototype;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerTimerTrigger;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerTimerTriggerPropertiesItem;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggersCollection;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.UpdateTektonPipelineOptions;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.UpdateTektonPipelineTriggerOptions;
@@ -155,9 +151,9 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
         .build();
 
       CreateTektonPipelineOptions createTektonPipelineOptions = new CreateTektonPipelineOptions.Builder()
+        .id("94619026-912b-4d92-8f51-6c74f0692d90")
         .enableNotifications(false)
         .enablePartialCloning(false)
-        .id("94619026-912b-4d92-8f51-6c74f0692d90")
         .worker(workerIdentityModel)
         .build();
 
@@ -176,7 +172,7 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
+  @Test(dependsOnMethods = { "testCreateTektonPipeline" })
   public void testGetTektonPipeline() throws Exception {
     try {
       GetTektonPipelineOptions getTektonPipelineOptions = new GetTektonPipelineOptions.Builder()
@@ -198,7 +194,7 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
+  @Test(dependsOnMethods = { "testGetTektonPipeline" })
   public void testUpdateTektonPipeline() throws Exception {
     try {
       WorkerIdentity workerIdentityModel = new WorkerIdentity.Builder()
@@ -232,7 +228,7 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
+  @Test(dependsOnMethods = { "testUpdateTektonPipeline" })
   public void testListTektonPipelineRuns() throws Exception {
     try {
       ListTektonPipelineRunsOptions listTektonPipelineRunsOptions = new ListTektonPipelineRunsOptions.Builder()
@@ -269,10 +265,10 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
         .build();
 
       // Test getNext().
-      List<PipelineRunsCollectionPipelineRunsItem> allResults = new ArrayList<>();
+      List<PipelineRun> allResults = new ArrayList<>();
       TektonPipelineRunsPager pager = new TektonPipelineRunsPager(service, options);
       while (pager.hasNext()) {
-        List<PipelineRunsCollectionPipelineRunsItem> nextPage = pager.getNext();
+        List<PipelineRun> nextPage = pager.getNext();
         assertNotNull(nextPage);
         allResults.addAll(nextPage);
       }
@@ -280,7 +276,7 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
 
       // Test getAll();
       pager = new TektonPipelineRunsPager(service, options);
-      List<PipelineRunsCollectionPipelineRunsItem> allItems = pager.getAll();
+      List<PipelineRun> allItems = pager.getAll();
       assertNotNull(allItems);
       assertFalse(allItems.isEmpty());
 
@@ -292,24 +288,32 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
+  @Test(dependsOnMethods = { "testListTektonPipelineRuns" })
   public void testCreateTektonPipelineRun() throws Exception {
     try {
       Property propertyModel = new Property.Builder()
         .name("testString")
         .value("testString")
+        .href("testString")
         .xEnum(java.util.Arrays.asList("testString"))
         .type("secure")
         .path("testString")
         .build();
 
+      PipelineRunTrigger pipelineRunTriggerModel = new PipelineRunTrigger.Builder()
+        .name("Generic Webhook Trigger - 0")
+        .headers(java.util.Collections.singletonMap("anyKey", "anyValue"))
+        .body(java.util.Collections.singletonMap("anyKey", "anyValue"))
+        .build();
+
       CreateTektonPipelineRunOptions createTektonPipelineRunOptions = new CreateTektonPipelineRunOptions.Builder()
         .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .triggerName("Generic Webhook Trigger - 0")
+        .triggerName("testString")
         .triggerProperties(java.util.Collections.singletonMap("anyKey", "anyValue"))
         .secureTriggerProperties(java.util.Collections.singletonMap("anyKey", "anyValue"))
         .triggerHeaders(java.util.Collections.singletonMap("anyKey", "anyValue"))
         .triggerBody(java.util.Collections.singletonMap("anyKey", "anyValue"))
+        .trigger(pipelineRunTriggerModel)
         .build();
 
       // Invoke operation
@@ -327,7 +331,7 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
+  @Test(dependsOnMethods = { "testCreateTektonPipelineRun" })
   public void testGetTektonPipelineRun() throws Exception {
     try {
       GetTektonPipelineRunOptions getTektonPipelineRunOptions = new GetTektonPipelineRunOptions.Builder()
@@ -351,7 +355,7 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
+  @Test(dependsOnMethods = { "testGetTektonPipelineRun" })
   public void testCancelTektonPipelineRun() throws Exception {
     try {
       CancelTektonPipelineRunOptions cancelTektonPipelineRunOptions = new CancelTektonPipelineRunOptions.Builder()
@@ -375,7 +379,7 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
+  @Test(dependsOnMethods = { "testCancelTektonPipelineRun" })
   public void testRerunTektonPipelineRun() throws Exception {
     try {
       RerunTektonPipelineRunOptions rerunTektonPipelineRunOptions = new RerunTektonPipelineRunOptions.Builder()
@@ -398,7 +402,7 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
+  @Test(dependsOnMethods = { "testRerunTektonPipelineRun" })
   public void testGetTektonPipelineRunLogs() throws Exception {
     try {
       GetTektonPipelineRunLogsOptions getTektonPipelineRunLogsOptions = new GetTektonPipelineRunLogsOptions.Builder()
@@ -421,7 +425,7 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
+  @Test(dependsOnMethods = { "testGetTektonPipelineRunLogs" })
   public void testGetTektonPipelineRunLogContent() throws Exception {
     try {
       GetTektonPipelineRunLogContentOptions getTektonPipelineRunLogContentOptions = new GetTektonPipelineRunLogContentOptions.Builder()
@@ -445,7 +449,7 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
+  @Test(dependsOnMethods = { "testGetTektonPipelineRunLogContent" })
   public void testListTektonPipelineDefinitions() throws Exception {
     try {
       ListTektonPipelineDefinitionsOptions listTektonPipelineDefinitionsOptions = new ListTektonPipelineDefinitionsOptions.Builder()
@@ -467,10 +471,10 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
+  @Test(dependsOnMethods = { "testListTektonPipelineDefinitions" })
   public void testCreateTektonPipelineDefinition() throws Exception {
     try {
-      DefinitionSourcePropertiesTool definitionSourcePropertiesToolModel = new DefinitionSourcePropertiesTool.Builder()
+      Tool toolModel = new Tool.Builder()
         .id("testString")
         .build();
 
@@ -479,7 +483,7 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
         .branch("master")
         .tag("testString")
         .path(".tekton")
-        .tool(definitionSourcePropertiesToolModel)
+        .tool(toolModel)
         .build();
 
       DefinitionSource definitionSourceModel = new DefinitionSource.Builder()
@@ -507,7 +511,7 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
+  @Test(dependsOnMethods = { "testCreateTektonPipelineDefinition" })
   public void testGetTektonPipelineDefinition() throws Exception {
     try {
       GetTektonPipelineDefinitionOptions getTektonPipelineDefinitionOptions = new GetTektonPipelineDefinitionOptions.Builder()
@@ -530,10 +534,10 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
+  @Test(dependsOnMethods = { "testGetTektonPipelineDefinition" })
   public void testReplaceTektonPipelineDefinition() throws Exception {
     try {
-      DefinitionSourcePropertiesTool definitionSourcePropertiesToolModel = new DefinitionSourcePropertiesTool.Builder()
+      Tool toolModel = new Tool.Builder()
         .id("testString")
         .build();
 
@@ -542,7 +546,7 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
         .branch("testString")
         .tag("testString")
         .path("testString")
-        .tool(definitionSourcePropertiesToolModel)
+        .tool(toolModel)
         .build();
 
       DefinitionSource definitionSourceModel = new DefinitionSource.Builder()
@@ -571,7 +575,7 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
+  @Test(dependsOnMethods = { "testReplaceTektonPipelineDefinition" })
   public void testListTektonPipelineProperties() throws Exception {
     try {
       ListTektonPipelinePropertiesOptions listTektonPipelinePropertiesOptions = new ListTektonPipelinePropertiesOptions.Builder()
@@ -596,15 +600,15 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
+  @Test(dependsOnMethods = { "testListTektonPipelineProperties" })
   public void testCreateTektonPipelineProperties() throws Exception {
     try {
       CreateTektonPipelinePropertiesOptions createTektonPipelinePropertiesOptions = new CreateTektonPipelinePropertiesOptions.Builder()
         .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
         .name("prop1")
+        .type("text")
         .value("https://github.com/open-toolchain/hello-tekton.git")
         .xEnum(java.util.Arrays.asList("testString"))
-        .type("text")
         .path("testString")
         .build();
 
@@ -623,7 +627,7 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
+  @Test(dependsOnMethods = { "testCreateTektonPipelineProperties" })
   public void testGetTektonPipelineProperty() throws Exception {
     try {
       GetTektonPipelinePropertyOptions getTektonPipelinePropertyOptions = new GetTektonPipelinePropertyOptions.Builder()
@@ -646,16 +650,16 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
+  @Test(dependsOnMethods = { "testGetTektonPipelineProperty" })
   public void testReplaceTektonPipelineProperty() throws Exception {
     try {
       ReplaceTektonPipelinePropertyOptions replaceTektonPipelinePropertyOptions = new ReplaceTektonPipelinePropertyOptions.Builder()
         .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
         .propertyName("debug-pipeline")
         .name("prop1")
+        .type("text")
         .value("https://github.com/open-toolchain/hello-tekton.git")
         .xEnum(java.util.Arrays.asList("testString"))
-        .type("text")
         .path("testString")
         .build();
 
@@ -674,7 +678,7 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
+  @Test(dependsOnMethods = { "testReplaceTektonPipelineProperty" })
   public void testListTektonPipelineTriggers() throws Exception {
     try {
       ListTektonPipelineTriggersOptions listTektonPipelineTriggersOptions = new ListTektonPipelineTriggersOptions.Builder()
@@ -703,12 +707,10 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
+  @Test(dependsOnMethods = { "testListTektonPipelineTriggers" })
   public void testCreateTektonPipelineTrigger() throws Exception {
     try {
-      Worker workerModel = new Worker.Builder()
-        .name("testString")
-        .type("testString")
+      WorkerIdentity workerIdentityModel = new WorkerIdentity.Builder()
         .id("public")
         .build();
 
@@ -720,22 +722,15 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
         .algorithm("md4")
         .build();
 
-      TriggerSourcePropertiesTool triggerSourcePropertiesToolModel = new TriggerSourcePropertiesTool.Builder()
-        .id("testString")
-        .build();
-
-      TriggerSourceProperties triggerSourcePropertiesModel = new TriggerSourceProperties.Builder()
+      TriggerSourcePropertiesPrototype triggerSourcePropertiesPrototypeModel = new TriggerSourcePropertiesPrototype.Builder()
         .url("testString")
         .branch("testString")
         .pattern("testString")
-        .blindConnection(true)
-        .hookId("testString")
-        .tool(triggerSourcePropertiesToolModel)
         .build();
 
-      TriggerSource triggerSourceModel = new TriggerSource.Builder()
+      TriggerSourcePrototype triggerSourcePrototypeModel = new TriggerSourcePrototype.Builder()
         .type("testString")
-        .xProperties(triggerSourcePropertiesModel)
+        .xProperties(triggerSourcePropertiesPrototypeModel)
         .build();
 
       CreateTektonPipelineTriggerOptions createTektonPipelineTriggerOptions = new CreateTektonPipelineTriggerOptions.Builder()
@@ -744,13 +739,13 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
         .name("Manual Trigger")
         .eventListener("pr-listener")
         .tags(java.util.Arrays.asList("testString"))
-        .worker(workerModel)
+        .worker(workerIdentityModel)
         .maxConcurrentRuns(Long.valueOf("3"))
         .enabled(true)
         .secret(genericSecretModel)
         .cron("testString")
         .timezone("testString")
-        .source(triggerSourceModel)
+        .source(triggerSourcePrototypeModel)
         .events(java.util.Arrays.asList("push"))
         .build();
 
@@ -769,7 +764,7 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
+  @Test(dependsOnMethods = { "testCreateTektonPipelineTrigger" })
   public void testGetTektonPipelineTrigger() throws Exception {
     try {
       GetTektonPipelineTriggerOptions getTektonPipelineTriggerOptions = new GetTektonPipelineTriggerOptions.Builder()
@@ -792,12 +787,10 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
+  @Test(dependsOnMethods = { "testGetTektonPipelineTrigger" })
   public void testUpdateTektonPipelineTrigger() throws Exception {
     try {
-      Worker workerModel = new Worker.Builder()
-        .name("testString")
-        .type("testString")
+      WorkerIdentity workerIdentityModel = new WorkerIdentity.Builder()
         .id("testString")
         .build();
 
@@ -809,22 +802,15 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
         .algorithm("md4")
         .build();
 
-      TriggerSourcePropertiesTool triggerSourcePropertiesToolModel = new TriggerSourcePropertiesTool.Builder()
-        .id("testString")
-        .build();
-
-      TriggerSourceProperties triggerSourcePropertiesModel = new TriggerSourceProperties.Builder()
+      TriggerSourcePropertiesPrototype triggerSourcePropertiesPrototypeModel = new TriggerSourcePropertiesPrototype.Builder()
         .url("testString")
         .branch("testString")
         .pattern("testString")
-        .blindConnection(true)
-        .hookId("testString")
-        .tool(triggerSourcePropertiesToolModel)
         .build();
 
-      TriggerSource triggerSourceModel = new TriggerSource.Builder()
+      TriggerSourcePrototype triggerSourcePrototypeModel = new TriggerSourcePrototype.Builder()
         .type("testString")
-        .xProperties(triggerSourcePropertiesModel)
+        .xProperties(triggerSourcePropertiesPrototypeModel)
         .build();
 
       TriggerPatch triggerPatchModel = new TriggerPatch.Builder()
@@ -832,13 +818,13 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
         .name("start-deploy")
         .eventListener("testString")
         .tags(java.util.Arrays.asList("testString"))
-        .worker(workerModel)
+        .worker(workerIdentityModel)
         .maxConcurrentRuns(Long.valueOf("4"))
         .enabled(true)
         .secret(genericSecretModel)
         .cron("testString")
         .timezone("America/Los_Angeles, CET, Europe/London, GMT, US/Eastern, or UTC")
-        .source(triggerSourceModel)
+        .source(triggerSourcePrototypeModel)
         .events(java.util.Arrays.asList("push", "pull_request"))
         .build();
       Map<String, Object> triggerPatchModelAsPatch = triggerPatchModel.asPatch();
@@ -864,7 +850,7 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
+  @Test(dependsOnMethods = { "testUpdateTektonPipelineTrigger" })
   public void testDuplicateTektonPipelineTrigger() throws Exception {
     try {
       DuplicateTektonPipelineTriggerOptions duplicateTektonPipelineTriggerOptions = new DuplicateTektonPipelineTriggerOptions.Builder()
@@ -888,7 +874,7 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
+  @Test(dependsOnMethods = { "testDuplicateTektonPipelineTrigger" })
   public void testListTektonPipelineTriggerProperties() throws Exception {
     try {
       ListTektonPipelineTriggerPropertiesOptions listTektonPipelineTriggerPropertiesOptions = new ListTektonPipelineTriggerPropertiesOptions.Builder()
@@ -914,16 +900,16 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
+  @Test(dependsOnMethods = { "testListTektonPipelineTriggerProperties" })
   public void testCreateTektonPipelineTriggerProperties() throws Exception {
     try {
       CreateTektonPipelineTriggerPropertiesOptions createTektonPipelineTriggerPropertiesOptions = new CreateTektonPipelineTriggerPropertiesOptions.Builder()
         .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
         .triggerId("1bb892a1-2e04-4768-a369-b1159eace147")
         .name("prop1")
+        .type("text")
         .value("https://github.com/open-toolchain/hello-tekton.git")
         .xEnum(java.util.Arrays.asList("testString"))
-        .type("text")
         .path("testString")
         .build();
 
@@ -942,7 +928,7 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
+  @Test(dependsOnMethods = { "testCreateTektonPipelineTriggerProperties" })
   public void testGetTektonPipelineTriggerProperty() throws Exception {
     try {
       GetTektonPipelineTriggerPropertyOptions getTektonPipelineTriggerPropertyOptions = new GetTektonPipelineTriggerPropertyOptions.Builder()
@@ -966,7 +952,7 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
+  @Test(dependsOnMethods = { "testGetTektonPipelineTriggerProperty" })
   public void testReplaceTektonPipelineTriggerProperty() throws Exception {
     try {
       ReplaceTektonPipelineTriggerPropertyOptions replaceTektonPipelineTriggerPropertyOptions = new ReplaceTektonPipelineTriggerPropertyOptions.Builder()
@@ -974,9 +960,9 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
         .triggerId("1bb892a1-2e04-4768-a369-b1159eace147")
         .propertyName("debug-pipeline")
         .name("prop1")
+        .type("text")
         .value("https://github.com/open-toolchain/hello-tekton.git")
         .xEnum(java.util.Arrays.asList("testString"))
-        .type("text")
         .path("testString")
         .build();
 
@@ -995,17 +981,15 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
-  public void testDeleteTektonPipelineTriggerProperty() throws Exception {
+  @Test(dependsOnMethods = { "testReplaceTektonPipelineTriggerProperty" })
+  public void testDeleteTektonPipeline() throws Exception {
     try {
-      DeleteTektonPipelineTriggerPropertyOptions deleteTektonPipelineTriggerPropertyOptions = new DeleteTektonPipelineTriggerPropertyOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .triggerId("1bb892a1-2e04-4768-a369-b1159eace147")
-        .propertyName("debug-pipeline")
+      DeleteTektonPipelineOptions deleteTektonPipelineOptions = new DeleteTektonPipelineOptions.Builder()
+        .id("94619026-912b-4d92-8f51-6c74f0692d90")
         .build();
 
       // Invoke operation
-      Response<Void> response = service.deleteTektonPipelineTriggerProperty(deleteTektonPipelineTriggerPropertyOptions).execute();
+      Response<Void> response = service.deleteTektonPipeline(deleteTektonPipelineOptions).execute();
       // Validate response
       assertNotNull(response);
       assertEquals(response.getStatusCode(), 204);
@@ -1015,26 +999,7 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
-  public void testDeleteTektonPipelineTrigger() throws Exception {
-    try {
-      DeleteTektonPipelineTriggerOptions deleteTektonPipelineTriggerOptions = new DeleteTektonPipelineTriggerOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .triggerId("1bb892a1-2e04-4768-a369-b1159eace147")
-        .build();
-
-      // Invoke operation
-      Response<Void> response = service.deleteTektonPipelineTrigger(deleteTektonPipelineTriggerOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 204);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test
+  @Test(dependsOnMethods = { "testDeleteTektonPipeline" })
   public void testDeleteTektonPipelineRun() throws Exception {
     try {
       DeleteTektonPipelineRunOptions deleteTektonPipelineRunOptions = new DeleteTektonPipelineRunOptions.Builder()
@@ -1053,26 +1018,7 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
-  public void testDeleteTektonPipelineProperty() throws Exception {
-    try {
-      DeleteTektonPipelinePropertyOptions deleteTektonPipelinePropertyOptions = new DeleteTektonPipelinePropertyOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .propertyName("debug-pipeline")
-        .build();
-
-      // Invoke operation
-      Response<Void> response = service.deleteTektonPipelineProperty(deleteTektonPipelinePropertyOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 204);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test
+  @Test(dependsOnMethods = { "testDeleteTektonPipelineRun" })
   public void testDeleteTektonPipelineDefinition() throws Exception {
     try {
       DeleteTektonPipelineDefinitionOptions deleteTektonPipelineDefinitionOptions = new DeleteTektonPipelineDefinitionOptions.Builder()
@@ -1091,15 +1037,55 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test
-  public void testDeleteTektonPipeline() throws Exception {
+  @Test(dependsOnMethods = { "testDeleteTektonPipelineDefinition" })
+  public void testDeleteTektonPipelineProperty() throws Exception {
     try {
-      DeleteTektonPipelineOptions deleteTektonPipelineOptions = new DeleteTektonPipelineOptions.Builder()
-        .id("94619026-912b-4d92-8f51-6c74f0692d90")
+      DeleteTektonPipelinePropertyOptions deleteTektonPipelinePropertyOptions = new DeleteTektonPipelinePropertyOptions.Builder()
+        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
+        .propertyName("debug-pipeline")
         .build();
 
       // Invoke operation
-      Response<Void> response = service.deleteTektonPipeline(deleteTektonPipelineOptions).execute();
+      Response<Void> response = service.deleteTektonPipelineProperty(deleteTektonPipelinePropertyOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 204);
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testDeleteTektonPipelineProperty" })
+  public void testDeleteTektonPipelineTrigger() throws Exception {
+    try {
+      DeleteTektonPipelineTriggerOptions deleteTektonPipelineTriggerOptions = new DeleteTektonPipelineTriggerOptions.Builder()
+        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
+        .triggerId("1bb892a1-2e04-4768-a369-b1159eace147")
+        .build();
+
+      // Invoke operation
+      Response<Void> response = service.deleteTektonPipelineTrigger(deleteTektonPipelineTriggerOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 204);
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testDeleteTektonPipelineTrigger" })
+  public void testDeleteTektonPipelineTriggerProperty() throws Exception {
+    try {
+      DeleteTektonPipelineTriggerPropertyOptions deleteTektonPipelineTriggerPropertyOptions = new DeleteTektonPipelineTriggerPropertyOptions.Builder()
+        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
+        .triggerId("1bb892a1-2e04-4768-a369-b1159eace147")
+        .propertyName("debug-pipeline")
+        .build();
+
+      // Invoke operation
+      Response<Void> response = service.deleteTektonPipelineTriggerProperty(deleteTektonPipelineTriggerPropertyOptions).execute();
       // Validate response
       assertNotNull(response);
       assertEquals(response.getStatusCode(), 204);

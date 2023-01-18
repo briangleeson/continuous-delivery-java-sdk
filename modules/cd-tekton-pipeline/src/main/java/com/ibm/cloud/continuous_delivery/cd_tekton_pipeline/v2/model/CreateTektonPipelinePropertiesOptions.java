@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -40,9 +40,9 @@ public class CreateTektonPipelinePropertiesOptions extends GenericModel {
 
   protected String pipelineId;
   protected String name;
+  protected String type;
   protected String value;
   protected List<String> xEnum;
-  protected String type;
   protected String path;
 
   /**
@@ -51,9 +51,9 @@ public class CreateTektonPipelinePropertiesOptions extends GenericModel {
   public static class Builder {
     private String pipelineId;
     private String name;
+    private String type;
     private String value;
     private List<String> xEnum;
-    private String type;
     private String path;
 
     /**
@@ -64,9 +64,9 @@ public class CreateTektonPipelinePropertiesOptions extends GenericModel {
     private Builder(CreateTektonPipelinePropertiesOptions createTektonPipelinePropertiesOptions) {
       this.pipelineId = createTektonPipelinePropertiesOptions.pipelineId;
       this.name = createTektonPipelinePropertiesOptions.name;
+      this.type = createTektonPipelinePropertiesOptions.type;
       this.value = createTektonPipelinePropertiesOptions.value;
       this.xEnum = createTektonPipelinePropertiesOptions.xEnum;
-      this.type = createTektonPipelinePropertiesOptions.type;
       this.path = createTektonPipelinePropertiesOptions.path;
     }
 
@@ -80,9 +80,13 @@ public class CreateTektonPipelinePropertiesOptions extends GenericModel {
      * Instantiates a new builder with required properties.
      *
      * @param pipelineId the pipelineId
+     * @param name the name
+     * @param type the type
      */
-    public Builder(String pipelineId) {
+    public Builder(String pipelineId, String name, String type) {
       this.pipelineId = pipelineId;
+      this.name = name;
+      this.type = type;
     }
 
     /**
@@ -133,6 +137,17 @@ public class CreateTektonPipelinePropertiesOptions extends GenericModel {
     }
 
     /**
+     * Set the type.
+     *
+     * @param type the type
+     * @return the CreateTektonPipelinePropertiesOptions builder
+     */
+    public Builder type(String type) {
+      this.type = type;
+      return this;
+    }
+
+    /**
      * Set the value.
      *
      * @param value the value
@@ -156,17 +171,6 @@ public class CreateTektonPipelinePropertiesOptions extends GenericModel {
     }
 
     /**
-     * Set the type.
-     *
-     * @param type the type
-     * @return the CreateTektonPipelinePropertiesOptions builder
-     */
-    public Builder type(String type) {
-      this.type = type;
-      return this;
-    }
-
-    /**
      * Set the path.
      *
      * @param path the path
@@ -183,11 +187,15 @@ public class CreateTektonPipelinePropertiesOptions extends GenericModel {
   protected CreateTektonPipelinePropertiesOptions(Builder builder) {
     com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.pipelineId,
       "pipelineId cannot be empty");
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
+      "name cannot be null");
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.type,
+      "type cannot be null");
     pipelineId = builder.pipelineId;
     name = builder.name;
+    type = builder.type;
     value = builder.value;
     xEnum = builder.xEnum;
-    type = builder.type;
     path = builder.path;
   }
 
@@ -223,6 +231,17 @@ public class CreateTektonPipelinePropertiesOptions extends GenericModel {
   }
 
   /**
+   * Gets the type.
+   *
+   * Property type.
+   *
+   * @return the type
+   */
+  public String type() {
+    return type;
+  }
+
+  /**
    * Gets the value.
    *
    * Property value. Any string value is valid.
@@ -242,17 +261,6 @@ public class CreateTektonPipelinePropertiesOptions extends GenericModel {
    */
   public List<String> xEnum() {
     return xEnum;
-  }
-
-  /**
-   * Gets the type.
-   *
-   * Property type.
-   *
-   * @return the type
-   */
-  public String type() {
-    return type;
   }
 
   /**

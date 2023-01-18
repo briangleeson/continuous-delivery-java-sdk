@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -13,8 +13,8 @@
 
 package com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model;
 
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerProperty;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerTimerTrigger;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerTimerTriggerPropertiesItem;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.Worker;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.utils.TestUtilities;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;

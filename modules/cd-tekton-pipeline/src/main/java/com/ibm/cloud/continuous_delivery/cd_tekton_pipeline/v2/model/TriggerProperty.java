@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -40,6 +40,7 @@ public class TriggerProperty extends GenericModel {
 
   protected String name;
   protected String value;
+  protected String href;
   @SerializedName("enum")
   protected List<String> xEnum;
   protected String type;
@@ -67,6 +68,17 @@ public class TriggerProperty extends GenericModel {
    */
   public String getValue() {
     return value;
+  }
+
+  /**
+   * Gets the href.
+   *
+   * API URL for interacting with the trigger property.
+   *
+   * @return the href
+   */
+  public String getHref() {
+    return href;
   }
 
   /**

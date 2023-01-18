@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -36,7 +36,7 @@ public class TektonPipeline extends GenericModel {
   protected String name;
   protected String status;
   @SerializedName("resource_group")
-  protected TektonPipelineResourceGroup resourceGroup;
+  protected ResourceGroupReference resourceGroup;
   protected ToolchainReference toolchain;
   protected String id;
   protected List<Definition> definitions;
@@ -50,6 +50,7 @@ public class TektonPipeline extends GenericModel {
   protected Worker worker;
   @SerializedName("runs_url")
   protected String runsUrl;
+  protected String href;
   @SerializedName("build_number")
   protected Long buildNumber;
   @SerializedName("enable_notifications")
@@ -85,11 +86,11 @@ public class TektonPipeline extends GenericModel {
   /**
    * Gets the resourceGroup.
    *
-   * The ID of the resource group in which the pipeline was created.
+   * The resource group in which the pipeline was created.
    *
    * @return the resourceGroup
    */
-  public TektonPipelineResourceGroup getResourceGroup() {
+  public ResourceGroupReference getResourceGroup() {
     return resourceGroup;
   }
 
@@ -190,6 +191,17 @@ public class TektonPipeline extends GenericModel {
    */
   public String getRunsUrl() {
     return runsUrl;
+  }
+
+  /**
+   * Gets the href.
+   *
+   * API URL for interacting with the pipeline.
+   *
+   * @return the href
+   */
+  public String getHref() {
+    return href;
   }
 
   /**

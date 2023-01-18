@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -41,6 +41,7 @@ public class Property extends GenericModel {
 
   protected String name;
   protected String value;
+  protected String href;
   @SerializedName("enum")
   protected List<String> xEnum;
   protected String type;
@@ -52,6 +53,7 @@ public class Property extends GenericModel {
   public static class Builder {
     private String name;
     private String value;
+    private String href;
     private List<String> xEnum;
     private String type;
     private String path;
@@ -64,6 +66,7 @@ public class Property extends GenericModel {
     private Builder(Property property) {
       this.name = property.name;
       this.value = property.value;
+      this.href = property.href;
       this.xEnum = property.xEnum;
       this.type = property.type;
       this.path = property.path;
@@ -134,6 +137,17 @@ public class Property extends GenericModel {
     }
 
     /**
+     * Set the href.
+     *
+     * @param href the href
+     * @return the Property builder
+     */
+    public Builder href(String href) {
+      this.href = href;
+      return this;
+    }
+
+    /**
      * Set the xEnum.
      * Existing xEnum will be replaced.
      *
@@ -177,6 +191,7 @@ public class Property extends GenericModel {
       "type cannot be null");
     name = builder.name;
     value = builder.value;
+    href = builder.href;
     xEnum = builder.xEnum;
     type = builder.type;
     path = builder.path;
@@ -211,6 +226,17 @@ public class Property extends GenericModel {
    */
   public String value() {
     return value;
+  }
+
+  /**
+   * Gets the href.
+   *
+   * API URL for interacting with the property.
+   *
+   * @return the href
+   */
+  public String href() {
+    return href;
   }
 
   /**

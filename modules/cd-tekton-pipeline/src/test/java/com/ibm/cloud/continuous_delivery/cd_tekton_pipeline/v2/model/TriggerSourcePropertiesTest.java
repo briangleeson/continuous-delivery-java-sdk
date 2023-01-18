@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -13,8 +13,8 @@
 
 package com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model;
 
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.Tool;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerSourceProperties;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerSourcePropertiesTool;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.utils.TestUtilities;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import java.io.InputStream;
@@ -32,41 +32,12 @@ public class TriggerSourcePropertiesTest {
 
   @Test
   public void testTriggerSourceProperties() throws Throwable {
-    TriggerSourcePropertiesTool triggerSourcePropertiesToolModel = new TriggerSourcePropertiesTool.Builder()
-      .id("testString")
-      .build();
-    assertEquals(triggerSourcePropertiesToolModel.id(), "testString");
-
-    TriggerSourceProperties triggerSourcePropertiesModel = new TriggerSourceProperties.Builder()
-      .url("testString")
-      .branch("testString")
-      .pattern("testString")
-      .blindConnection(true)
-      .hookId("testString")
-      .tool(triggerSourcePropertiesToolModel)
-      .build();
-    assertEquals(triggerSourcePropertiesModel.url(), "testString");
-    assertEquals(triggerSourcePropertiesModel.branch(), "testString");
-    assertEquals(triggerSourcePropertiesModel.pattern(), "testString");
-    assertEquals(triggerSourcePropertiesModel.blindConnection(), Boolean.valueOf(true));
-    assertEquals(triggerSourcePropertiesModel.hookId(), "testString");
-    assertEquals(triggerSourcePropertiesModel.tool(), triggerSourcePropertiesToolModel);
-
-    String json = TestUtilities.serialize(triggerSourcePropertiesModel);
-
-    TriggerSourceProperties triggerSourcePropertiesModelNew = TestUtilities.deserialize(json, TriggerSourceProperties.class);
-    assertTrue(triggerSourcePropertiesModelNew instanceof TriggerSourceProperties);
-    assertEquals(triggerSourcePropertiesModelNew.url(), "testString");
-    assertEquals(triggerSourcePropertiesModelNew.branch(), "testString");
-    assertEquals(triggerSourcePropertiesModelNew.pattern(), "testString");
-    assertEquals(triggerSourcePropertiesModelNew.blindConnection(), Boolean.valueOf(true));
-    assertEquals(triggerSourcePropertiesModelNew.hookId(), "testString");
-    assertEquals(triggerSourcePropertiesModelNew.tool().toString(), triggerSourcePropertiesToolModel.toString());
+    TriggerSourceProperties triggerSourcePropertiesModel = new TriggerSourceProperties();
+    assertNull(triggerSourcePropertiesModel.getUrl());
+    assertNull(triggerSourcePropertiesModel.getBranch());
+    assertNull(triggerSourcePropertiesModel.getPattern());
+    assertNull(triggerSourcePropertiesModel.isBlindConnection());
+    assertNull(triggerSourcePropertiesModel.getHookId());
+    assertNull(triggerSourcePropertiesModel.getTool());
   }
-
-  @Test(expectedExceptions = IllegalArgumentException.class)
-  public void testTriggerSourcePropertiesError() throws Throwable {
-    new TriggerSourceProperties.Builder().build();
-  }
-
 }

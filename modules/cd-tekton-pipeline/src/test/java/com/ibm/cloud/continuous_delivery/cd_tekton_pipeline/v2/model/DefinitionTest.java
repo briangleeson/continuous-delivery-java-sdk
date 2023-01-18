@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -16,7 +16,7 @@ package com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.Definition;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DefinitionSource;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DefinitionSourceProperties;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DefinitionSourcePropertiesTool;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.Tool;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.utils.TestUtilities;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import java.io.InputStream;
@@ -36,6 +36,7 @@ public class DefinitionTest {
   public void testDefinition() throws Throwable {
     Definition definitionModel = new Definition();
     assertNull(definitionModel.getSource());
+    assertNull(definitionModel.getHref());
     assertNull(definitionModel.getId());
   }
 }

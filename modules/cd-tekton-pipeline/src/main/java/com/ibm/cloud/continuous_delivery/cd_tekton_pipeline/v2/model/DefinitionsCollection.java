@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -22,7 +22,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class DefinitionsCollection extends GenericModel {
 
-  protected List<DefinitionsCollectionDefinitionsItem> definitions;
+  protected List<Definition> definitions;
 
   protected DefinitionsCollection() { }
 
@@ -33,7 +33,7 @@ public class DefinitionsCollection extends GenericModel {
    *
    * @return the definitions
    */
-  public List<DefinitionsCollectionDefinitionsItem> getDefinitions() {
+  public List<Definition> getDefinitions() {
     return definitions;
   }
 }

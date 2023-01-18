@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -13,15 +13,17 @@
 
 package com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model;
 
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRun;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRunWorker;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRunsCollection;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRunsCollectionFirst;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRunsCollectionLast;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRunsCollectionNext;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRunsCollectionPipelineRunsItem;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.Property;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.RunDefinition;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.RunPipeline;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.RunsFirstPage;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.RunsLastPage;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.RunsNextPage;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerManualTrigger;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerManualTriggerPropertiesItem;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerProperty;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.UserInfo;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.Worker;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.utils.TestUtilities;

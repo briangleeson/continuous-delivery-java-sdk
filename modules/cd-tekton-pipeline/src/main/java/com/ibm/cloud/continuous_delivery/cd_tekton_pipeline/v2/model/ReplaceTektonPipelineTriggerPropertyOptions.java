@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -42,9 +42,9 @@ public class ReplaceTektonPipelineTriggerPropertyOptions extends GenericModel {
   protected String triggerId;
   protected String propertyName;
   protected String name;
+  protected String type;
   protected String value;
   protected List<String> xEnum;
-  protected String type;
   protected String path;
 
   /**
@@ -55,9 +55,9 @@ public class ReplaceTektonPipelineTriggerPropertyOptions extends GenericModel {
     private String triggerId;
     private String propertyName;
     private String name;
+    private String type;
     private String value;
     private List<String> xEnum;
-    private String type;
     private String path;
 
     /**
@@ -70,9 +70,9 @@ public class ReplaceTektonPipelineTriggerPropertyOptions extends GenericModel {
       this.triggerId = replaceTektonPipelineTriggerPropertyOptions.triggerId;
       this.propertyName = replaceTektonPipelineTriggerPropertyOptions.propertyName;
       this.name = replaceTektonPipelineTriggerPropertyOptions.name;
+      this.type = replaceTektonPipelineTriggerPropertyOptions.type;
       this.value = replaceTektonPipelineTriggerPropertyOptions.value;
       this.xEnum = replaceTektonPipelineTriggerPropertyOptions.xEnum;
-      this.type = replaceTektonPipelineTriggerPropertyOptions.type;
       this.path = replaceTektonPipelineTriggerPropertyOptions.path;
     }
 
@@ -88,11 +88,15 @@ public class ReplaceTektonPipelineTriggerPropertyOptions extends GenericModel {
      * @param pipelineId the pipelineId
      * @param triggerId the triggerId
      * @param propertyName the propertyName
+     * @param name the name
+     * @param type the type
      */
-    public Builder(String pipelineId, String triggerId, String propertyName) {
+    public Builder(String pipelineId, String triggerId, String propertyName, String name, String type) {
       this.pipelineId = pipelineId;
       this.triggerId = triggerId;
       this.propertyName = propertyName;
+      this.name = name;
+      this.type = type;
     }
 
     /**
@@ -165,6 +169,17 @@ public class ReplaceTektonPipelineTriggerPropertyOptions extends GenericModel {
     }
 
     /**
+     * Set the type.
+     *
+     * @param type the type
+     * @return the ReplaceTektonPipelineTriggerPropertyOptions builder
+     */
+    public Builder type(String type) {
+      this.type = type;
+      return this;
+    }
+
+    /**
      * Set the value.
      *
      * @param value the value
@@ -184,17 +199,6 @@ public class ReplaceTektonPipelineTriggerPropertyOptions extends GenericModel {
      */
     public Builder xEnum(List<String> xEnum) {
       this.xEnum = xEnum;
-      return this;
-    }
-
-    /**
-     * Set the type.
-     *
-     * @param type the type
-     * @return the ReplaceTektonPipelineTriggerPropertyOptions builder
-     */
-    public Builder type(String type) {
-      this.type = type;
       return this;
     }
 
@@ -219,13 +223,17 @@ public class ReplaceTektonPipelineTriggerPropertyOptions extends GenericModel {
       "triggerId cannot be empty");
     com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.propertyName,
       "propertyName cannot be empty");
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
+      "name cannot be null");
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.type,
+      "type cannot be null");
     pipelineId = builder.pipelineId;
     triggerId = builder.triggerId;
     propertyName = builder.propertyName;
     name = builder.name;
+    type = builder.type;
     value = builder.value;
     xEnum = builder.xEnum;
-    type = builder.type;
     path = builder.path;
   }
 
@@ -283,6 +291,17 @@ public class ReplaceTektonPipelineTriggerPropertyOptions extends GenericModel {
   }
 
   /**
+   * Gets the type.
+   *
+   * Property type.
+   *
+   * @return the type
+   */
+  public String type() {
+    return type;
+  }
+
+  /**
    * Gets the value.
    *
    * Property value. Any string value is valid.
@@ -302,17 +321,6 @@ public class ReplaceTektonPipelineTriggerPropertyOptions extends GenericModel {
    */
   public List<String> xEnum() {
     return xEnum;
-  }
-
-  /**
-   * Gets the type.
-   *
-   * Property type.
-   *
-   * @return the type
-   */
-  public String type() {
-    return type;
   }
 
   /**

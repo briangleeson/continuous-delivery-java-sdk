@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -23,101 +23,7 @@ public class Worker extends GenericModel {
   protected String type;
   protected String id;
 
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String name;
-    private String type;
-    private String id;
-
-    /**
-     * Instantiates a new Builder from an existing Worker instance.
-     *
-     * @param worker the instance to initialize the Builder with
-     */
-    private Builder(Worker worker) {
-      this.name = worker.name;
-      this.type = worker.type;
-      this.id = worker.id;
-    }
-
-    /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Instantiates a new builder with required properties.
-     *
-     * @param id the id
-     */
-    public Builder(String id) {
-      this.id = id;
-    }
-
-    /**
-     * Builds a Worker.
-     *
-     * @return the new Worker instance
-     */
-    public Worker build() {
-      return new Worker(this);
-    }
-
-    /**
-     * Set the name.
-     *
-     * @param name the name
-     * @return the Worker builder
-     */
-    public Builder name(String name) {
-      this.name = name;
-      return this;
-    }
-
-    /**
-     * Set the type.
-     *
-     * @param type the type
-     * @return the Worker builder
-     */
-    public Builder type(String type) {
-      this.type = type;
-      return this;
-    }
-
-    /**
-     * Set the id.
-     *
-     * @param id the id
-     * @return the Worker builder
-     */
-    public Builder id(String id) {
-      this.id = id;
-      return this;
-    }
-  }
-
   protected Worker() { }
-
-  protected Worker(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.id,
-      "id cannot be null");
-    name = builder.name;
-    type = builder.type;
-    id = builder.id;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a Worker builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
 
   /**
    * Gets the name.
@@ -126,7 +32,7 @@ public class Worker extends GenericModel {
    *
    * @return the name
    */
-  public String name() {
+  public String getName() {
     return name;
   }
 
@@ -137,7 +43,7 @@ public class Worker extends GenericModel {
    *
    * @return the type
    */
-  public String type() {
+  public String getType() {
     return type;
   }
 
@@ -148,7 +54,7 @@ public class Worker extends GenericModel {
    *
    * @return the id
    */
-  public String id() {
+  public String getId() {
     return id;
   }
 }

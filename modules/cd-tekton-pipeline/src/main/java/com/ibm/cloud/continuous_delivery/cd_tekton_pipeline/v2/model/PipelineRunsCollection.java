@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -23,11 +23,11 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 public class PipelineRunsCollection extends GenericModel {
 
   @SerializedName("pipeline_runs")
-  protected List<PipelineRunsCollectionPipelineRunsItem> pipelineRuns;
+  protected List<PipelineRun> pipelineRuns;
   protected Long limit;
-  protected PipelineRunsCollectionFirst first;
-  protected PipelineRunsCollectionNext next;
-  protected PipelineRunsCollectionLast last;
+  protected RunsFirstPage first;
+  protected RunsNextPage next;
+  protected RunsLastPage last;
 
   protected PipelineRunsCollection() { }
 
@@ -38,7 +38,7 @@ public class PipelineRunsCollection extends GenericModel {
    *
    * @return the pipelineRuns
    */
-  public List<PipelineRunsCollectionPipelineRunsItem> getPipelineRuns() {
+  public List<PipelineRun> getPipelineRuns() {
     return pipelineRuns;
   }
 
@@ -60,7 +60,7 @@ public class PipelineRunsCollection extends GenericModel {
    *
    * @return the first
    */
-  public PipelineRunsCollectionFirst getFirst() {
+  public RunsFirstPage getFirst() {
     return first;
   }
 
@@ -72,7 +72,7 @@ public class PipelineRunsCollection extends GenericModel {
    *
    * @return the next
    */
-  public PipelineRunsCollectionNext getNext() {
+  public RunsNextPage getNext() {
     return next;
   }
 
@@ -84,7 +84,7 @@ public class PipelineRunsCollection extends GenericModel {
    *
    * @return the last
    */
-  public PipelineRunsCollectionLast getLast() {
+  public RunsLastPage getLast() {
     return last;
   }
 }

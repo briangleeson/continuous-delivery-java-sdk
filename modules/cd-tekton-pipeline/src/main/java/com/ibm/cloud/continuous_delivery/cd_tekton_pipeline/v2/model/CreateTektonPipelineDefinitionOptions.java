@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -49,9 +49,11 @@ public class CreateTektonPipelineDefinitionOptions extends GenericModel {
      * Instantiates a new builder with required properties.
      *
      * @param pipelineId the pipelineId
+     * @param source the source
      */
-    public Builder(String pipelineId) {
+    public Builder(String pipelineId, DefinitionSource source) {
       this.pipelineId = pipelineId;
+      this.source = source;
     }
 
     /**
@@ -91,6 +93,8 @@ public class CreateTektonPipelineDefinitionOptions extends GenericModel {
   protected CreateTektonPipelineDefinitionOptions(Builder builder) {
     com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.pipelineId,
       "pipelineId cannot be empty");
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.source,
+      "source cannot be null");
     pipelineId = builder.pipelineId;
     source = builder.source;
   }

@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -26,91 +26,7 @@ public class TriggerSource extends GenericModel {
   @SerializedName("properties")
   protected TriggerSourceProperties xProperties;
 
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String type;
-    private TriggerSourceProperties xProperties;
-
-    /**
-     * Instantiates a new Builder from an existing TriggerSource instance.
-     *
-     * @param triggerSource the instance to initialize the Builder with
-     */
-    private Builder(TriggerSource triggerSource) {
-      this.type = triggerSource.type;
-      this.xProperties = triggerSource.xProperties;
-    }
-
-    /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Instantiates a new builder with required properties.
-     *
-     * @param type the type
-     * @param xProperties the xProperties
-     */
-    public Builder(String type, TriggerSourceProperties xProperties) {
-      this.type = type;
-      this.xProperties = xProperties;
-    }
-
-    /**
-     * Builds a TriggerSource.
-     *
-     * @return the new TriggerSource instance
-     */
-    public TriggerSource build() {
-      return new TriggerSource(this);
-    }
-
-    /**
-     * Set the type.
-     *
-     * @param type the type
-     * @return the TriggerSource builder
-     */
-    public Builder type(String type) {
-      this.type = type;
-      return this;
-    }
-
-    /**
-     * Set the xProperties.
-     *
-     * @param xProperties the xProperties
-     * @return the TriggerSource builder
-     */
-    public Builder xProperties(TriggerSourceProperties xProperties) {
-      this.xProperties = xProperties;
-      return this;
-    }
-  }
-
   protected TriggerSource() { }
-
-  protected TriggerSource(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.type,
-      "type cannot be null");
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.xProperties,
-      "xProperties cannot be null");
-    type = builder.type;
-    xProperties = builder.xProperties;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a TriggerSource builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
 
   /**
    * Gets the type.
@@ -119,7 +35,7 @@ public class TriggerSource extends GenericModel {
    *
    * @return the type
    */
-  public String type() {
+  public String getType() {
     return type;
   }
 
@@ -130,7 +46,7 @@ public class TriggerSource extends GenericModel {
    *
    * @return the xProperties
    */
-  public TriggerSourceProperties xProperties() {
+  public TriggerSourceProperties getXProperties() {
     return xProperties;
   }
 }

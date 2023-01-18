@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -36,18 +36,18 @@ public class ReplaceTektonPipelineTriggerPropertyOptionsTest {
       .triggerId("1bb892a1-2e04-4768-a369-b1159eace147")
       .propertyName("debug-pipeline")
       .name("testString")
+      .type("secure")
       .value("testString")
       .xEnum(java.util.Arrays.asList("testString"))
-      .type("secure")
       .path("testString")
       .build();
     assertEquals(replaceTektonPipelineTriggerPropertyOptionsModel.pipelineId(), "94619026-912b-4d92-8f51-6c74f0692d90");
     assertEquals(replaceTektonPipelineTriggerPropertyOptionsModel.triggerId(), "1bb892a1-2e04-4768-a369-b1159eace147");
     assertEquals(replaceTektonPipelineTriggerPropertyOptionsModel.propertyName(), "debug-pipeline");
     assertEquals(replaceTektonPipelineTriggerPropertyOptionsModel.name(), "testString");
+    assertEquals(replaceTektonPipelineTriggerPropertyOptionsModel.type(), "secure");
     assertEquals(replaceTektonPipelineTriggerPropertyOptionsModel.value(), "testString");
     assertEquals(replaceTektonPipelineTriggerPropertyOptionsModel.xEnum(), java.util.Arrays.asList("testString"));
-    assertEquals(replaceTektonPipelineTriggerPropertyOptionsModel.type(), "secure");
     assertEquals(replaceTektonPipelineTriggerPropertyOptionsModel.path(), "testString");
   }
 

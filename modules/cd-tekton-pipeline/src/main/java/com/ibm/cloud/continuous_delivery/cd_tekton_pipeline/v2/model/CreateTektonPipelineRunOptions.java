@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -27,6 +27,7 @@ public class CreateTektonPipelineRunOptions extends GenericModel {
   protected Map<String, Object> secureTriggerProperties;
   protected Map<String, Object> triggerHeaders;
   protected Map<String, Object> triggerBody;
+  protected PipelineRunTrigger trigger;
 
   /**
    * Builder.
@@ -38,6 +39,7 @@ public class CreateTektonPipelineRunOptions extends GenericModel {
     private Map<String, Object> secureTriggerProperties;
     private Map<String, Object> triggerHeaders;
     private Map<String, Object> triggerBody;
+    private PipelineRunTrigger trigger;
 
     /**
      * Instantiates a new Builder from an existing CreateTektonPipelineRunOptions instance.
@@ -51,6 +53,7 @@ public class CreateTektonPipelineRunOptions extends GenericModel {
       this.secureTriggerProperties = createTektonPipelineRunOptions.secureTriggerProperties;
       this.triggerHeaders = createTektonPipelineRunOptions.triggerHeaders;
       this.triggerBody = createTektonPipelineRunOptions.triggerBody;
+      this.trigger = createTektonPipelineRunOptions.trigger;
     }
 
     /**
@@ -144,6 +147,17 @@ public class CreateTektonPipelineRunOptions extends GenericModel {
       this.triggerBody = triggerBody;
       return this;
     }
+
+    /**
+     * Set the trigger.
+     *
+     * @param trigger the trigger
+     * @return the CreateTektonPipelineRunOptions builder
+     */
+    public Builder trigger(PipelineRunTrigger trigger) {
+      this.trigger = trigger;
+      return this;
+    }
   }
 
   protected CreateTektonPipelineRunOptions() { }
@@ -157,6 +171,7 @@ public class CreateTektonPipelineRunOptions extends GenericModel {
     secureTriggerProperties = builder.secureTriggerProperties;
     triggerHeaders = builder.triggerHeaders;
     triggerBody = builder.triggerBody;
+    trigger = builder.trigger;
   }
 
   /**
@@ -237,6 +252,17 @@ public class CreateTektonPipelineRunOptions extends GenericModel {
    */
   public Map<String, Object> triggerBody() {
     return triggerBody;
+  }
+
+  /**
+   * Gets the trigger.
+   *
+   * Trigger details passed when triggering a Tekton pipeline run.
+   *
+   * @return the trigger
+   */
+  public PipelineRunTrigger trigger() {
+    return trigger;
   }
 }
 

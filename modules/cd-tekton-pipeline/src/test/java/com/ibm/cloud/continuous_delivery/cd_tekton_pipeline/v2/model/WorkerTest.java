@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -31,27 +31,9 @@ public class WorkerTest {
 
   @Test
   public void testWorker() throws Throwable {
-    Worker workerModel = new Worker.Builder()
-      .name("testString")
-      .type("testString")
-      .id("testString")
-      .build();
-    assertEquals(workerModel.name(), "testString");
-    assertEquals(workerModel.type(), "testString");
-    assertEquals(workerModel.id(), "testString");
-
-    String json = TestUtilities.serialize(workerModel);
-
-    Worker workerModelNew = TestUtilities.deserialize(json, Worker.class);
-    assertTrue(workerModelNew instanceof Worker);
-    assertEquals(workerModelNew.name(), "testString");
-    assertEquals(workerModelNew.type(), "testString");
-    assertEquals(workerModelNew.id(), "testString");
+    Worker workerModel = new Worker();
+    assertNull(workerModel.getName());
+    assertNull(workerModel.getType());
+    assertNull(workerModel.getId());
   }
-
-  @Test(expectedExceptions = IllegalArgumentException.class)
-  public void testWorkerError() throws Throwable {
-    new Worker.Builder().build();
-  }
-
 }

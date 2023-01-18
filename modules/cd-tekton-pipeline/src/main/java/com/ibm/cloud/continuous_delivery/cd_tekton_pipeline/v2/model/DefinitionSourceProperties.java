@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -23,7 +23,7 @@ public class DefinitionSourceProperties extends GenericModel {
   protected String branch;
   protected String tag;
   protected String path;
-  protected DefinitionSourcePropertiesTool tool;
+  protected Tool tool;
 
   /**
    * Builder.
@@ -33,7 +33,7 @@ public class DefinitionSourceProperties extends GenericModel {
     private String branch;
     private String tag;
     private String path;
-    private DefinitionSourcePropertiesTool tool;
+    private Tool tool;
 
     /**
      * Instantiates a new Builder from an existing DefinitionSourceProperties instance.
@@ -124,7 +124,7 @@ public class DefinitionSourceProperties extends GenericModel {
      * @param tool the tool
      * @return the DefinitionSourceProperties builder
      */
-    public Builder tool(DefinitionSourcePropertiesTool tool) {
+    public Builder tool(Tool tool) {
       this.tool = tool;
       return this;
     }
@@ -200,11 +200,11 @@ public class DefinitionSourceProperties extends GenericModel {
   /**
    * Gets the tool.
    *
-   * Reference to the repository tool, in the parent toolchain, that contains the pipeline definition.
+   * Reference to the repository tool in the parent toolchain.
    *
    * @return the tool
    */
-  public DefinitionSourcePropertiesTool tool() {
+  public Tool tool() {
     return tool;
   }
 }

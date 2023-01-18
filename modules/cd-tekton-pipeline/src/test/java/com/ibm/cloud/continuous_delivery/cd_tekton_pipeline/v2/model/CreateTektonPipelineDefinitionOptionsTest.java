@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -16,7 +16,7 @@ package com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.CreateTektonPipelineDefinitionOptions;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DefinitionSource;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DefinitionSourceProperties;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DefinitionSourcePropertiesTool;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.Tool;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.utils.TestUtilities;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import java.io.InputStream;
@@ -34,23 +34,23 @@ public class CreateTektonPipelineDefinitionOptionsTest {
 
   @Test
   public void testCreateTektonPipelineDefinitionOptions() throws Throwable {
-    DefinitionSourcePropertiesTool definitionSourcePropertiesToolModel = new DefinitionSourcePropertiesTool.Builder()
+    Tool toolModel = new Tool.Builder()
       .id("testString")
       .build();
-    assertEquals(definitionSourcePropertiesToolModel.id(), "testString");
+    assertEquals(toolModel.id(), "testString");
 
     DefinitionSourceProperties definitionSourcePropertiesModel = new DefinitionSourceProperties.Builder()
       .url("testString")
       .branch("testString")
       .tag("testString")
       .path("testString")
-      .tool(definitionSourcePropertiesToolModel)
+      .tool(toolModel)
       .build();
     assertEquals(definitionSourcePropertiesModel.url(), "testString");
     assertEquals(definitionSourcePropertiesModel.branch(), "testString");
     assertEquals(definitionSourcePropertiesModel.tag(), "testString");
     assertEquals(definitionSourcePropertiesModel.path(), "testString");
-    assertEquals(definitionSourcePropertiesModel.tool(), definitionSourcePropertiesToolModel);
+    assertEquals(definitionSourcePropertiesModel.tool(), toolModel);
 
     DefinitionSource definitionSourceModel = new DefinitionSource.Builder()
       .type("testString")

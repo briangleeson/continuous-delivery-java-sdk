@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -27,145 +27,9 @@ public class TriggerSourceProperties extends GenericModel {
   protected Boolean blindConnection;
   @SerializedName("hook_id")
   protected String hookId;
-  protected TriggerSourcePropertiesTool tool;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String url;
-    private String branch;
-    private String pattern;
-    private Boolean blindConnection;
-    private String hookId;
-    private TriggerSourcePropertiesTool tool;
-
-    /**
-     * Instantiates a new Builder from an existing TriggerSourceProperties instance.
-     *
-     * @param triggerSourceProperties the instance to initialize the Builder with
-     */
-    private Builder(TriggerSourceProperties triggerSourceProperties) {
-      this.url = triggerSourceProperties.url;
-      this.branch = triggerSourceProperties.branch;
-      this.pattern = triggerSourceProperties.pattern;
-      this.blindConnection = triggerSourceProperties.blindConnection;
-      this.hookId = triggerSourceProperties.hookId;
-      this.tool = triggerSourceProperties.tool;
-    }
-
-    /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Instantiates a new builder with required properties.
-     *
-     * @param url the url
-     */
-    public Builder(String url) {
-      this.url = url;
-    }
-
-    /**
-     * Builds a TriggerSourceProperties.
-     *
-     * @return the new TriggerSourceProperties instance
-     */
-    public TriggerSourceProperties build() {
-      return new TriggerSourceProperties(this);
-    }
-
-    /**
-     * Set the url.
-     *
-     * @param url the url
-     * @return the TriggerSourceProperties builder
-     */
-    public Builder url(String url) {
-      this.url = url;
-      return this;
-    }
-
-    /**
-     * Set the branch.
-     *
-     * @param branch the branch
-     * @return the TriggerSourceProperties builder
-     */
-    public Builder branch(String branch) {
-      this.branch = branch;
-      return this;
-    }
-
-    /**
-     * Set the pattern.
-     *
-     * @param pattern the pattern
-     * @return the TriggerSourceProperties builder
-     */
-    public Builder pattern(String pattern) {
-      this.pattern = pattern;
-      return this;
-    }
-
-    /**
-     * Set the blindConnection.
-     *
-     * @param blindConnection the blindConnection
-     * @return the TriggerSourceProperties builder
-     */
-    public Builder blindConnection(Boolean blindConnection) {
-      this.blindConnection = blindConnection;
-      return this;
-    }
-
-    /**
-     * Set the hookId.
-     *
-     * @param hookId the hookId
-     * @return the TriggerSourceProperties builder
-     */
-    public Builder hookId(String hookId) {
-      this.hookId = hookId;
-      return this;
-    }
-
-    /**
-     * Set the tool.
-     *
-     * @param tool the tool
-     * @return the TriggerSourceProperties builder
-     */
-    public Builder tool(TriggerSourcePropertiesTool tool) {
-      this.tool = tool;
-      return this;
-    }
-  }
+  protected Tool tool;
 
   protected TriggerSourceProperties() { }
-
-  protected TriggerSourceProperties(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.url,
-      "url cannot be null");
-    url = builder.url;
-    branch = builder.branch;
-    pattern = builder.pattern;
-    blindConnection = builder.blindConnection;
-    hookId = builder.hookId;
-    tool = builder.tool;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a TriggerSourceProperties builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
 
   /**
    * Gets the url.
@@ -174,7 +38,7 @@ public class TriggerSourceProperties extends GenericModel {
    *
    * @return the url
    */
-  public String url() {
+  public String getUrl() {
     return url;
   }
 
@@ -185,7 +49,7 @@ public class TriggerSourceProperties extends GenericModel {
    *
    * @return the branch
    */
-  public String branch() {
+  public String getBranch() {
     return branch;
   }
 
@@ -198,7 +62,7 @@ public class TriggerSourceProperties extends GenericModel {
    *
    * @return the pattern
    */
-  public String pattern() {
+  public String getPattern() {
     return pattern;
   }
 
@@ -210,7 +74,7 @@ public class TriggerSourceProperties extends GenericModel {
    *
    * @return the blindConnection
    */
-  public Boolean blindConnection() {
+  public Boolean isBlindConnection() {
     return blindConnection;
   }
 
@@ -221,7 +85,7 @@ public class TriggerSourceProperties extends GenericModel {
    *
    * @return the hookId
    */
-  public String hookId() {
+  public String getHookId() {
     return hookId;
   }
 
@@ -232,7 +96,7 @@ public class TriggerSourceProperties extends GenericModel {
    *
    * @return the tool
    */
-  public TriggerSourcePropertiesTool tool() {
+  public Tool getTool() {
     return tool;
   }
 }
