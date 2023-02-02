@@ -13,81 +13,10 @@
 
 package com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2;
 
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.CancelTektonPipelineRunOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.CreateTektonPipelineDefinitionOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.CreateTektonPipelineOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.CreateTektonPipelinePropertiesOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.CreateTektonPipelineRunOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.CreateTektonPipelineTriggerOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.CreateTektonPipelineTriggerPropertiesOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.Definition;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DefinitionSource;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DefinitionSourceProperties;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DefinitionsCollection;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DeleteTektonPipelineDefinitionOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DeleteTektonPipelineOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DeleteTektonPipelinePropertyOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DeleteTektonPipelineRunOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DeleteTektonPipelineTriggerOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DeleteTektonPipelineTriggerPropertyOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.DuplicateTektonPipelineTriggerOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.GenericSecret;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.GetTektonPipelineDefinitionOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.GetTektonPipelineOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.GetTektonPipelinePropertyOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.GetTektonPipelineRunLogContentOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.GetTektonPipelineRunLogsOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.GetTektonPipelineRunOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.GetTektonPipelineTriggerOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.GetTektonPipelineTriggerPropertyOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.ListTektonPipelineDefinitionsOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.ListTektonPipelinePropertiesOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.ListTektonPipelineRunsOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.ListTektonPipelineTriggerPropertiesOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.ListTektonPipelineTriggersOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.Log;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.LogsCollection;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRun;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRunTrigger;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRunWorker;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRunsCollection;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PropertiesCollection;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.Property;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.ReplaceTektonPipelineDefinitionOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.ReplaceTektonPipelinePropertyOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.ReplaceTektonPipelineTriggerPropertyOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.RerunTektonPipelineRunOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.ResourceGroupReference;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.RunDefinition;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.RunPipeline;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.RunsFirstPage;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.RunsLastPage;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.RunsNextPage;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.StepLog;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TektonPipeline;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TektonPipelinePatch;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TektonPipelineRunsPager;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.Tool;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.ToolchainReference;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.Trigger;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerGenericTrigger;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerManualTrigger;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerPatch;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerPropertiesCollection;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerProperty;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerScmTrigger;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerSource;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerSourceProperties;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerSourcePropertiesPrototype;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerSourcePrototype;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggerTimerTrigger;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.TriggersCollection;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.UpdateTektonPipelineOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.UpdateTektonPipelineTriggerOptions;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.UserInfo;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.Worker;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.WorkerIdentity;
+import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.*;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.utils.TestUtilities;
+import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.CdToolchain;
+import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.*;
 import com.ibm.cloud.continuous_delivery.test.SdkIntegrationTestBase;
 import com.ibm.cloud.sdk.core.http.Response;
 import com.ibm.cloud.sdk.core.service.exception.ServiceResponseException;
@@ -109,10 +38,26 @@ import static org.testng.Assert.*;
  * Integration test class for the CdTektonPipeline service.
  */
 public class CdTektonPipelineIT extends SdkIntegrationTestBase {
-  public CdTektonPipeline service = null;
+  public CdToolchain toolchainSvc = null;
+  public CdTektonPipeline pipelineSvc = null;
   public static Map<String, String> config = null;
   final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
   final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+
+  // Variables to hold link values
+  String toolchainIdLink = null;
+  String githubToolIdLink = null;
+  String pipelineIdLink = null;
+  String definitionIdLink = null;
+  String propIdLink = null;
+  String triggerIdLink = null;
+  String triggerPropIdLink = null;
+  String runIdLink = null;
+  String rerunIdLink = null;
+  String propertyName = "prop1";
+  String triggerName = "start-deploy";
+  String triggerPropName = "triggerProp1";
+
   /**
    * This method provides our config filename to the base class.
    */
@@ -128,22 +73,107 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
       return;
     }
 
-    service = CdTektonPipeline.newInstance();
-    assertNotNull(service);
-    assertNotNull(service.getServiceUrl());
+    toolchainSvc = CdToolchain.newInstance();
+    pipelineSvc = CdTektonPipeline.newInstance();
+    assertNotNull(toolchainSvc);
+    assertNotNull(toolchainSvc.getServiceUrl());
+    assertNotNull(pipelineSvc);
+    assertNotNull(pipelineSvc.getServiceUrl());
 
     // Load up our test-specific config properties.
     config = CredentialUtils.getServiceProperties(CdTektonPipeline.DEFAULT_SERVICE_NAME);
     assertNotNull(config);
     assertFalse(config.isEmpty());
-    assertEquals(service.getServiceUrl(), config.get("URL"));
-
-    service.enableRetries(4, 30);
+    assertEquals(pipelineSvc.getServiceUrl(), config.get("URL"));
 
     System.out.println("Setup complete.");
   }
 
   @Test
+  public void testCreateToolchain() throws Exception {
+    try {
+      CreateToolchainOptions createToolchainOptions = new CreateToolchainOptions.Builder()
+        .name("PipelineJavaSdkTest")
+        .resourceGroupId(config.get("RESOURCE_GROUP_ID"))
+        .description("A sample toolchain to test the API")
+        .build();
+
+      // Invoke operation
+      Response<ToolchainPost> response = toolchainSvc.createToolchain(createToolchainOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 201);
+
+      ToolchainPost toolchainPostResult = response.getResult();
+
+      assertNotNull(toolchainPostResult);
+      toolchainIdLink = toolchainPostResult.getId();
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testCreateToolchain" })
+  public void testCreateGithubTool() throws Exception {
+    try {
+      Map<String, Object> paramList = new HashMap<>();
+      paramList.put("repo_url", "https://github.com/open-toolchain/hello-tekton.git");
+      paramList.put("type", "link");
+      paramList.put("enable_traceability", false);
+      paramList.put("has_issues", false);
+      CreateToolOptions createToolOptions = new CreateToolOptions.Builder()
+        .toolchainId(toolchainIdLink)
+        .toolTypeId("githubconsolidated")
+        .name("app-repo-1")
+        .parameters(paramList)
+        .build();
+
+      // Invoke operation
+      Response<ToolchainToolPost> response = toolchainSvc.createTool(createToolOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 201);
+
+      ToolchainToolPost toolchainToolPostResult = response.getResult();
+
+      assertNotNull(toolchainToolPostResult);
+      githubToolIdLink = toolchainToolPostResult.getId();
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testCreateToolchain" })
+  public void testCreatePipelineTool() throws Exception {
+    try {
+      Map<String, Object> paramList = new HashMap<>();
+      paramList.put("type", "tekton");
+      paramList.put("name", "tekton-pipeline");
+      CreateToolOptions createToolOptions = new CreateToolOptions.Builder()
+        .toolchainId(toolchainIdLink)
+        .toolTypeId("pipeline")
+        .parameters(paramList)
+        .build();
+
+      // Invoke operation
+      Response<ToolchainToolPost> response = toolchainSvc.createTool(createToolOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 201);
+
+      ToolchainToolPost toolchainToolPostResult = response.getResult();
+
+      assertNotNull(toolchainToolPostResult);
+      pipelineIdLink = toolchainToolPostResult.getId();
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testCreatePipelineTool" })
   public void testCreateTektonPipeline() throws Exception {
     try {
       WorkerIdentity workerIdentityModel = new WorkerIdentity.Builder()
@@ -151,20 +181,19 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
         .build();
 
       CreateTektonPipelineOptions createTektonPipelineOptions = new CreateTektonPipelineOptions.Builder()
-        .id("94619026-912b-4d92-8f51-6c74f0692d90")
+        .id(pipelineIdLink)
         .enableNotifications(false)
         .enablePartialCloning(false)
         .worker(workerIdentityModel)
         .build();
 
       // Invoke operation
-      Response<TektonPipeline> response = service.createTektonPipeline(createTektonPipelineOptions).execute();
+      Response<TektonPipeline> response = pipelineSvc.createTektonPipeline(createTektonPipelineOptions).execute();
       // Validate response
       assertNotNull(response);
       assertEquals(response.getStatusCode(), 201);
 
       TektonPipeline tektonPipelineResult = response.getResult();
-
       assertNotNull(tektonPipelineResult);
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
@@ -176,18 +205,20 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
   public void testGetTektonPipeline() throws Exception {
     try {
       GetTektonPipelineOptions getTektonPipelineOptions = new GetTektonPipelineOptions.Builder()
-        .id("94619026-912b-4d92-8f51-6c74f0692d90")
+        .id(pipelineIdLink)
         .build();
 
       // Invoke operation
-      Response<TektonPipeline> response = service.getTektonPipeline(getTektonPipelineOptions).execute();
+      Response<TektonPipeline> response = pipelineSvc.getTektonPipeline(getTektonPipelineOptions).execute();
       // Validate response
       assertNotNull(response);
       assertEquals(response.getStatusCode(), 200);
 
       TektonPipeline tektonPipelineResult = response.getResult();
-
       assertNotNull(tektonPipelineResult);
+      assertNotNull(tektonPipelineResult.getHref());
+      assertEquals(tektonPipelineResult.getId(), pipelineIdLink);
+      assertEquals(tektonPipelineResult.getName(), "tekton-pipeline");
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -197,76 +228,623 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
   @Test(dependsOnMethods = { "testGetTektonPipeline" })
   public void testUpdateTektonPipeline() throws Exception {
     try {
-      WorkerIdentity workerIdentityModel = new WorkerIdentity.Builder()
-        .id("public")
-        .build();
-
       TektonPipelinePatch tektonPipelinePatchModel = new TektonPipelinePatch.Builder()
         .enableNotifications(true)
         .enablePartialCloning(true)
-        .worker(workerIdentityModel)
         .build();
       Map<String, Object> tektonPipelinePatchModelAsPatch = tektonPipelinePatchModel.asPatch();
 
       UpdateTektonPipelineOptions updateTektonPipelineOptions = new UpdateTektonPipelineOptions.Builder()
-        .id("94619026-912b-4d92-8f51-6c74f0692d90")
+        .id(pipelineIdLink)
         .tektonPipelinePatch(tektonPipelinePatchModelAsPatch)
         .build();
 
       // Invoke operation
-      Response<TektonPipeline> response = service.updateTektonPipeline(updateTektonPipelineOptions).execute();
+      Response<TektonPipeline> response = pipelineSvc.updateTektonPipeline(updateTektonPipelineOptions).execute();
       // Validate response
       assertNotNull(response);
       assertEquals(response.getStatusCode(), 200);
 
       TektonPipeline tektonPipelineResult = response.getResult();
-
       assertNotNull(tektonPipelineResult);
+      assertNotNull(tektonPipelineResult.getHref());
+      assertEquals(tektonPipelineResult.getId(), pipelineIdLink);
+      assertEquals(tektonPipelineResult.getName(), "tekton-pipeline");
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
     }
   }
 
-  @Test(dependsOnMethods = { "testUpdateTektonPipeline" })
-  public void testListTektonPipelineRuns() throws Exception {
+  @Test(dependsOnMethods = { "testCreateTektonPipeline" })
+  public void testCreateTektonPipelineDefinition() throws Exception {
     try {
-      ListTektonPipelineRunsOptions listTektonPipelineRunsOptions = new ListTektonPipelineRunsOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .start("testString")
-        .limit(Long.valueOf("10"))
-        .status("succeeded")
-        .triggerName("manual-trigger")
+      DefinitionSourceProperties definitionSourcePropertiesModel = new DefinitionSourceProperties.Builder()
+        .url("https://github.com/open-toolchain/hello-tekton.git")
+        .branch("master")
+        .path(".tekton")
+        .build();
+
+      DefinitionSource definitionSourceModel = new DefinitionSource.Builder()
+        .type("git")
+        .xProperties(definitionSourcePropertiesModel)
+        .build();
+
+      CreateTektonPipelineDefinitionOptions createTektonPipelineDefinitionOptions = new CreateTektonPipelineDefinitionOptions.Builder()
+        .pipelineId(pipelineIdLink)
+        .source(definitionSourceModel)
         .build();
 
       // Invoke operation
-      Response<PipelineRunsCollection> response = service.listTektonPipelineRuns(listTektonPipelineRunsOptions).execute();
+      Response<Definition> response = pipelineSvc.createTektonPipelineDefinition(createTektonPipelineDefinitionOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 201);
+
+      Definition definitionResult = response.getResult();
+      assertNotNull(definitionResult);
+      assertNotNull(definitionResult.getHref());
+      assertNotNull(definitionResult.getId());
+      definitionIdLink = definitionResult.getId();
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testCreateTektonPipelineDefinition" })
+  public void testGetTektonPipelineDefinition() throws Exception {
+    try {
+      GetTektonPipelineDefinitionOptions getTektonPipelineDefinitionOptions = new GetTektonPipelineDefinitionOptions.Builder()
+        .pipelineId(pipelineIdLink)
+        .definitionId(definitionIdLink)
+        .build();
+
+      // Invoke operation
+      Response<Definition> response = pipelineSvc.getTektonPipelineDefinition(getTektonPipelineDefinitionOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 200);
+
+      Definition definitionResult = response.getResult();
+      assertNotNull(definitionResult);
+      assertNotNull(definitionResult.getHref());
+      assertNotNull(definitionResult.getId());
+      assertNotNull(definitionResult.getSource());
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testCreateTektonPipelineDefinition" })
+  public void testListTektonPipelineDefinitions() throws Exception {
+    try {
+      ListTektonPipelineDefinitionsOptions listTektonPipelineDefinitionsOptions = new ListTektonPipelineDefinitionsOptions.Builder()
+        .pipelineId(pipelineIdLink)
+        .build();
+
+      // Invoke operation
+      Response<DefinitionsCollection> response = pipelineSvc.listTektonPipelineDefinitions(listTektonPipelineDefinitionsOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 200);
+
+      DefinitionsCollection definitionsCollectionResult = response.getResult();
+      assertNotNull(definitionsCollectionResult);
+      assertNotNull(definitionsCollectionResult.getDefinitions());
+      assertNotNull(definitionsCollectionResult.getDefinitions().get(0));
+      assertNotNull(definitionsCollectionResult.getDefinitions().get(0).getHref());
+      assertNotNull(definitionsCollectionResult.getDefinitions().get(0).getId());
+      assertNotNull(definitionsCollectionResult.getDefinitions().get(0).getSource());
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testCreateTektonPipeline" })
+  public void testCreateTektonPipelineProperties() throws Exception {
+    try {
+      CreateTektonPipelinePropertiesOptions createTektonPipelinePropertiesOptions = new CreateTektonPipelinePropertiesOptions.Builder()
+        .pipelineId(pipelineIdLink)
+        .name(propertyName)
+        .type("text")
+        .value("prop1Value")
+        .build();
+
+      // Invoke operation
+      Response<Property> response = pipelineSvc.createTektonPipelineProperties(createTektonPipelinePropertiesOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 201);
+
+      Property propertyResult = response.getResult();
+      assertNotNull(propertyResult);
+      assertNotNull(propertyResult.href());
+      assertEquals(propertyResult.name(), propertyName);
+      assertEquals(propertyResult.type(), "text");
+      assertEquals(propertyResult.value(), "prop1Value");
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testCreateTektonPipelineProperties" })
+  public void testGetTektonPipelineProperty() throws Exception {
+    try {
+      GetTektonPipelinePropertyOptions getTektonPipelinePropertyOptions = new GetTektonPipelinePropertyOptions.Builder()
+        .pipelineId(pipelineIdLink)
+        .propertyName(propertyName)
+        .build();
+
+      // Invoke operation
+      Response<Property> response = pipelineSvc.getTektonPipelineProperty(getTektonPipelinePropertyOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 200);
+
+      Property propertyResult = response.getResult();
+      assertNotNull(propertyResult);
+      assertNotNull(propertyResult.href());
+      assertEquals(propertyResult.name(), propertyName);
+      assertEquals(propertyResult.type(), "text");
+      assertEquals(propertyResult.value(), "prop1Value");
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testGetTektonPipelineProperty" })
+  public void testReplaceTektonPipelineProperty() throws Exception {
+    try {
+      ReplaceTektonPipelinePropertyOptions replaceTektonPipelinePropertyOptions = new ReplaceTektonPipelinePropertyOptions.Builder()
+        .pipelineId(pipelineIdLink)
+        .propertyName(propertyName)
+        .name(propertyName)
+        .type("text")
+        .value("editedValue")
+        .build();
+
+      // Invoke operation
+      Response<Property> response = pipelineSvc.replaceTektonPipelineProperty(replaceTektonPipelinePropertyOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 200);
+
+      Property propertyResult = response.getResult();
+      assertNotNull(propertyResult);
+      assertNotNull(propertyResult.href());
+      assertEquals(propertyResult.name(), propertyName);
+      assertEquals(propertyResult.type(), "text");
+      assertEquals(propertyResult.value(), "editedValue");
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testCreateTektonPipelineProperties", "testReplaceTektonPipelineProperty" })
+  public void testListTektonPipelineProperties() throws Exception {
+    try {
+      ListTektonPipelinePropertiesOptions listTektonPipelinePropertiesOptions = new ListTektonPipelinePropertiesOptions.Builder()
+        .pipelineId(pipelineIdLink)
+        .sort("name")
+        .build();
+
+      // Invoke operation
+      Response<PropertiesCollection> response = pipelineSvc.listTektonPipelineProperties(listTektonPipelinePropertiesOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 200);
+
+      PropertiesCollection propertiesCollectionResult = response.getResult();
+      assertNotNull(propertiesCollectionResult);
+      Property propertyResult = propertiesCollectionResult.getXProperties().get(0);
+      assertNotNull(propertyResult.href());
+      assertEquals(propertyResult.name(), propertyName);
+      assertEquals(propertyResult.type(), "text");
+      assertEquals(propertyResult.value(), "editedValue");
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testCreateTektonPipeline" })
+  public void testCreateTektonPipelineTrigger() throws Exception {
+    try {
+      CreateTektonPipelineTriggerOptions createTektonPipelineTriggerOptions = new CreateTektonPipelineTriggerOptions.Builder()
+        .pipelineId(pipelineIdLink)
+        .type("manual")
+        .name("Manual1")
+        .eventListener("listener")
+        .tags(java.util.Arrays.asList("tag1"))
+        .build();
+
+      // Invoke operation
+      Response<Trigger> response = pipelineSvc.createTektonPipelineTrigger(createTektonPipelineTriggerOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 201);
+
+      Trigger triggerResult = response.getResult();
+      assertNotNull(triggerResult);
+      assertNotNull(triggerResult.getHref());
+      assertNotNull(triggerResult.getId());
+      triggerIdLink = triggerResult.getId();
+      assertEquals(triggerResult.getName(), "Manual1");
+      assertEquals(triggerResult.getType(), "manual");
+      assertEquals(triggerResult.getEventListener(), "listener");
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testCreateTektonPipelineTrigger" })
+  public void testGetTektonPipelineTrigger() throws Exception {
+    try {
+      GetTektonPipelineTriggerOptions getTektonPipelineTriggerOptions = new GetTektonPipelineTriggerOptions.Builder()
+        .pipelineId(pipelineIdLink)
+        .triggerId(triggerIdLink)
+        .build();
+
+      // Invoke operation
+      Response<Trigger> response = pipelineSvc.getTektonPipelineTrigger(getTektonPipelineTriggerOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 200);
+
+      Trigger triggerResult = response.getResult();
+      assertNotNull(triggerResult);
+      assertNotNull(triggerResult.getHref());
+      assertEquals(triggerResult.getName(), "Manual1");
+      assertEquals(triggerResult.getType(), "manual");
+      assertEquals(triggerResult.isEnabled(), true);
+      assertEquals(triggerResult.getEventListener(), "listener");
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testGetTektonPipelineTrigger" })
+  public void testUpdateTektonPipelineTrigger() throws Exception {
+    try {
+      TriggerPatch triggerPatchModel = new TriggerPatch.Builder()
+        .type("manual")
+        .name(triggerName)
+        .eventListener("listener")
+        .tags(java.util.Arrays.asList("tag2"))
+        .maxConcurrentRuns(Long.valueOf("2"))
+        .build();
+      Map<String, Object> triggerPatchModelAsPatch = triggerPatchModel.asPatch();
+
+      UpdateTektonPipelineTriggerOptions updateTektonPipelineTriggerOptions = new UpdateTektonPipelineTriggerOptions.Builder()
+        .pipelineId(pipelineIdLink)
+        .triggerId(triggerIdLink)
+        .triggerPatch(triggerPatchModelAsPatch)
+        .build();
+
+      // Invoke operation
+      Response<Trigger> response = pipelineSvc.updateTektonPipelineTrigger(updateTektonPipelineTriggerOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 200);
+
+      Trigger triggerResult = response.getResult();
+      assertNotNull(triggerResult);
+      assertNotNull(triggerResult.getHref());
+      assertEquals(triggerResult.getName(), triggerName);
+      assertEquals(triggerResult.getType(), "manual");
+      assertEquals(triggerResult.isEnabled(), true);
+      assertEquals(triggerResult.getEventListener(), "listener");
+      assertEquals(triggerResult.getMaxConcurrentRuns(), 2);
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testUpdateTektonPipelineTrigger" })
+  public void testDuplicateTektonPipelineTrigger() throws Exception {
+    try {
+      DuplicateTektonPipelineTriggerOptions duplicateTektonPipelineTriggerOptions = new DuplicateTektonPipelineTriggerOptions.Builder()
+        .pipelineId(pipelineIdLink)
+        .sourceTriggerId(triggerIdLink)
+        .name("duplicateTrigger")
+        .build();
+
+      // Invoke operation
+      Response<Trigger> response = pipelineSvc.duplicateTektonPipelineTrigger(duplicateTektonPipelineTriggerOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 201);
+
+      Trigger triggerResult = response.getResult();
+      assertNotNull(triggerResult);
+      assertNotNull(triggerResult.getHref());
+      assertEquals(triggerResult.getName(), "duplicateTrigger");
+      assertEquals(triggerResult.getType(), "manual");
+      assertEquals(triggerResult.isEnabled(), true);
+      assertEquals(triggerResult.getEventListener(), "listener");
+      assertEquals(triggerResult.getMaxConcurrentRuns(), 2);
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testCreateTektonPipelineTrigger", "testDuplicateTektonPipelineTrigger" })
+  public void testListTektonPipelineTriggers() throws Exception {
+    try {
+      ListTektonPipelineTriggersOptions listTektonPipelineTriggersOptions = new ListTektonPipelineTriggersOptions.Builder()
+        .pipelineId(pipelineIdLink)
+        .type("manual")
+        .build();
+
+      // Invoke operation
+      Response<TriggersCollection> response = pipelineSvc.listTektonPipelineTriggers(listTektonPipelineTriggersOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 200);
+
+      TriggersCollection triggersCollectionResult = response.getResult();
+      assertNotNull(triggersCollectionResult);
+      assertNotNull(triggersCollectionResult.getTriggers());
+      assertEquals(triggersCollectionResult.getTriggers().size(), 2);
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testCreateTektonPipelineTrigger" })
+  public void testCreateTektonPipelineTriggerProperties() throws Exception {
+    try {
+      CreateTektonPipelineTriggerPropertiesOptions createTektonPipelineTriggerPropertiesOptions = new CreateTektonPipelineTriggerPropertiesOptions.Builder()
+        .pipelineId(pipelineIdLink)
+        .triggerId(triggerIdLink)
+        .name(propertyName)
+        .type("text")
+        .value(triggerPropName)
+        .build();
+
+      // Invoke operation
+      Response<TriggerProperty> response = pipelineSvc.createTektonPipelineTriggerProperties(createTektonPipelineTriggerPropertiesOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 201);
+
+      TriggerProperty triggerPropertyResult = response.getResult();
+      assertNotNull(triggerPropertyResult);
+      assertNotNull(triggerPropertyResult.getHref());
+      assertEquals(triggerPropertyResult.getName(), propertyName);
+      assertEquals(triggerPropertyResult.getType(), "text");
+      assertEquals(triggerPropertyResult.getValue(), triggerPropName);
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testCreateTektonPipeline", "testUpdateTektonPipelineTrigger", "testCreateTektonPipelineDefinition" })
+  public void testCreateTektonPipelineRun() throws Exception {
+    try {
+      PipelineRunTrigger pipelineRunTriggerModel = new PipelineRunTrigger.Builder()
+        .name(triggerName)
+        .xProperties(java.util.Collections.singletonMap("runProp1", "runProp1"))
+        .secureProperties(java.util.Collections.singletonMap("runSecProp1", "runSecProp1"))
+        .headers(java.util.Collections.singletonMap("runHeader1", "runHeader1"))
+        .body(java.util.Collections.singletonMap("runBody1", "runBody1"))
+        .build();
+
+      CreateTektonPipelineRunOptions createTektonPipelineRunOptions = new CreateTektonPipelineRunOptions.Builder()
+        .pipelineId(pipelineIdLink)
+        .trigger(pipelineRunTriggerModel)
+        .build();
+
+      // Invoke operation
+      Response<PipelineRun> response = pipelineSvc.createTektonPipelineRun(createTektonPipelineRunOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 201);
+
+      PipelineRun pipelineRunResult = response.getResult();
+      assertNotNull(pipelineRunResult);
+      assertNotNull(pipelineRunResult.getId());
+      runIdLink = pipelineRunResult.getId();
+      assertNotNull(pipelineRunResult.getHref());
+      assertNotNull(pipelineRunResult.getStatus());
+      assertNotNull(pipelineRunResult.getXProperties());
+      assertNotNull(pipelineRunResult.getEventParamsBlob());
+      assertNotNull(pipelineRunResult.getRunUrl());
+      assertEquals(pipelineRunResult.getListenerName(), "listener");
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testCreateTektonPipelineTriggerProperties" })
+  public void testGetTektonPipelineTriggerProperty() throws Exception {
+    try {
+      GetTektonPipelineTriggerPropertyOptions getTektonPipelineTriggerPropertyOptions = new GetTektonPipelineTriggerPropertyOptions.Builder()
+        .pipelineId(pipelineIdLink)
+        .triggerId(triggerIdLink)
+        .propertyName(propertyName)
+        .build();
+
+      // Invoke operation
+      Response<TriggerProperty> response = pipelineSvc.getTektonPipelineTriggerProperty(getTektonPipelineTriggerPropertyOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 200);
+
+      TriggerProperty triggerPropertyResult = response.getResult();
+      assertNotNull(triggerPropertyResult);
+      assertNotNull(triggerPropertyResult.getHref());
+      assertEquals(triggerPropertyResult.getName(), propertyName);
+      assertEquals(triggerPropertyResult.getType(), "text");
+      assertEquals(triggerPropertyResult.getValue(), triggerPropName);
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testGetTektonPipelineTriggerProperty" })
+  public void testReplaceTektonPipelineTriggerProperty() throws Exception {
+    try {
+      ReplaceTektonPipelineTriggerPropertyOptions replaceTektonPipelineTriggerPropertyOptions = new ReplaceTektonPipelineTriggerPropertyOptions.Builder()
+        .pipelineId(pipelineIdLink)
+        .triggerId(triggerIdLink)
+        .propertyName(propertyName)
+        .name(propertyName)
+        .type("text")
+        .value("triggerPropEdited")
+        .build();
+
+      // Invoke operation
+      Response<TriggerProperty> response = pipelineSvc.replaceTektonPipelineTriggerProperty(replaceTektonPipelineTriggerPropertyOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 200);
+
+      TriggerProperty triggerPropertyResult = response.getResult();
+      assertNotNull(triggerPropertyResult);
+      assertNotNull(triggerPropertyResult.getHref());
+      assertEquals(triggerPropertyResult.getName(), propertyName);
+      assertEquals(triggerPropertyResult.getType(), "text");
+      assertEquals(triggerPropertyResult.getValue(), "triggerPropEdited");
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testReplaceTektonPipelineTriggerProperty" })
+  public void testListTektonPipelineTriggerProperties() throws Exception {
+    try {
+      ListTektonPipelineTriggerPropertiesOptions listTektonPipelineTriggerPropertiesOptions = new ListTektonPipelineTriggerPropertiesOptions.Builder()
+        .pipelineId(pipelineIdLink)
+        .triggerId(triggerIdLink)
+        .type("text")
+        .sort("name")
+        .build();
+
+      // Invoke operation
+      Response<TriggerPropertiesCollection> response = pipelineSvc.listTektonPipelineTriggerProperties(listTektonPipelineTriggerPropertiesOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 200);
+
+      TriggerPropertiesCollection triggerPropertiesCollectionResult = response.getResult();
+      assertNotNull(triggerPropertiesCollectionResult);
+      assertEquals(triggerPropertiesCollectionResult.getXProperties().size(), 1);
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testCreateTektonPipelineRun" })
+  public void testGetTektonPipelineRun() throws Exception {
+    try {
+      GetTektonPipelineRunOptions getTektonPipelineRunOptions = new GetTektonPipelineRunOptions.Builder()
+        .pipelineId(pipelineIdLink)
+        .id(runIdLink)
+        .build();
+
+      // Invoke operation
+      Response<PipelineRun> response = pipelineSvc.getTektonPipelineRun(getTektonPipelineRunOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 200);
+
+      PipelineRun pipelineRunResult = response.getResult();
+      assertNotNull(pipelineRunResult);
+      assertNotNull(pipelineRunResult.getHref());
+      assertNotNull(pipelineRunResult.getStatus());
+      assertNotNull(pipelineRunResult.getXProperties());
+      assertNotNull(pipelineRunResult.getEventParamsBlob());
+      assertNotNull(pipelineRunResult.getRunUrl());
+      assertEquals(pipelineRunResult.getListenerName(), "listener");
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testCreateTektonPipelineRun" })
+  public void testRerunTektonPipelineRun() throws Exception {
+    try {
+      RerunTektonPipelineRunOptions rerunTektonPipelineRunOptions = new RerunTektonPipelineRunOptions.Builder()
+        .pipelineId(pipelineIdLink)
+        .id(runIdLink)
+        .build();
+
+      // Invoke operation
+      Response<PipelineRun> response = pipelineSvc.rerunTektonPipelineRun(rerunTektonPipelineRunOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 201);
+
+      PipelineRun pipelineRunResult = response.getResult();
+      assertNotNull(pipelineRunResult);
+      assertNotNull(pipelineRunResult.getId());
+      rerunIdLink = pipelineRunResult.getId();
+      assertNotNull(pipelineRunResult.getHref());
+      assertNotNull(pipelineRunResult.getStatus());
+      assertNotNull(pipelineRunResult.getXProperties());
+      assertNotNull(pipelineRunResult.getEventParamsBlob());
+      assertNotNull(pipelineRunResult.getRunUrl());
+      assertEquals(pipelineRunResult.getListenerName(), "listener");
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testCreateTektonPipelineRun", "testRerunTektonPipelineRun" })
+  public void testListTektonPipelineRuns() throws Exception {
+    try {
+      ListTektonPipelineRunsOptions listTektonPipelineRunsOptions = new ListTektonPipelineRunsOptions.Builder()
+        .pipelineId(pipelineIdLink)
+        .limit(Long.valueOf("10"))
+        .build();
+
+      // Invoke operation
+      Response<PipelineRunsCollection> response = pipelineSvc.listTektonPipelineRuns(listTektonPipelineRunsOptions).execute();
       // Validate response
       assertNotNull(response);
       assertEquals(response.getStatusCode(), 200);
 
       PipelineRunsCollection pipelineRunsCollectionResult = response.getResult();
-
       assertNotNull(pipelineRunsCollectionResult);
+      assertNotNull(pipelineRunsCollectionResult.getPipelineRuns());
+      assertEquals(pipelineRunsCollectionResult.getPipelineRuns().size(), 2);
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
     }
   }
 
-  @Test(dependsOnMethods = { "testListTektonPipelineRuns" })
+  @Test(dependsOnMethods = { "testCreateTektonPipelineRun", "testRerunTektonPipelineRun" })
   public void testListTektonPipelineRunsWithPager() throws Exception {
     try {
       ListTektonPipelineRunsOptions options = new ListTektonPipelineRunsOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .limit(Long.valueOf("10"))
-        .status("succeeded")
-        .triggerName("manual-trigger")
+        .pipelineId(pipelineIdLink)
+        .limit(Long.valueOf("1"))
+        .triggerName(triggerName)
         .build();
 
       // Test getNext().
       List<PipelineRun> allResults = new ArrayList<>();
-      TektonPipelineRunsPager pager = new TektonPipelineRunsPager(service, options);
+      TektonPipelineRunsPager pager = new TektonPipelineRunsPager(pipelineSvc, options);
       while (pager.hasNext()) {
         List<PipelineRun> nextPage = pager.getNext();
         assertNotNull(nextPage);
@@ -275,7 +853,7 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
       assertFalse(allResults.isEmpty());
 
       // Test getAll();
-      pager = new TektonPipelineRunsPager(service, options);
+      pager = new TektonPipelineRunsPager(pipelineSvc, options);
       List<PipelineRun> allItems = pager.getAll();
       assertNotNull(allItems);
       assertFalse(allItems.isEmpty());
@@ -288,136 +866,22 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test(dependsOnMethods = { "testListTektonPipelineRuns" })
-  public void testCreateTektonPipelineRun() throws Exception {
-    try {
-      Property propertyModel = new Property.Builder()
-        .name("testString")
-        .value("testString")
-        .href("testString")
-        .xEnum(java.util.Arrays.asList("testString"))
-        .type("secure")
-        .path("testString")
-        .build();
-
-      PipelineRunTrigger pipelineRunTriggerModel = new PipelineRunTrigger.Builder()
-        .name("Generic Webhook Trigger - 0")
-        .headers(java.util.Collections.singletonMap("anyKey", "anyValue"))
-        .body(java.util.Collections.singletonMap("anyKey", "anyValue"))
-        .build();
-
-      CreateTektonPipelineRunOptions createTektonPipelineRunOptions = new CreateTektonPipelineRunOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .triggerName("testString")
-        .triggerProperties(java.util.Collections.singletonMap("anyKey", "anyValue"))
-        .secureTriggerProperties(java.util.Collections.singletonMap("anyKey", "anyValue"))
-        .triggerHeaders(java.util.Collections.singletonMap("anyKey", "anyValue"))
-        .triggerBody(java.util.Collections.singletonMap("anyKey", "anyValue"))
-        .trigger(pipelineRunTriggerModel)
-        .build();
-
-      // Invoke operation
-      Response<PipelineRun> response = service.createTektonPipelineRun(createTektonPipelineRunOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 201);
-
-      PipelineRun pipelineRunResult = response.getResult();
-
-      assertNotNull(pipelineRunResult);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test(dependsOnMethods = { "testCreateTektonPipelineRun" })
-  public void testGetTektonPipelineRun() throws Exception {
-    try {
-      GetTektonPipelineRunOptions getTektonPipelineRunOptions = new GetTektonPipelineRunOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .id("94619026-912b-4d92-8f51-6c74f0692d90")
-        .includes("definitions")
-        .build();
-
-      // Invoke operation
-      Response<PipelineRun> response = service.getTektonPipelineRun(getTektonPipelineRunOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
-
-      PipelineRun pipelineRunResult = response.getResult();
-
-      assertNotNull(pipelineRunResult);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test(dependsOnMethods = { "testGetTektonPipelineRun" })
-  public void testCancelTektonPipelineRun() throws Exception {
-    try {
-      CancelTektonPipelineRunOptions cancelTektonPipelineRunOptions = new CancelTektonPipelineRunOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .id("94619026-912b-4d92-8f51-6c74f0692d90")
-        .force(true)
-        .build();
-
-      // Invoke operation
-      Response<PipelineRun> response = service.cancelTektonPipelineRun(cancelTektonPipelineRunOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 202);
-
-      PipelineRun pipelineRunResult = response.getResult();
-
-      assertNotNull(pipelineRunResult);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test(dependsOnMethods = { "testCancelTektonPipelineRun" })
-  public void testRerunTektonPipelineRun() throws Exception {
-    try {
-      RerunTektonPipelineRunOptions rerunTektonPipelineRunOptions = new RerunTektonPipelineRunOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .id("94619026-912b-4d92-8f51-6c74f0692d90")
-        .build();
-
-      // Invoke operation
-      Response<PipelineRun> response = service.rerunTektonPipelineRun(rerunTektonPipelineRunOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 201);
-
-      PipelineRun pipelineRunResult = response.getResult();
-
-      assertNotNull(pipelineRunResult);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
+/*
   @Test(dependsOnMethods = { "testRerunTektonPipelineRun" })
   public void testGetTektonPipelineRunLogs() throws Exception {
     try {
       GetTektonPipelineRunLogsOptions getTektonPipelineRunLogsOptions = new GetTektonPipelineRunLogsOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .id("94619026-912b-4d92-8f51-6c74f0692d90")
+        .pipelineId(pipelineIdLink)
+        .id(runIdLink)
         .build();
 
       // Invoke operation
-      Response<LogsCollection> response = service.getTektonPipelineRunLogs(getTektonPipelineRunLogsOptions).execute();
+      Response<LogsCollection> response = pipelineSvc.getTektonPipelineRunLogs(getTektonPipelineRunLogsOptions).execute();
       // Validate response
       assertNotNull(response);
       assertEquals(response.getStatusCode(), 200);
 
       LogsCollection logsCollectionResult = response.getResult();
-
       assertNotNull(logsCollectionResult);
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
@@ -429,586 +893,37 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
   public void testGetTektonPipelineRunLogContent() throws Exception {
     try {
       GetTektonPipelineRunLogContentOptions getTektonPipelineRunLogContentOptions = new GetTektonPipelineRunLogContentOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .pipelineRunId("bf4b3abd-0c93-416b-911e-9cf42f1a1085")
-        .id("94619026-912b-4d92-8f51-6c74f0692d90")
+        .pipelineId(pipelineIdLink)
+        .pipelineRunId(runIdLink)
+        .id()
         .build();
 
       // Invoke operation
-      Response<StepLog> response = service.getTektonPipelineRunLogContent(getTektonPipelineRunLogContentOptions).execute();
+      Response<StepLog> response = pipelineSvc.getTektonPipelineRunLogContent(getTektonPipelineRunLogContentOptions).execute();
       // Validate response
       assertNotNull(response);
       assertEquals(response.getStatusCode(), 200);
 
       StepLog stepLogResult = response.getResult();
-
       assertNotNull(stepLogResult);
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
     }
   }
+*/
 
-  @Test(dependsOnMethods = { "testGetTektonPipelineRunLogContent" })
-  public void testListTektonPipelineDefinitions() throws Exception {
-    try {
-      ListTektonPipelineDefinitionsOptions listTektonPipelineDefinitionsOptions = new ListTektonPipelineDefinitionsOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .build();
 
-      // Invoke operation
-      Response<DefinitionsCollection> response = service.listTektonPipelineDefinitions(listTektonPipelineDefinitionsOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
-
-      DefinitionsCollection definitionsCollectionResult = response.getResult();
-
-      assertNotNull(definitionsCollectionResult);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test(dependsOnMethods = { "testListTektonPipelineDefinitions" })
-  public void testCreateTektonPipelineDefinition() throws Exception {
-    try {
-      Tool toolModel = new Tool.Builder()
-        .id("testString")
-        .build();
-
-      DefinitionSourceProperties definitionSourcePropertiesModel = new DefinitionSourceProperties.Builder()
-        .url("https://github.com/open-toolchain/hello-tekton.git")
-        .branch("master")
-        .tag("testString")
-        .path(".tekton")
-        .tool(toolModel)
-        .build();
-
-      DefinitionSource definitionSourceModel = new DefinitionSource.Builder()
-        .type("git")
-        .xProperties(definitionSourcePropertiesModel)
-        .build();
-
-      CreateTektonPipelineDefinitionOptions createTektonPipelineDefinitionOptions = new CreateTektonPipelineDefinitionOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .source(definitionSourceModel)
-        .build();
-
-      // Invoke operation
-      Response<Definition> response = service.createTektonPipelineDefinition(createTektonPipelineDefinitionOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 201);
-
-      Definition definitionResult = response.getResult();
-
-      assertNotNull(definitionResult);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test(dependsOnMethods = { "testCreateTektonPipelineDefinition" })
-  public void testGetTektonPipelineDefinition() throws Exception {
-    try {
-      GetTektonPipelineDefinitionOptions getTektonPipelineDefinitionOptions = new GetTektonPipelineDefinitionOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .definitionId("94299034-d45f-4e9a-8ed5-6bd5c7bb7ada")
-        .build();
-
-      // Invoke operation
-      Response<Definition> response = service.getTektonPipelineDefinition(getTektonPipelineDefinitionOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
-
-      Definition definitionResult = response.getResult();
-
-      assertNotNull(definitionResult);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test(dependsOnMethods = { "testGetTektonPipelineDefinition" })
-  public void testReplaceTektonPipelineDefinition() throws Exception {
-    try {
-      Tool toolModel = new Tool.Builder()
-        .id("testString")
-        .build();
-
-      DefinitionSourceProperties definitionSourcePropertiesModel = new DefinitionSourceProperties.Builder()
-        .url("testString")
-        .branch("testString")
-        .tag("testString")
-        .path("testString")
-        .tool(toolModel)
-        .build();
-
-      DefinitionSource definitionSourceModel = new DefinitionSource.Builder()
-        .type("testString")
-        .xProperties(definitionSourcePropertiesModel)
-        .build();
-
-      ReplaceTektonPipelineDefinitionOptions replaceTektonPipelineDefinitionOptions = new ReplaceTektonPipelineDefinitionOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .definitionId("94299034-d45f-4e9a-8ed5-6bd5c7bb7ada")
-        .source(definitionSourceModel)
-        .build();
-
-      // Invoke operation
-      Response<Definition> response = service.replaceTektonPipelineDefinition(replaceTektonPipelineDefinitionOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
-
-      Definition definitionResult = response.getResult();
-
-      assertNotNull(definitionResult);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test(dependsOnMethods = { "testReplaceTektonPipelineDefinition" })
-  public void testListTektonPipelineProperties() throws Exception {
-    try {
-      ListTektonPipelinePropertiesOptions listTektonPipelinePropertiesOptions = new ListTektonPipelinePropertiesOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .name("prod")
-        .type(java.util.Arrays.asList("secure", "text"))
-        .sort("name")
-        .build();
-
-      // Invoke operation
-      Response<PropertiesCollection> response = service.listTektonPipelineProperties(listTektonPipelinePropertiesOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
-
-      PropertiesCollection propertiesCollectionResult = response.getResult();
-
-      assertNotNull(propertiesCollectionResult);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test(dependsOnMethods = { "testListTektonPipelineProperties" })
-  public void testCreateTektonPipelineProperties() throws Exception {
-    try {
-      CreateTektonPipelinePropertiesOptions createTektonPipelinePropertiesOptions = new CreateTektonPipelinePropertiesOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .name("prop1")
-        .type("text")
-        .value("https://github.com/open-toolchain/hello-tekton.git")
-        .xEnum(java.util.Arrays.asList("testString"))
-        .path("testString")
-        .build();
-
-      // Invoke operation
-      Response<Property> response = service.createTektonPipelineProperties(createTektonPipelinePropertiesOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 201);
-
-      Property propertyResult = response.getResult();
-
-      assertNotNull(propertyResult);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test(dependsOnMethods = { "testCreateTektonPipelineProperties" })
-  public void testGetTektonPipelineProperty() throws Exception {
-    try {
-      GetTektonPipelinePropertyOptions getTektonPipelinePropertyOptions = new GetTektonPipelinePropertyOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .propertyName("debug-pipeline")
-        .build();
-
-      // Invoke operation
-      Response<Property> response = service.getTektonPipelineProperty(getTektonPipelinePropertyOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
-
-      Property propertyResult = response.getResult();
-
-      assertNotNull(propertyResult);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test(dependsOnMethods = { "testGetTektonPipelineProperty" })
-  public void testReplaceTektonPipelineProperty() throws Exception {
-    try {
-      ReplaceTektonPipelinePropertyOptions replaceTektonPipelinePropertyOptions = new ReplaceTektonPipelinePropertyOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .propertyName("debug-pipeline")
-        .name("prop1")
-        .type("text")
-        .value("https://github.com/open-toolchain/hello-tekton.git")
-        .xEnum(java.util.Arrays.asList("testString"))
-        .path("testString")
-        .build();
-
-      // Invoke operation
-      Response<Property> response = service.replaceTektonPipelineProperty(replaceTektonPipelinePropertyOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
-
-      Property propertyResult = response.getResult();
-
-      assertNotNull(propertyResult);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test(dependsOnMethods = { "testReplaceTektonPipelineProperty" })
-  public void testListTektonPipelineTriggers() throws Exception {
-    try {
-      ListTektonPipelineTriggersOptions listTektonPipelineTriggersOptions = new ListTektonPipelineTriggersOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .type("manual,scm")
-        .name("testString")
-        .eventListener("testString")
-        .workerId("testString")
-        .workerName("testString")
-        .disabled("true")
-        .tags("tag1,tag2")
-        .build();
-
-      // Invoke operation
-      Response<TriggersCollection> response = service.listTektonPipelineTriggers(listTektonPipelineTriggersOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
-
-      TriggersCollection triggersCollectionResult = response.getResult();
-
-      assertNotNull(triggersCollectionResult);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test(dependsOnMethods = { "testListTektonPipelineTriggers" })
-  public void testCreateTektonPipelineTrigger() throws Exception {
-    try {
-      WorkerIdentity workerIdentityModel = new WorkerIdentity.Builder()
-        .id("public")
-        .build();
-
-      GenericSecret genericSecretModel = new GenericSecret.Builder()
-        .type("token_matches")
-        .value("testString")
-        .source("header")
-        .keyName("testString")
-        .algorithm("md4")
-        .build();
-
-      TriggerSourcePropertiesPrototype triggerSourcePropertiesPrototypeModel = new TriggerSourcePropertiesPrototype.Builder()
-        .url("testString")
-        .branch("testString")
-        .pattern("testString")
-        .build();
-
-      TriggerSourcePrototype triggerSourcePrototypeModel = new TriggerSourcePrototype.Builder()
-        .type("testString")
-        .xProperties(triggerSourcePropertiesPrototypeModel)
-        .build();
-
-      CreateTektonPipelineTriggerOptions createTektonPipelineTriggerOptions = new CreateTektonPipelineTriggerOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .type("manual")
-        .name("Manual Trigger")
-        .eventListener("pr-listener")
-        .tags(java.util.Arrays.asList("testString"))
-        .worker(workerIdentityModel)
-        .maxConcurrentRuns(Long.valueOf("3"))
-        .enabled(true)
-        .secret(genericSecretModel)
-        .cron("testString")
-        .timezone("testString")
-        .source(triggerSourcePrototypeModel)
-        .events(java.util.Arrays.asList("push"))
-        .build();
-
-      // Invoke operation
-      Response<Trigger> response = service.createTektonPipelineTrigger(createTektonPipelineTriggerOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 201);
-
-      Trigger triggerResult = response.getResult();
-
-      assertNotNull(triggerResult);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test(dependsOnMethods = { "testCreateTektonPipelineTrigger" })
-  public void testGetTektonPipelineTrigger() throws Exception {
-    try {
-      GetTektonPipelineTriggerOptions getTektonPipelineTriggerOptions = new GetTektonPipelineTriggerOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .triggerId("1bb892a1-2e04-4768-a369-b1159eace147")
-        .build();
-
-      // Invoke operation
-      Response<Trigger> response = service.getTektonPipelineTrigger(getTektonPipelineTriggerOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
-
-      Trigger triggerResult = response.getResult();
-
-      assertNotNull(triggerResult);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test(dependsOnMethods = { "testGetTektonPipelineTrigger" })
-  public void testUpdateTektonPipelineTrigger() throws Exception {
-    try {
-      WorkerIdentity workerIdentityModel = new WorkerIdentity.Builder()
-        .id("testString")
-        .build();
-
-      GenericSecret genericSecretModel = new GenericSecret.Builder()
-        .type("token_matches")
-        .value("testString")
-        .source("header")
-        .keyName("testString")
-        .algorithm("md4")
-        .build();
-
-      TriggerSourcePropertiesPrototype triggerSourcePropertiesPrototypeModel = new TriggerSourcePropertiesPrototype.Builder()
-        .url("testString")
-        .branch("testString")
-        .pattern("testString")
-        .build();
-
-      TriggerSourcePrototype triggerSourcePrototypeModel = new TriggerSourcePrototype.Builder()
-        .type("testString")
-        .xProperties(triggerSourcePropertiesPrototypeModel)
-        .build();
-
-      TriggerPatch triggerPatchModel = new TriggerPatch.Builder()
-        .type("manual")
-        .name("start-deploy")
-        .eventListener("testString")
-        .tags(java.util.Arrays.asList("testString"))
-        .worker(workerIdentityModel)
-        .maxConcurrentRuns(Long.valueOf("4"))
-        .enabled(true)
-        .secret(genericSecretModel)
-        .cron("testString")
-        .timezone("America/Los_Angeles, CET, Europe/London, GMT, US/Eastern, or UTC")
-        .source(triggerSourcePrototypeModel)
-        .events(java.util.Arrays.asList("push", "pull_request"))
-        .build();
-      Map<String, Object> triggerPatchModelAsPatch = triggerPatchModel.asPatch();
-
-      UpdateTektonPipelineTriggerOptions updateTektonPipelineTriggerOptions = new UpdateTektonPipelineTriggerOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .triggerId("1bb892a1-2e04-4768-a369-b1159eace147")
-        .triggerPatch(triggerPatchModelAsPatch)
-        .build();
-
-      // Invoke operation
-      Response<Trigger> response = service.updateTektonPipelineTrigger(updateTektonPipelineTriggerOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
-
-      Trigger triggerResult = response.getResult();
-
-      assertNotNull(triggerResult);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test(dependsOnMethods = { "testUpdateTektonPipelineTrigger" })
-  public void testDuplicateTektonPipelineTrigger() throws Exception {
-    try {
-      DuplicateTektonPipelineTriggerOptions duplicateTektonPipelineTriggerOptions = new DuplicateTektonPipelineTriggerOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .sourceTriggerId("1bb892a1-2e04-4768-a369-b1159eace147")
-        .name("triggerName")
-        .build();
-
-      // Invoke operation
-      Response<Trigger> response = service.duplicateTektonPipelineTrigger(duplicateTektonPipelineTriggerOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 201);
-
-      Trigger triggerResult = response.getResult();
-
-      assertNotNull(triggerResult);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test(dependsOnMethods = { "testDuplicateTektonPipelineTrigger" })
-  public void testListTektonPipelineTriggerProperties() throws Exception {
-    try {
-      ListTektonPipelineTriggerPropertiesOptions listTektonPipelineTriggerPropertiesOptions = new ListTektonPipelineTriggerPropertiesOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .triggerId("1bb892a1-2e04-4768-a369-b1159eace147")
-        .name("prod")
-        .type("secure,text")
-        .sort("name")
-        .build();
-
-      // Invoke operation
-      Response<TriggerPropertiesCollection> response = service.listTektonPipelineTriggerProperties(listTektonPipelineTriggerPropertiesOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
-
-      TriggerPropertiesCollection triggerPropertiesCollectionResult = response.getResult();
-
-      assertNotNull(triggerPropertiesCollectionResult);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test(dependsOnMethods = { "testListTektonPipelineTriggerProperties" })
-  public void testCreateTektonPipelineTriggerProperties() throws Exception {
-    try {
-      CreateTektonPipelineTriggerPropertiesOptions createTektonPipelineTriggerPropertiesOptions = new CreateTektonPipelineTriggerPropertiesOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .triggerId("1bb892a1-2e04-4768-a369-b1159eace147")
-        .name("prop1")
-        .type("text")
-        .value("https://github.com/open-toolchain/hello-tekton.git")
-        .xEnum(java.util.Arrays.asList("testString"))
-        .path("testString")
-        .build();
-
-      // Invoke operation
-      Response<TriggerProperty> response = service.createTektonPipelineTriggerProperties(createTektonPipelineTriggerPropertiesOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 201);
-
-      TriggerProperty triggerPropertyResult = response.getResult();
-
-      assertNotNull(triggerPropertyResult);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test(dependsOnMethods = { "testCreateTektonPipelineTriggerProperties" })
-  public void testGetTektonPipelineTriggerProperty() throws Exception {
-    try {
-      GetTektonPipelineTriggerPropertyOptions getTektonPipelineTriggerPropertyOptions = new GetTektonPipelineTriggerPropertyOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .triggerId("1bb892a1-2e04-4768-a369-b1159eace147")
-        .propertyName("debug-pipeline")
-        .build();
-
-      // Invoke operation
-      Response<TriggerProperty> response = service.getTektonPipelineTriggerProperty(getTektonPipelineTriggerPropertyOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
-
-      TriggerProperty triggerPropertyResult = response.getResult();
-
-      assertNotNull(triggerPropertyResult);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test(dependsOnMethods = { "testGetTektonPipelineTriggerProperty" })
-  public void testReplaceTektonPipelineTriggerProperty() throws Exception {
-    try {
-      ReplaceTektonPipelineTriggerPropertyOptions replaceTektonPipelineTriggerPropertyOptions = new ReplaceTektonPipelineTriggerPropertyOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .triggerId("1bb892a1-2e04-4768-a369-b1159eace147")
-        .propertyName("debug-pipeline")
-        .name("prop1")
-        .type("text")
-        .value("https://github.com/open-toolchain/hello-tekton.git")
-        .xEnum(java.util.Arrays.asList("testString"))
-        .path("testString")
-        .build();
-
-      // Invoke operation
-      Response<TriggerProperty> response = service.replaceTektonPipelineTriggerProperty(replaceTektonPipelineTriggerPropertyOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
-
-      TriggerProperty triggerPropertyResult = response.getResult();
-
-      assertNotNull(triggerPropertyResult);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test(dependsOnMethods = { "testReplaceTektonPipelineTriggerProperty" })
-  public void testDeleteTektonPipeline() throws Exception {
-    try {
-      DeleteTektonPipelineOptions deleteTektonPipelineOptions = new DeleteTektonPipelineOptions.Builder()
-        .id("94619026-912b-4d92-8f51-6c74f0692d90")
-        .build();
-
-      // Invoke operation
-      Response<Void> response = service.deleteTektonPipeline(deleteTektonPipelineOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 204);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test(dependsOnMethods = { "testDeleteTektonPipeline" })
+  @Test(dependsOnMethods = { "testCreateTektonPipeline", "testCreateTektonPipelineRun", "testGetTektonPipelineRun", "testListTektonPipelineRuns", "testListTektonPipelineRunsWithPager" })
   public void testDeleteTektonPipelineRun() throws Exception {
     try {
       DeleteTektonPipelineRunOptions deleteTektonPipelineRunOptions = new DeleteTektonPipelineRunOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .id("94619026-912b-4d92-8f51-6c74f0692d90")
+        .pipelineId(pipelineIdLink)
+        .id(runIdLink)
         .build();
 
       // Invoke operation
-      Response<Void> response = service.deleteTektonPipelineRun(deleteTektonPipelineRunOptions).execute();
+      Response<Void> response = pipelineSvc.deleteTektonPipelineRun(deleteTektonPipelineRunOptions).execute();
       // Validate response
       assertNotNull(response);
       assertEquals(response.getStatusCode(), 204);
@@ -1018,74 +933,110 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test(dependsOnMethods = { "testDeleteTektonPipelineRun" })
-  public void testDeleteTektonPipelineDefinition() throws Exception {
-    try {
-      DeleteTektonPipelineDefinitionOptions deleteTektonPipelineDefinitionOptions = new DeleteTektonPipelineDefinitionOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .definitionId("94299034-d45f-4e9a-8ed5-6bd5c7bb7ada")
-        .build();
-
-      // Invoke operation
-      Response<Void> response = service.deleteTektonPipelineDefinition(deleteTektonPipelineDefinitionOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 204);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test(dependsOnMethods = { "testDeleteTektonPipelineDefinition" })
-  public void testDeleteTektonPipelineProperty() throws Exception {
-    try {
-      DeleteTektonPipelinePropertyOptions deleteTektonPipelinePropertyOptions = new DeleteTektonPipelinePropertyOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .propertyName("debug-pipeline")
-        .build();
-
-      // Invoke operation
-      Response<Void> response = service.deleteTektonPipelineProperty(deleteTektonPipelinePropertyOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 204);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test(dependsOnMethods = { "testDeleteTektonPipelineProperty" })
-  public void testDeleteTektonPipelineTrigger() throws Exception {
-    try {
-      DeleteTektonPipelineTriggerOptions deleteTektonPipelineTriggerOptions = new DeleteTektonPipelineTriggerOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .triggerId("1bb892a1-2e04-4768-a369-b1159eace147")
-        .build();
-
-      // Invoke operation
-      Response<Void> response = service.deleteTektonPipelineTrigger(deleteTektonPipelineTriggerOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 204);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test(dependsOnMethods = { "testDeleteTektonPipelineTrigger" })
+  @Test(dependsOnMethods = { "testCreateTektonPipeline", "testReplaceTektonPipelineTriggerProperty", "testCreateTektonPipelineRun" })
   public void testDeleteTektonPipelineTriggerProperty() throws Exception {
     try {
       DeleteTektonPipelineTriggerPropertyOptions deleteTektonPipelineTriggerPropertyOptions = new DeleteTektonPipelineTriggerPropertyOptions.Builder()
-        .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
-        .triggerId("1bb892a1-2e04-4768-a369-b1159eace147")
-        .propertyName("debug-pipeline")
+        .pipelineId(pipelineIdLink)
+        .triggerId(triggerIdLink)
+        .propertyName(triggerPropName)
         .build();
 
       // Invoke operation
-      Response<Void> response = service.deleteTektonPipelineTriggerProperty(deleteTektonPipelineTriggerPropertyOptions).execute();
+      Response<Void> response = pipelineSvc.deleteTektonPipelineTriggerProperty(deleteTektonPipelineTriggerPropertyOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 204);
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testCreateTektonPipeline", "testUpdateTektonPipelineTrigger", "testCreateTektonPipelineRun", "testDeleteTektonPipelineTriggerProperty" })
+  public void testDeleteTektonPipelineTrigger() throws Exception {
+    try {
+      DeleteTektonPipelineTriggerOptions deleteTektonPipelineTriggerOptions = new DeleteTektonPipelineTriggerOptions.Builder()
+        .pipelineId(pipelineIdLink)
+        .triggerId(triggerIdLink)
+        .build();
+
+      // Invoke operation
+      Response<Void> response = pipelineSvc.deleteTektonPipelineTrigger(deleteTektonPipelineTriggerOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 204);
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testCreateTektonPipeline", "testReplaceTektonPipelineProperty", "testDeleteTektonPipelineTrigger" })
+  public void testDeleteTektonPipelineProperty() throws Exception {
+    try {
+      DeleteTektonPipelinePropertyOptions deleteTektonPipelinePropertyOptions = new DeleteTektonPipelinePropertyOptions.Builder()
+        .pipelineId(pipelineIdLink)
+        .propertyName(propertyName)
+        .build();
+
+      // Invoke operation
+      Response<Void> response = pipelineSvc.deleteTektonPipelineProperty(deleteTektonPipelinePropertyOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 204);
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testCreateTektonPipeline", "testCreateTektonPipelineDefinition", "testCreateTektonPipelineRun", "testDeleteTektonPipelineProperty" })
+  public void testDeleteTektonPipelineDefinition() throws Exception {
+    try {
+      DeleteTektonPipelineDefinitionOptions deleteTektonPipelineDefinitionOptions = new DeleteTektonPipelineDefinitionOptions.Builder()
+        .pipelineId(pipelineIdLink)
+        .definitionId(definitionIdLink)
+        .build();
+
+      // Invoke operation
+      Response<Void> response = pipelineSvc.deleteTektonPipelineDefinition(deleteTektonPipelineDefinitionOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 204);
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testCreateTektonPipeline", "testDeleteTektonPipelineDefinition" })
+  public void testDeleteTektonPipeline() throws Exception {
+    try {
+      DeleteTektonPipelineOptions deleteTektonPipelineOptions = new DeleteTektonPipelineOptions.Builder()
+        .id(pipelineIdLink)
+        .build();
+
+      // Invoke operation
+      Response<Void> response = pipelineSvc.deleteTektonPipeline(deleteTektonPipelineOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 204);
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testCreateToolchain", "testDeleteTektonPipeline" })
+  public void testDeleteToolchain() throws Exception {
+    try {
+      DeleteToolchainOptions deleteToolchainOptions = new DeleteToolchainOptions.Builder()
+        .toolchainId(toolchainIdLink)
+        .build();
+
+      // Invoke operation
+      Response<Void> response = toolchainSvc.deleteToolchain(deleteToolchainOptions).execute();
       // Validate response
       assertNotNull(response);
       assertEquals(response.getStatusCode(), 204);
