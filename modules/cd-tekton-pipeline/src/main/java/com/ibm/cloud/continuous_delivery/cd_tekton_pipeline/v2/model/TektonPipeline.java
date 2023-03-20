@@ -53,6 +53,8 @@ public class TektonPipeline extends GenericModel {
   protected String href;
   @SerializedName("build_number")
   protected Long buildNumber;
+  @SerializedName("next_build_number")
+  protected Long nextBuildNumber;
   @SerializedName("enable_notifications")
   protected Boolean enableNotifications;
   @SerializedName("enable_partial_cloning")
@@ -213,6 +215,17 @@ public class TektonPipeline extends GenericModel {
    */
   public Long getBuildNumber() {
     return buildNumber;
+  }
+
+  /**
+   * Gets the nextBuildNumber.
+   *
+   * The build number that will be used for the next pipeline run.
+   *
+   * @return the nextBuildNumber
+   */
+  public Long getNextBuildNumber() {
+    return nextBuildNumber;
   }
 
   /**

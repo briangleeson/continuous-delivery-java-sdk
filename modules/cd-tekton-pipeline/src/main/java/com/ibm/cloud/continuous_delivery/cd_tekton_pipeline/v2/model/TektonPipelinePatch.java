@@ -23,6 +23,8 @@ import com.ibm.cloud.sdk.core.util.GsonSingleton;
  */
 public class TektonPipelinePatch extends GenericModel {
 
+  @SerializedName("next_build_number")
+  protected Long nextBuildNumber;
   @SerializedName("enable_notifications")
   protected Boolean enableNotifications;
   @SerializedName("enable_partial_cloning")
@@ -33,6 +35,7 @@ public class TektonPipelinePatch extends GenericModel {
    * Builder.
    */
   public static class Builder {
+    private Long nextBuildNumber;
     private Boolean enableNotifications;
     private Boolean enablePartialCloning;
     private WorkerIdentity worker;
@@ -43,6 +46,7 @@ public class TektonPipelinePatch extends GenericModel {
      * @param tektonPipelinePatch the instance to initialize the Builder with
      */
     private Builder(TektonPipelinePatch tektonPipelinePatch) {
+      this.nextBuildNumber = tektonPipelinePatch.nextBuildNumber;
       this.enableNotifications = tektonPipelinePatch.enableNotifications;
       this.enablePartialCloning = tektonPipelinePatch.enablePartialCloning;
       this.worker = tektonPipelinePatch.worker;
@@ -61,6 +65,17 @@ public class TektonPipelinePatch extends GenericModel {
      */
     public TektonPipelinePatch build() {
       return new TektonPipelinePatch(this);
+    }
+
+    /**
+     * Set the nextBuildNumber.
+     *
+     * @param nextBuildNumber the nextBuildNumber
+     * @return the TektonPipelinePatch builder
+     */
+    public Builder nextBuildNumber(long nextBuildNumber) {
+      this.nextBuildNumber = nextBuildNumber;
+      return this;
     }
 
     /**
@@ -100,6 +115,7 @@ public class TektonPipelinePatch extends GenericModel {
   protected TektonPipelinePatch() { }
 
   protected TektonPipelinePatch(Builder builder) {
+    nextBuildNumber = builder.nextBuildNumber;
     enableNotifications = builder.enableNotifications;
     enablePartialCloning = builder.enablePartialCloning;
     worker = builder.worker;
@@ -112,6 +128,18 @@ public class TektonPipelinePatch extends GenericModel {
    */
   public Builder newBuilder() {
     return new Builder(this);
+  }
+
+  /**
+   * Gets the nextBuildNumber.
+   *
+   * Specify the build number that will be used for the next pipeline run. Build numbers can be any positive whole
+   * number between 0 and 100000000000000.
+   *
+   * @return the nextBuildNumber
+   */
+  public Long nextBuildNumber() {
+    return nextBuildNumber;
   }
 
   /**

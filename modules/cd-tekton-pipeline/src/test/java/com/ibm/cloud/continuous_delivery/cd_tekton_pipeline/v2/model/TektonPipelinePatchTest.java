@@ -39,10 +39,12 @@ public class TektonPipelinePatchTest {
     assertEquals(workerIdentityModel.id(), "testString");
 
     TektonPipelinePatch tektonPipelinePatchModel = new TektonPipelinePatch.Builder()
+      .nextBuildNumber(Long.valueOf("1"))
       .enableNotifications(true)
       .enablePartialCloning(true)
       .worker(workerIdentityModel)
       .build();
+    assertEquals(tektonPipelinePatchModel.nextBuildNumber(), Long.valueOf("1"));
     assertEquals(tektonPipelinePatchModel.enableNotifications(), Boolean.valueOf(true));
     assertEquals(tektonPipelinePatchModel.enablePartialCloning(), Boolean.valueOf(true));
     assertEquals(tektonPipelinePatchModel.worker(), workerIdentityModel);
@@ -51,6 +53,7 @@ public class TektonPipelinePatchTest {
 
     TektonPipelinePatch tektonPipelinePatchModelNew = TestUtilities.deserialize(json, TektonPipelinePatch.class);
     assertTrue(tektonPipelinePatchModelNew instanceof TektonPipelinePatch);
+    assertEquals(tektonPipelinePatchModelNew.nextBuildNumber(), Long.valueOf("1"));
     assertEquals(tektonPipelinePatchModelNew.enableNotifications(), Boolean.valueOf(true));
     assertEquals(tektonPipelinePatchModelNew.enablePartialCloning(), Boolean.valueOf(true));
     assertEquals(tektonPipelinePatchModelNew.worker().toString(), workerIdentityModel.toString());
@@ -62,6 +65,7 @@ public class TektonPipelinePatchTest {
       .build();
 
     TektonPipelinePatch tektonPipelinePatchModel = new TektonPipelinePatch.Builder()
+      .nextBuildNumber(Long.valueOf("1"))
       .enableNotifications(true)
       .enablePartialCloning(true)
       .worker(workerIdentityModel)
@@ -69,6 +73,7 @@ public class TektonPipelinePatchTest {
 
     Map<String, Object> mergePatch = tektonPipelinePatchModel.asPatch();
 
+    assertTrue(mergePatch.containsKey("next_build_number"));
     assertTrue(mergePatch.containsKey("enable_notifications"));
     assertTrue(mergePatch.containsKey("enable_partial_cloning"));
     assertTrue(mergePatch.containsKey("worker"));

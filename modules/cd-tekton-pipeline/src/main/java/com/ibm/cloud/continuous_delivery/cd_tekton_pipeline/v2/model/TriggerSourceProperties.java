@@ -56,9 +56,11 @@ public class TriggerSourceProperties extends GenericModel {
   /**
    * Gets the pattern.
    *
-   * Git branch or tag pattern to listen to, specify one of branch or pattern only. When specifying a tag to listen to,
-   * you can also specify a simple glob pattern such as '!test' or '*master' to match against multiple tags/branches in
-   * the repository.
+   * The pattern of Git branch or tag to which to listen. You can specify a glob pattern such as '!test' or '*master' to
+   * match against multiple tags/branches in the repository. The glob pattern used must conform to Bash 4.3
+   * specifications, see bash documentation for more info:
+   * https://www.gnu.org/software/bash/manual/bash.html#Pattern-Matching. One of branch or pattern must be specified,
+   * but only one or the other.
    *
    * @return the pattern
    */

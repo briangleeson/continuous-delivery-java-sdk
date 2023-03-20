@@ -56,6 +56,7 @@ public class TektonPipelineTest {
     assertNull(tektonPipelineModel.getRunsUrl());
     assertNull(tektonPipelineModel.getHref());
     assertNull(tektonPipelineModel.getBuildNumber());
+    assertNull(tektonPipelineModel.getNextBuildNumber());
     assertNull(tektonPipelineModel.isEnableNotifications());
     assertNull(tektonPipelineModel.isEnablePartialCloning());
     assertNull(tektonPipelineModel.isEnabled());

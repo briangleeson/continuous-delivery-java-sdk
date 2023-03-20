@@ -12,7 +12,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 3.62.0-a2a22f95-20221115-162524
+ * IBM OpenAPI SDK Code Generator Version: 3.68.2-ac7def68-20230310-195410
  */
 
 package com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2;
@@ -188,6 +188,9 @@ public class CdTektonPipeline extends BaseService {
     builder.header("Accept", "application/json");
     final JsonObject contentJson = new JsonObject();
     contentJson.addProperty("id", createTektonPipelineOptions.id());
+    if (createTektonPipelineOptions.nextBuildNumber() != null) {
+      contentJson.addProperty("next_build_number", createTektonPipelineOptions.nextBuildNumber());
+    }
     if (createTektonPipelineOptions.enableNotifications() != null) {
       contentJson.addProperty("enable_notifications", createTektonPipelineOptions.enableNotifications());
     }
@@ -317,7 +320,8 @@ public class CdTektonPipeline extends BaseService {
   /**
    * Trigger a pipeline run.
    *
-   * Trigger a new pipeline run using the named manual trigger, using the provided additional or override properties.
+   * Trigger a new pipeline run with the named manual or timer trigger, using the provided additional or override
+   * properties.
    *
    * @param createTektonPipelineRunOptions the {@link CreateTektonPipelineRunOptions} containing the options for the call
    * @return a {@link ServiceCall} with a result of type {@link PipelineRun}

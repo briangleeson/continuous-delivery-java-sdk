@@ -39,11 +39,13 @@ public class CreateTektonPipelineOptionsTest {
 
     CreateTektonPipelineOptions createTektonPipelineOptionsModel = new CreateTektonPipelineOptions.Builder()
       .id("testString")
+      .nextBuildNumber(Long.valueOf("1"))
       .enableNotifications(false)
       .enablePartialCloning(false)
       .worker(workerIdentityModel)
       .build();
     assertEquals(createTektonPipelineOptionsModel.id(), "testString");
+    assertEquals(createTektonPipelineOptionsModel.nextBuildNumber(), Long.valueOf("1"));
     assertEquals(createTektonPipelineOptionsModel.enableNotifications(), Boolean.valueOf(false));
     assertEquals(createTektonPipelineOptionsModel.enablePartialCloning(), Boolean.valueOf(false));
     assertEquals(createTektonPipelineOptionsModel.worker(), workerIdentityModel);

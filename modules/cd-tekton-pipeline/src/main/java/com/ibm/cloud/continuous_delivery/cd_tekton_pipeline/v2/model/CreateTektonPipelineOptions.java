@@ -20,6 +20,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 public class CreateTektonPipelineOptions extends GenericModel {
 
   protected String id;
+  protected Long nextBuildNumber;
   protected Boolean enableNotifications;
   protected Boolean enablePartialCloning;
   protected WorkerIdentity worker;
@@ -29,6 +30,7 @@ public class CreateTektonPipelineOptions extends GenericModel {
    */
   public static class Builder {
     private String id;
+    private Long nextBuildNumber;
     private Boolean enableNotifications;
     private Boolean enablePartialCloning;
     private WorkerIdentity worker;
@@ -40,6 +42,7 @@ public class CreateTektonPipelineOptions extends GenericModel {
      */
     private Builder(CreateTektonPipelineOptions createTektonPipelineOptions) {
       this.id = createTektonPipelineOptions.id;
+      this.nextBuildNumber = createTektonPipelineOptions.nextBuildNumber;
       this.enableNotifications = createTektonPipelineOptions.enableNotifications;
       this.enablePartialCloning = createTektonPipelineOptions.enablePartialCloning;
       this.worker = createTektonPipelineOptions.worker;
@@ -77,6 +80,17 @@ public class CreateTektonPipelineOptions extends GenericModel {
      */
     public Builder id(String id) {
       this.id = id;
+      return this;
+    }
+
+    /**
+     * Set the nextBuildNumber.
+     *
+     * @param nextBuildNumber the nextBuildNumber
+     * @return the CreateTektonPipelineOptions builder
+     */
+    public Builder nextBuildNumber(long nextBuildNumber) {
+      this.nextBuildNumber = nextBuildNumber;
       return this;
     }
 
@@ -120,6 +134,7 @@ public class CreateTektonPipelineOptions extends GenericModel {
     com.ibm.cloud.sdk.core.util.Validator.notNull(builder.id,
       "id cannot be null");
     id = builder.id;
+    nextBuildNumber = builder.nextBuildNumber;
     enableNotifications = builder.enableNotifications;
     enablePartialCloning = builder.enablePartialCloning;
     worker = builder.worker;
@@ -144,6 +159,18 @@ public class CreateTektonPipelineOptions extends GenericModel {
    */
   public String id() {
     return id;
+  }
+
+  /**
+   * Gets the nextBuildNumber.
+   *
+   * Specify the build number that will be used for the next pipeline run. Build numbers can be any positive whole
+   * number between 0 and 100000000000000.
+   *
+   * @return the nextBuildNumber
+   */
+  public Long nextBuildNumber() {
+    return nextBuildNumber;
   }
 
   /**
