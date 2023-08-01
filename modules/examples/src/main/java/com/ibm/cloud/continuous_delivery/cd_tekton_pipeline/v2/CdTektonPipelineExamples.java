@@ -198,12 +198,10 @@ public class CdTektonPipelineExamples {
     try {
       System.out.println("createTektonPipelineRun() result:");
       // begin-create_tekton_pipeline_run
-      Property propertyModel = new Property.Builder()
-        .name("testString")
-        .type("secure")
-        .build();
       PipelineRunTrigger pipelineRunTriggerModel = new PipelineRunTrigger.Builder()
-        .name("Generic Webhook Trigger - 0")
+        .name("Manual Trigger 1")
+        .xProperties(java.util.Collections.singletonMap("runProp1", "runProp1"))
+        .secureProperties(java.util.Collections.singletonMap("runSecProp1", "runSecProp1"))
         .build();
       CreateTektonPipelineRunOptions createTektonPipelineRunOptions = new CreateTektonPipelineRunOptions.Builder()
         .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")

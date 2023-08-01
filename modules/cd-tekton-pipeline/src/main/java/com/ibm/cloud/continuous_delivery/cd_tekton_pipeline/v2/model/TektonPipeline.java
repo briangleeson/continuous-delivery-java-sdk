@@ -176,7 +176,7 @@ public class TektonPipeline extends GenericModel {
   /**
    * Gets the worker.
    *
-   * Default pipeline worker used to run the pipeline.
+   * Details of the worker used to run the pipeline.
    *
    * @return the worker
    */

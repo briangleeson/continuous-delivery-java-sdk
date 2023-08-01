@@ -83,6 +83,7 @@ public class TriggerPatchTest {
       .timezone("America/Los_Angeles, CET, Europe/London, GMT, US/Eastern, or UTC")
       .source(triggerSourcePrototypeModel)
       .events(java.util.Arrays.asList("push", "pull_request"))
+      .favorite(false)
       .build();
     assertEquals(triggerPatchModel.type(), "manual");
     assertEquals(triggerPatchModel.name(), "start-deploy");
@@ -96,6 +97,7 @@ public class TriggerPatchTest {
     assertEquals(triggerPatchModel.timezone(), "America/Los_Angeles, CET, Europe/London, GMT, US/Eastern, or UTC");
     assertEquals(triggerPatchModel.source(), triggerSourcePrototypeModel);
     assertEquals(triggerPatchModel.events(), java.util.Arrays.asList("push", "pull_request"));
+    assertEquals(triggerPatchModel.favorite(), Boolean.valueOf(false));
 
     String json = TestUtilities.serialize(triggerPatchModel);
 
@@ -111,6 +113,7 @@ public class TriggerPatchTest {
     assertEquals(triggerPatchModelNew.cron(), "testString");
     assertEquals(triggerPatchModelNew.timezone(), "America/Los_Angeles, CET, Europe/London, GMT, US/Eastern, or UTC");
     assertEquals(triggerPatchModelNew.source().toString(), triggerSourcePrototypeModel.toString());
+    assertEquals(triggerPatchModelNew.favorite(), Boolean.valueOf(false));
   }
   @Test
   public void testTriggerPatchAsPatch() throws Throwable {
@@ -150,6 +153,7 @@ public class TriggerPatchTest {
       .timezone("America/Los_Angeles, CET, Europe/London, GMT, US/Eastern, or UTC")
       .source(triggerSourcePrototypeModel)
       .events(java.util.Arrays.asList("push", "pull_request"))
+      .favorite(false)
       .build();
 
     Map<String, Object> mergePatch = triggerPatchModel.asPatch();
@@ -166,6 +170,7 @@ public class TriggerPatchTest {
     assertEquals(mergePatch.get("timezone"), "America/Los_Angeles, CET, Europe/London, GMT, US/Eastern, or UTC");
     assertTrue(mergePatch.containsKey("source"));
     assertTrue(mergePatch.containsKey("events"));
+    assertTrue(mergePatch.containsKey("favorite"));
   }
 
 }

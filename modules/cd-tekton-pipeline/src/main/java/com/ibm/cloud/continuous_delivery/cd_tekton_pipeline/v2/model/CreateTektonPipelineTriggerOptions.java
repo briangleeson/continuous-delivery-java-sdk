@@ -62,6 +62,7 @@ public class CreateTektonPipelineTriggerOptions extends GenericModel {
   protected String timezone;
   protected TriggerSourcePrototype source;
   protected List<String> events;
+  protected Boolean favorite;
 
   /**
    * Builder.
@@ -80,6 +81,7 @@ public class CreateTektonPipelineTriggerOptions extends GenericModel {
     private String timezone;
     private TriggerSourcePrototype source;
     private List<String> events;
+    private Boolean favorite;
 
     /**
      * Instantiates a new Builder from an existing CreateTektonPipelineTriggerOptions instance.
@@ -100,6 +102,7 @@ public class CreateTektonPipelineTriggerOptions extends GenericModel {
       this.timezone = createTektonPipelineTriggerOptions.timezone;
       this.source = createTektonPipelineTriggerOptions.source;
       this.events = createTektonPipelineTriggerOptions.events;
+      this.favorite = createTektonPipelineTriggerOptions.favorite;
     }
 
     /**
@@ -308,6 +311,17 @@ public class CreateTektonPipelineTriggerOptions extends GenericModel {
       this.events = events;
       return this;
     }
+
+    /**
+     * Set the favorite.
+     *
+     * @param favorite the favorite
+     * @return the CreateTektonPipelineTriggerOptions builder
+     */
+    public Builder favorite(Boolean favorite) {
+      this.favorite = favorite;
+      return this;
+    }
   }
 
   protected CreateTektonPipelineTriggerOptions() { }
@@ -334,6 +348,7 @@ public class CreateTektonPipelineTriggerOptions extends GenericModel {
     timezone = builder.timezone;
     source = builder.source;
     events = builder.events;
+    favorite = builder.favorite;
   }
 
   /**
@@ -404,7 +419,8 @@ public class CreateTektonPipelineTriggerOptions extends GenericModel {
   /**
    * Gets the worker.
    *
-   * Worker used to run the trigger. If not specified the trigger will use the default pipeline worker.
+   * Specify the worker used to run the trigger. Use `worker: { id: 'public' }` to use the IBM Managed workers. Use
+   * `worker: { id: 'inherit' }` to inherit the worker used by the pipeline.
    *
    * @return the worker
    */
@@ -496,6 +512,17 @@ public class CreateTektonPipelineTriggerOptions extends GenericModel {
    */
   public List<String> events() {
     return events;
+  }
+
+  /**
+   * Gets the favorite.
+   *
+   * Mark the trigger as a favorite.
+   *
+   * @return the favorite
+   */
+  public Boolean favorite() {
+    return favorite;
   }
 }
 

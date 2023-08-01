@@ -44,5 +44,6 @@ public class TriggerManualTriggerTest {
     assertNull(triggerManualTriggerModel.getWorker());
     assertNull(triggerManualTriggerModel.getMaxConcurrentRuns());
     assertNull(triggerManualTriggerModel.isEnabled());
+    assertNull(triggerManualTriggerModel.isFavorite());
   }
 }

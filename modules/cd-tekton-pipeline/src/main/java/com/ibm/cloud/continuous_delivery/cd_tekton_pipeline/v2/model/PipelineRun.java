@@ -147,7 +147,7 @@ public class PipelineRun extends GenericModel {
   /**
    * Gets the worker.
    *
-   * worker details used in this pipeline run.
+   * Worker details used in this pipeline run.
    *
    * @return the worker
    */

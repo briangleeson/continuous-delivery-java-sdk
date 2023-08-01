@@ -15,7 +15,7 @@ package com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
- * Default pipeline worker used to run the pipeline.
+ * Details of the worker used to run the pipeline.
  */
 public class Worker extends GenericModel {
 

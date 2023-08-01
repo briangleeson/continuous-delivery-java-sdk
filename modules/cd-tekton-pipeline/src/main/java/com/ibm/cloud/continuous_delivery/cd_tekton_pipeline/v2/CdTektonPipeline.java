@@ -12,7 +12,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 3.68.2-ac7def68-20230310-195410
+ * IBM OpenAPI SDK Code Generator Version: 3.76.0-ad3e6f96-20230724-172814
  */
 
 package com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2;
@@ -910,6 +910,9 @@ public class CdTektonPipeline extends BaseService {
     }
     if (createTektonPipelineTriggerOptions.events() != null) {
       contentJson.add("events", com.ibm.cloud.sdk.core.util.GsonSingleton.getGson().toJsonTree(createTektonPipelineTriggerOptions.events()));
+    }
+    if (createTektonPipelineTriggerOptions.favorite() != null) {
+      contentJson.addProperty("favorite", createTektonPipelineTriggerOptions.favorite());
     }
     builder.bodyJson(contentJson);
     ResponseConverter<Trigger> responseConverter =

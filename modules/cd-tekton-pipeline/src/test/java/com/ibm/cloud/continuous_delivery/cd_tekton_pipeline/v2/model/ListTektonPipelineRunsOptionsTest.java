@@ -34,13 +34,13 @@ public class ListTektonPipelineRunsOptionsTest {
     ListTektonPipelineRunsOptions listTektonPipelineRunsOptionsModel = new ListTektonPipelineRunsOptions.Builder()
       .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
       .start("testString")
-      .limit(Long.valueOf("1"))
+      .limit(Long.valueOf("50"))
       .status("succeeded")
       .triggerName("manual-trigger")
       .build();
     assertEquals(listTektonPipelineRunsOptionsModel.pipelineId(), "94619026-912b-4d92-8f51-6c74f0692d90");
     assertEquals(listTektonPipelineRunsOptionsModel.start(), "testString");
-    assertEquals(listTektonPipelineRunsOptionsModel.limit(), Long.valueOf("1"));
+    assertEquals(listTektonPipelineRunsOptionsModel.limit(), Long.valueOf("50"));
     assertEquals(listTektonPipelineRunsOptionsModel.status(), "succeeded");
     assertEquals(listTektonPipelineRunsOptionsModel.triggerName(), "manual-trigger");
   }

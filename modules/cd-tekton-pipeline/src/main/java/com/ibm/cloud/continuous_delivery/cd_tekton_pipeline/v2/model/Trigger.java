@@ -54,6 +54,7 @@ public class Trigger extends GenericModel {
   @SerializedName("max_concurrent_runs")
   protected Long maxConcurrentRuns;
   protected Boolean enabled;
+  protected Boolean favorite;
   protected TriggerSource source;
   protected List<String> events;
   protected String cron;
@@ -145,7 +146,7 @@ public class Trigger extends GenericModel {
   /**
    * Gets the worker.
    *
-   * Worker used to run the trigger. If not specified the trigger will use the default pipeline worker.
+   * Details of the worker used to run the trigger.
    *
    * @return the worker
    */
@@ -174,6 +175,17 @@ public class Trigger extends GenericModel {
    */
   public Boolean isEnabled() {
     return enabled;
+  }
+
+  /**
+   * Gets the favorite.
+   *
+   * Mark the trigger as a favorite.
+   *
+   * @return the favorite
+   */
+  public Boolean isFavorite() {
+    return favorite;
   }
 
   /**

@@ -15,7 +15,8 @@ package com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
- * Worker object containing worker ID only. If omitted the IBM Managed shared workers are used by default.
+ * Specify the worker used to run the trigger, as a worker object containing the worker ID only. If omitted, or
+ * specified as `worker: { id: 'public' }`, the IBM Managed shared workers are used.
  */
 public class WorkerIdentity extends GenericModel {
 

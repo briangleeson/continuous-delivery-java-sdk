@@ -19,7 +19,6 @@ import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.Property;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.utils.TestUtilities;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import java.io.InputStream;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import org.testng.annotations.Test;
@@ -37,44 +36,36 @@ public class CreateTektonPipelineRunOptionsTest {
     Property propertyModel = new Property.Builder()
       .name("testString")
       .value("testString")
-      .href("testString")
-      .xEnum(java.util.Arrays.asList("testString"))
       .type("secure")
-      .path("testString")
       .build();
     assertEquals(propertyModel.name(), "testString");
     assertEquals(propertyModel.value(), "testString");
-    assertEquals(propertyModel.href(), "testString");
-    assertEquals(propertyModel.xEnum(), java.util.Arrays.asList("testString"));
     assertEquals(propertyModel.type(), "secure");
-    assertEquals(propertyModel.path(), "testString");
 
     PipelineRunTrigger pipelineRunTriggerModel = new PipelineRunTrigger.Builder()
       .name("start-deploy")
-      .xProperties(java.util.Collections.singletonMap("anyKey", "anyValue"))
-      .secureProperties(java.util.Collections.singletonMap("anyKey", "anyValue"))
+      .xProperties(java.util.Collections.singletonMap("runProp1", "runProp1"))
+      .secureProperties(java.util.Collections.singletonMap("runSecProp1", "runSecProp1"))
       .headers(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .body(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .build();
     assertEquals(pipelineRunTriggerModel.name(), "start-deploy");
-    assertEquals(pipelineRunTriggerModel.xProperties(), java.util.Collections.singletonMap("anyKey", "anyValue"));
-    assertEquals(pipelineRunTriggerModel.secureProperties(), java.util.Collections.singletonMap("anyKey", "anyValue"));
-    assertEquals(pipelineRunTriggerModel.headers(), java.util.Collections.singletonMap("anyKey", "anyValue"));
-    assertEquals(pipelineRunTriggerModel.body(), java.util.Collections.singletonMap("anyKey", "anyValue"));
+    assertEquals(pipelineRunTriggerModel.xProperties(), java.util.Collections.singletonMap("runProp1", "runProp1"));
+    assertEquals(pipelineRunTriggerModel.secureProperties(), java.util.Collections.singletonMap("runSecProp1", "runSecProp1"));
 
     CreateTektonPipelineRunOptions createTektonPipelineRunOptionsModel = new CreateTektonPipelineRunOptions.Builder()
       .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
       .triggerName("start-deploy")
-      .triggerProperties(java.util.Collections.singletonMap("anyKey", "anyValue"))
-      .secureTriggerProperties(java.util.Collections.singletonMap("anyKey", "anyValue"))
+      .triggerProperties(java.util.Collections.singletonMap("runProp1", "runProp1"))
+      .secureTriggerProperties(java.util.Collections.singletonMap("runSecProp1", "runSecProp1"))
       .triggerHeaders(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .triggerBody(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .trigger(pipelineRunTriggerModel)
       .build();
     assertEquals(createTektonPipelineRunOptionsModel.pipelineId(), "94619026-912b-4d92-8f51-6c74f0692d90");
     assertEquals(createTektonPipelineRunOptionsModel.triggerName(), "start-deploy");
-    assertEquals(createTektonPipelineRunOptionsModel.triggerProperties(), java.util.Collections.singletonMap("anyKey", "anyValue"));
-    assertEquals(createTektonPipelineRunOptionsModel.secureTriggerProperties(), java.util.Collections.singletonMap("anyKey", "anyValue"));
+    assertEquals(createTektonPipelineRunOptionsModel.triggerProperties(), java.util.Collections.singletonMap("runProp1", "runProp1"));
+    assertEquals(createTektonPipelineRunOptionsModel.secureTriggerProperties(), java.util.Collections.singletonMap("runSecProp1", "runSecProp1"));
     assertEquals(createTektonPipelineRunOptionsModel.triggerHeaders(), java.util.Collections.singletonMap("anyKey", "anyValue"));
     assertEquals(createTektonPipelineRunOptionsModel.triggerBody(), java.util.Collections.singletonMap("anyKey", "anyValue"));
     assertEquals(createTektonPipelineRunOptionsModel.trigger(), pipelineRunTriggerModel);

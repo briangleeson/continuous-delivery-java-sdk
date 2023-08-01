@@ -170,7 +170,8 @@ public class TektonPipelinePatch extends GenericModel {
   /**
    * Gets the worker.
    *
-   * Worker object containing worker ID only. If omitted the IBM Managed shared workers are used by default.
+   * Specify the worker used to run the trigger, as a worker object containing the worker ID only. If omitted, or
+   * specified as `worker: { id: 'public' }`, the IBM Managed shared workers are used.
    *
    * @return the worker
    */

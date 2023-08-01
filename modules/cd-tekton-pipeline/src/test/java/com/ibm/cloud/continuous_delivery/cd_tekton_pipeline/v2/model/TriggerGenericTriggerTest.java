@@ -45,6 +45,7 @@ public class TriggerGenericTriggerTest {
     assertNull(triggerGenericTriggerModel.getWorker());
     assertNull(triggerGenericTriggerModel.getMaxConcurrentRuns());
     assertNull(triggerGenericTriggerModel.isEnabled());
+    assertNull(triggerGenericTriggerModel.isFavorite());
     assertNull(triggerGenericTriggerModel.getSecret());
     assertNull(triggerGenericTriggerModel.getWebhookUrl());
   }

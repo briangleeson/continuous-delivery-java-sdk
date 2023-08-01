@@ -16,7 +16,7 @@ import com.google.gson.annotations.SerializedName;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
- * worker details used in this pipeline run.
+ * Worker details used in this pipeline run.
  */
 public class PipelineRunWorker extends GenericModel {
 

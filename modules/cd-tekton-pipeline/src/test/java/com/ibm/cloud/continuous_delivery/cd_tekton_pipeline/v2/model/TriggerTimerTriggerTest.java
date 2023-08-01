@@ -44,6 +44,7 @@ public class TriggerTimerTriggerTest {
     assertNull(triggerTimerTriggerModel.getWorker());
     assertNull(triggerTimerTriggerModel.getMaxConcurrentRuns());
     assertNull(triggerTimerTriggerModel.isEnabled());
+    assertNull(triggerTimerTriggerModel.isFavorite());
     assertNull(triggerTimerTriggerModel.getCron());
     assertNull(triggerTimerTriggerModel.getTimezone());
   }

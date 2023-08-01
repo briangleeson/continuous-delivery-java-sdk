@@ -66,6 +66,7 @@ public class TriggerPatch extends GenericModel {
   protected String timezone;
   protected TriggerSourcePrototype source;
   protected List<String> events;
+  protected Boolean favorite;
 
   /**
    * Builder.
@@ -83,6 +84,7 @@ public class TriggerPatch extends GenericModel {
     private String timezone;
     private TriggerSourcePrototype source;
     private List<String> events;
+    private Boolean favorite;
 
     /**
      * Instantiates a new Builder from an existing TriggerPatch instance.
@@ -102,6 +104,7 @@ public class TriggerPatch extends GenericModel {
       this.timezone = triggerPatch.timezone;
       this.source = triggerPatch.source;
       this.events = triggerPatch.events;
+      this.favorite = triggerPatch.favorite;
     }
 
     /**
@@ -284,6 +287,17 @@ public class TriggerPatch extends GenericModel {
       this.events = events;
       return this;
     }
+
+    /**
+     * Set the favorite.
+     *
+     * @param favorite the favorite
+     * @return the TriggerPatch builder
+     */
+    public Builder favorite(Boolean favorite) {
+      this.favorite = favorite;
+      return this;
+    }
   }
 
   protected TriggerPatch() { }
@@ -301,6 +315,7 @@ public class TriggerPatch extends GenericModel {
     timezone = builder.timezone;
     source = builder.source;
     events = builder.events;
+    favorite = builder.favorite;
   }
 
   /**
@@ -360,7 +375,8 @@ public class TriggerPatch extends GenericModel {
   /**
    * Gets the worker.
    *
-   * Worker used to run the trigger. If not specified the trigger will use the default pipeline worker.
+   * Specify the worker used to run the trigger. Use `worker: { id: 'public' }` to use the IBM Managed workers. Use
+   * `worker: { id: 'inherit' }` to inherit the worker used by the pipeline.
    *
    * @return the worker
    */
@@ -371,8 +387,8 @@ public class TriggerPatch extends GenericModel {
   /**
    * Gets the maxConcurrentRuns.
    *
-   * Defines the maximum number of concurrent runs for this trigger. If omitted then the concurrency limit is disabled
-   * for this trigger.
+   * Defines the maximum number of concurrent runs for this trigger. If set to 0 then the custom concurrency limit is
+   * disabled for this trigger.
    *
    * @return the maxConcurrentRuns
    */
@@ -452,6 +468,17 @@ public class TriggerPatch extends GenericModel {
    */
   public List<String> events() {
     return events;
+  }
+
+  /**
+   * Gets the favorite.
+   *
+   * Mark the trigger as a favorite.
+   *
+   * @return the favorite
+   */
+  public Boolean favorite() {
+    return favorite;
   }
 
   /**
