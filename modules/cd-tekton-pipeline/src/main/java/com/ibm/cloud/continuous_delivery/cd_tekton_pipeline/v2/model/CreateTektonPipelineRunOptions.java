@@ -104,7 +104,6 @@ public class CreateTektonPipelineRunOptions extends GenericModel {
 
     /**
      * Set the triggerProperties.
-     * Existing triggerProperties will be replaced.
      *
      * @param triggerProperties the triggerProperties
      * @return the CreateTektonPipelineRunOptions builder
@@ -116,7 +115,6 @@ public class CreateTektonPipelineRunOptions extends GenericModel {
 
     /**
      * Set the secureTriggerProperties.
-     * Existing secureTriggerProperties will be replaced.
      *
      * @param secureTriggerProperties the secureTriggerProperties
      * @return the CreateTektonPipelineRunOptions builder

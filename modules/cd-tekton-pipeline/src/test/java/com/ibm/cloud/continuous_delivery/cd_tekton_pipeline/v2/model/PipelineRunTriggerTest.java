@@ -14,7 +14,6 @@
 package com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model;
 
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.PipelineRunTrigger;
-import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model.Property;
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.utils.TestUtilities;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import java.io.InputStream;
@@ -32,25 +31,16 @@ public class PipelineRunTriggerTest {
 
   @Test
   public void testPipelineRunTrigger() throws Throwable {
-    Property propertyModel = new Property.Builder()
-      .name("testString")
-      .value("testString")
-      .type("secure")
-      .build();
-    assertEquals(propertyModel.name(), "testString");
-    assertEquals(propertyModel.value(), "testString");
-    assertEquals(propertyModel.type(), "secure");
-
     PipelineRunTrigger pipelineRunTriggerModel = new PipelineRunTrigger.Builder()
       .name("start-deploy")
-      .xProperties(java.util.Collections.singletonMap("runProp1", "runProp1"))
-      .secureProperties(java.util.Collections.singletonMap("runSecProp1", "runSecProp1"))
+      .xProperties(java.util.Collections.singletonMap("anyKey", "anyValue"))
+      .secureProperties(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .headers(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .body(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .build();
     assertEquals(pipelineRunTriggerModel.name(), "start-deploy");
-    assertEquals(pipelineRunTriggerModel.xProperties(), java.util.Collections.singletonMap("runProp1", "runProp1"));
-    assertEquals(pipelineRunTriggerModel.secureProperties(), java.util.Collections.singletonMap("runSecProp1", "runSecProp1"));
+    assertEquals(pipelineRunTriggerModel.xProperties(), java.util.Collections.singletonMap("anyKey", "anyValue"));
+    assertEquals(pipelineRunTriggerModel.secureProperties(), java.util.Collections.singletonMap("anyKey", "anyValue"));
     assertEquals(pipelineRunTriggerModel.headers(), java.util.Collections.singletonMap("anyKey", "anyValue"));
     assertEquals(pipelineRunTriggerModel.body(), java.util.Collections.singletonMap("anyKey", "anyValue"));
 
@@ -59,8 +49,8 @@ public class PipelineRunTriggerTest {
     PipelineRunTrigger pipelineRunTriggerModelNew = TestUtilities.deserialize(json, PipelineRunTrigger.class);
     assertTrue(pipelineRunTriggerModelNew instanceof PipelineRunTrigger);
     assertEquals(pipelineRunTriggerModelNew.name(), "start-deploy");
-    assertEquals(pipelineRunTriggerModelNew.xProperties().toString(), java.util.Collections.singletonMap("runProp1", "runProp1").toString());
-    assertEquals(pipelineRunTriggerModelNew.secureProperties().toString(), java.util.Collections.singletonMap("runSecProp1", "runSecProp1").toString());
+    assertEquals(pipelineRunTriggerModelNew.xProperties().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
+    assertEquals(pipelineRunTriggerModelNew.secureProperties().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
     assertEquals(pipelineRunTriggerModelNew.headers().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
     assertEquals(pipelineRunTriggerModelNew.body().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
   }

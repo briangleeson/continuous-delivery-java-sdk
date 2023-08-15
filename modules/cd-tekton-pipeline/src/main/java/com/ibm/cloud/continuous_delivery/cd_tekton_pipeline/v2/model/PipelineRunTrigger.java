@@ -90,7 +90,6 @@ public class PipelineRunTrigger extends GenericModel {
 
     /**
      * Set the xProperties.
-     * Existing xProperties will be replaced.
      *
      * @param xProperties the xProperties
      * @return the PipelineRunTrigger builder
@@ -102,7 +101,6 @@ public class PipelineRunTrigger extends GenericModel {
 
     /**
      * Set the secureProperties.
-     * Existing secureProperties will be replaced.
      *
      * @param secureProperties the secureProperties
      * @return the PipelineRunTrigger builder
