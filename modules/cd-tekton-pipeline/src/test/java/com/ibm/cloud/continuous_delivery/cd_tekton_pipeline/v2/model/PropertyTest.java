@@ -61,5 +61,4 @@ public class PropertyTest {
   public void testPropertyError() throws Throwable {
     new Property.Builder().build();
   }
-
 }

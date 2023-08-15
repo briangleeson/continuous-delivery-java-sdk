@@ -509,8 +509,8 @@ public class CdTektonPipelineTest {
     // Construct an instance of the PipelineRunTrigger model
     PipelineRunTrigger pipelineRunTriggerModel = new PipelineRunTrigger.Builder()
       .name("Manual Trigger 1")
-      .xProperties(java.util.Collections.singletonMap("runProp1", "runProp1"))
-      .secureProperties(java.util.Collections.singletonMap("runSecProp1", "runSecProp1"))
+      .xProperties(java.util.Collections.singletonMap("anyKey", "anyValue"))
+      .secureProperties(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .headers(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .body(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .build();
@@ -518,6 +518,11 @@ public class CdTektonPipelineTest {
     // Construct an instance of the CreateTektonPipelineRunOptions model
     CreateTektonPipelineRunOptions createTektonPipelineRunOptionsModel = new CreateTektonPipelineRunOptions.Builder()
       .pipelineId("94619026-912b-4d92-8f51-6c74f0692d90")
+      .triggerName("testString")
+      .triggerProperties(java.util.Collections.singletonMap("anyKey", "anyValue"))
+      .secureTriggerProperties(java.util.Collections.singletonMap("anyKey", "anyValue"))
+      .triggerHeaders(java.util.Collections.singletonMap("anyKey", "anyValue"))
+      .triggerBody(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .trigger(pipelineRunTriggerModel)
       .build();
 
