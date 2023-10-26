@@ -57,5 +57,6 @@ public class PipelineRunTest {
     assertNull(pipelineRunModel.getCreatedAt());
     assertNull(pipelineRunModel.getUpdatedAt());
     assertNull(pipelineRunModel.getRunUrl());
+    assertNull(pipelineRunModel.getErrorMessage());
   }
 }

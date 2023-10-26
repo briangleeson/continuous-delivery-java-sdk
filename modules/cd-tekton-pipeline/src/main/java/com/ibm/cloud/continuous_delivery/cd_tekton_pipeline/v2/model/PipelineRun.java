@@ -74,6 +74,8 @@ public class PipelineRun extends GenericModel {
   protected Date updatedAt;
   @SerializedName("run_url")
   protected String runUrl;
+  @SerializedName("error_message")
+  protected String errorMessage;
 
   protected PipelineRun() { }
 
@@ -266,6 +268,17 @@ public class PipelineRun extends GenericModel {
    */
   public String getRunUrl() {
     return runUrl;
+  }
+
+  /**
+   * Gets the errorMessage.
+   *
+   * Error message that provides details when a pipeline run encounters an error.
+   *
+   * @return the errorMessage
+   */
+  public String getErrorMessage() {
+    return errorMessage;
   }
 }
 
