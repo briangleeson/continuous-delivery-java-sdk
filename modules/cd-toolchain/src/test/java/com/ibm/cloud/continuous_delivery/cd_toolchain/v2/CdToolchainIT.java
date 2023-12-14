@@ -306,6 +306,41 @@ public class CdToolchainIT extends SdkIntegrationTestBase {
   */
 
   @Test(dependsOnMethods = { "testUpdateToolchain" })
+  public void testCreateToolchainEvent() throws Exception {
+    try {
+      ToolchainEventPrototypeDataApplicationJson toolchainEventPrototypeDataApplicationJsonModel = new ToolchainEventPrototypeDataApplicationJson.Builder()
+        .content(java.util.Collections.singletonMap("anyKey", "anyValue"))
+        .build();
+
+      ToolchainEventPrototypeData toolchainEventPrototypeDataModel = new ToolchainEventPrototypeData.Builder()
+        .applicationJson(toolchainEventPrototypeDataApplicationJsonModel)
+        .textPlain("This event is dispatched because the pipeline failed")
+        .build();
+
+      CreateToolchainEventOptions createToolchainEventOptions = new CreateToolchainEventOptions.Builder()
+        .toolchainId(toolchainIdLink)
+        .title("My-custom-event")
+        .description("This is my custom event")
+        .contentType("application/json")
+        .data(toolchainEventPrototypeDataModel)
+        .build();
+
+      // Invoke operation
+      Response<ToolchainEventPost> response = service.createToolchainEvent(createToolchainEventOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 200);
+
+      ToolchainEventPost toolchainEventPostResult = response.getResult();
+
+      assertNotNull(toolchainEventPostResult);
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testCreateToolchainEvent" })
   public void testListTools() throws Exception {
     try {
       ListToolsOptions listToolsOptions = new ListToolsOptions.Builder()
