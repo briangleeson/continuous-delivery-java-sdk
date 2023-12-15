@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/IBM/continuous-delivery-java-sdk/compare/1.2.0...1.3.0) (2023-12-15)
+
+
+### Features
+
+* **toolchain:** add function to create toolchain event ([#37](https://github.com/IBM/continuous-delivery-java-sdk/issues/37)) ([9a2e148](https://github.com/IBM/continuous-delivery-java-sdk/commit/9a2e148c707cdd8f3ad89044a79cab8e042007c9))
+
 # [1.2.0](https://github.com/IBM/continuous-delivery-java-sdk/compare/1.1.3...1.2.0) (2023-11-10)
 
 
