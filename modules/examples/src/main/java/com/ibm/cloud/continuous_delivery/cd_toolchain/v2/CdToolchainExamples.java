@@ -14,6 +14,7 @@
 package com.ibm.cloud.continuous_delivery.cd_toolchain.v2;
 
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.CreateToolOptions;
+import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.CreateToolchainEventOptions;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.CreateToolchainOptions;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.DeleteToolOptions;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.DeleteToolchainOptions;
@@ -23,6 +24,7 @@ import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ListToolchainsOpt
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ListToolsOptions;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolModel;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.Toolchain;
+import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainEventPost;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainModel;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainPatch;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainPost;
@@ -177,6 +179,26 @@ public class CdToolchainExamples {
 
       System.out.println(toolchainPatch);
       // end-update_toolchain
+    } catch (ServiceResponseException e) {
+        logger.error(String.format("Service returned status code %s: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()), e);
+    }
+
+    try {
+      System.out.println("createToolchainEvent() result:");
+      // begin-create_toolchain_event
+      CreateToolchainEventOptions createToolchainEventOptions = new CreateToolchainEventOptions.Builder()
+        .toolchainId(toolchainIdLink)
+        .title("My-custom-event")
+        .description("This is my custom event")
+        .contentType("application/json")
+        .build();
+
+      Response<ToolchainEventPost> response = cdToolchainService.createToolchainEvent(createToolchainEventOptions).execute();
+      ToolchainEventPost toolchainEventPost = response.getResult();
+
+      System.out.println(toolchainEventPost);
+      // end-create_toolchain_event
     } catch (ServiceResponseException e) {
         logger.error(String.format("Service returned status code %s: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()), e);

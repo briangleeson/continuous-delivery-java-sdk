@@ -14,6 +14,7 @@ package com.ibm.cloud.continuous_delivery.cd_toolchain.v2;
 
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.CdToolchain;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.CreateToolOptions;
+import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.CreateToolchainEventOptions;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.CreateToolchainOptions;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.DeleteToolOptions;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.DeleteToolchainOptions;
@@ -29,6 +30,9 @@ import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainCollecti
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainCollectionLast;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainCollectionNext;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainCollectionPrevious;
+import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainEventPost;
+import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainEventPrototypeData;
+import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainEventPrototypeDataApplicationJson;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainModel;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainPatch;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainPost;
@@ -435,6 +439,72 @@ public class CdToolchainTest {
   public void testUpdateToolchainNoOptions() throws Throwable {
     server.enqueue(new MockResponse());
     cdToolchainService.updateToolchain(null).execute();
+  }
+
+  // Test the createToolchainEvent operation with a valid options model parameter
+  @Test
+  public void testCreateToolchainEventWOptions() throws Throwable {
+    // Register a mock response
+    String mockResponseBody = "{\"id\": \"id\"}";
+    String createToolchainEventPath = "/toolchains/testString/events";
+    server.enqueue(new MockResponse()
+      .setHeader("Content-type", "application/json")
+      .setResponseCode(200)
+      .setBody(mockResponseBody));
+
+    // Construct an instance of the ToolchainEventPrototypeDataApplicationJson model
+    ToolchainEventPrototypeDataApplicationJson toolchainEventPrototypeDataApplicationJsonModel = new ToolchainEventPrototypeDataApplicationJson.Builder()
+      .content(java.util.Collections.singletonMap("anyKey", "anyValue"))
+      .build();
+
+    // Construct an instance of the ToolchainEventPrototypeData model
+    ToolchainEventPrototypeData toolchainEventPrototypeDataModel = new ToolchainEventPrototypeData.Builder()
+      .applicationJson(toolchainEventPrototypeDataApplicationJsonModel)
+      .textPlain("This event is dispatched because the pipeline failed")
+      .build();
+
+    // Construct an instance of the CreateToolchainEventOptions model
+    CreateToolchainEventOptions createToolchainEventOptionsModel = new CreateToolchainEventOptions.Builder()
+      .toolchainId("testString")
+      .title("My-custom-event")
+      .description("This is my custom event")
+      .contentType("application/json")
+      .data(toolchainEventPrototypeDataModel)
+      .build();
+
+    // Invoke createToolchainEvent() with a valid options model and verify the result
+    Response<ToolchainEventPost> response = cdToolchainService.createToolchainEvent(createToolchainEventOptionsModel).execute();
+    assertNotNull(response);
+    ToolchainEventPost responseObj = response.getResult();
+    assertNotNull(responseObj);
+
+    // Verify the contents of the request sent to the mock server
+    RecordedRequest request = server.takeRequest();
+    assertNotNull(request);
+    assertEquals(request.getMethod(), "POST");
+    // Verify request path
+    String parsedPath = TestUtilities.parseReqPath(request);
+    assertEquals(parsedPath, createToolchainEventPath);
+    // Verify that there is no query string
+    Map<String, String> query = TestUtilities.parseQueryString(request);
+    assertNull(query);
+  }
+
+  // Test the createToolchainEvent operation with and without retries enabled
+  @Test
+  public void testCreateToolchainEventWRetries() throws Throwable {
+    cdToolchainService.enableRetries(4, 30);
+    testCreateToolchainEventWOptions();
+
+    cdToolchainService.disableRetries();
+    testCreateToolchainEventWOptions();
+  }
+
+  // Test the createToolchainEvent operation with a null options model (negative test)
+  @Test(expectedExceptions = IllegalArgumentException.class)
+  public void testCreateToolchainEventNoOptions() throws Throwable {
+    server.enqueue(new MockResponse());
+    cdToolchainService.createToolchainEvent(null).execute();
   }
 
   // Test the listTools operation with a valid options model parameter

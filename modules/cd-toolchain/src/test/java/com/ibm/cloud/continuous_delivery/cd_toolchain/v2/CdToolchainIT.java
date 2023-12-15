@@ -14,6 +14,7 @@
 package com.ibm.cloud.continuous_delivery.cd_toolchain.v2;
 
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.CreateToolOptions;
+import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.CreateToolchainEventOptions;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.CreateToolchainOptions;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.DeleteToolOptions;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.DeleteToolchainOptions;
@@ -29,6 +30,9 @@ import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainCollecti
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainCollectionLast;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainCollectionNext;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainCollectionPrevious;
+import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainEventPost;
+import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainEventPrototypeData;
+import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainEventPrototypeDataApplicationJson;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainModel;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainPatch;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainPost;
@@ -267,6 +271,41 @@ public class CdToolchainIT extends SdkIntegrationTestBase {
   }
 
   @Test(dependsOnMethods = { "testUpdateToolchain" })
+  public void testCreateToolchainEvent() throws Exception {
+    try {
+      ToolchainEventPrototypeDataApplicationJson toolchainEventPrototypeDataApplicationJsonModel = new ToolchainEventPrototypeDataApplicationJson.Builder()
+        .content(java.util.Collections.singletonMap("anyKey", "anyValue"))
+        .build();
+
+      ToolchainEventPrototypeData toolchainEventPrototypeDataModel = new ToolchainEventPrototypeData.Builder()
+        .applicationJson(toolchainEventPrototypeDataApplicationJsonModel)
+        .textPlain("This event is dispatched because the pipeline failed")
+        .build();
+
+      CreateToolchainEventOptions createToolchainEventOptions = new CreateToolchainEventOptions.Builder()
+        .toolchainId(toolchainIdLink)
+        .title("My-custom-event")
+        .description("This is my custom event")
+        .contentType("application/json")
+        .data(toolchainEventPrototypeDataModel)
+        .build();
+
+      // Invoke operation
+      Response<ToolchainEventPost> response = service.createToolchainEvent(createToolchainEventOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 200);
+
+      ToolchainEventPost toolchainEventPostResult = response.getResult();
+
+      assertNotNull(toolchainEventPostResult);
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testCreateToolchainEvent" })
   public void testListTools() throws Exception {
     try {
       ListToolsOptions listToolsOptions = new ListToolsOptions.Builder()

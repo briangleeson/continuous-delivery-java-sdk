@@ -25,7 +25,7 @@
             of the SDK generator used to generate your SDK code.
             See this link for details: https://github.ibm.com/CloudEngineering/openapi-sdkgen/wiki/Compatibility-Chart
         -->
-        <sdk-core-version>9.18.7</sdk-core-version>
+        <sdk-core-version>9.19.0</sdk-core-version>
 
         <git-repository-name>continuous-delivery-java-sdk</git-repository-name>
 

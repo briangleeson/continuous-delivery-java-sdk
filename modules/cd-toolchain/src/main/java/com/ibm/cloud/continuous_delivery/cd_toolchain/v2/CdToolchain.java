@@ -19,6 +19,7 @@ package com.ibm.cloud.continuous_delivery.cd_toolchain.v2;
 
 import com.google.gson.JsonObject;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.CreateToolOptions;
+import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.CreateToolchainEventOptions;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.CreateToolchainOptions;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.DeleteToolOptions;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.DeleteToolchainOptions;
@@ -28,6 +29,7 @@ import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ListToolchainsOpt
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ListToolsOptions;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.Toolchain;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainCollection;
+import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainEventPost;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainPatch;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainPost;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainTool;
@@ -271,6 +273,39 @@ public class CdToolchain extends BaseService {
     builder.bodyContent(com.ibm.cloud.sdk.core.util.GsonSingleton.getGsonWithoutPrettyPrinting().toJson(updateToolchainOptions.toolchainPrototypePatch()), "application/merge-patch+json");
     ResponseConverter<ToolchainPatch> responseConverter =
       ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<ToolchainPatch>() { }.getType());
+    return createServiceCall(builder.build(), responseConverter);
+  }
+
+  /**
+   * Create a toolchain event.
+   *
+   * Creates and sends a custom event to Event Notifications. This requires an Event Notification tool. This method is
+   * BETA and subject to change.
+   *
+   * @param createToolchainEventOptions the {@link CreateToolchainEventOptions} containing the options for the call
+   * @return a {@link ServiceCall} with a result of type {@link ToolchainEventPost}
+   */
+  public ServiceCall<ToolchainEventPost> createToolchainEvent(CreateToolchainEventOptions createToolchainEventOptions) {
+    com.ibm.cloud.sdk.core.util.Validator.notNull(createToolchainEventOptions,
+      "createToolchainEventOptions cannot be null");
+    Map<String, String> pathParamsMap = new HashMap<String, String>();
+    pathParamsMap.put("toolchain_id", createToolchainEventOptions.toolchainId());
+    RequestBuilder builder = RequestBuilder.post(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/toolchains/{toolchain_id}/events", pathParamsMap));
+    Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("cd_toolchain", "v2", "createToolchainEvent");
+    for (Entry<String, String> header : sdkHeaders.entrySet()) {
+      builder.header(header.getKey(), header.getValue());
+    }
+    builder.header("Accept", "application/json");
+    final JsonObject contentJson = new JsonObject();
+    contentJson.addProperty("title", createToolchainEventOptions.title());
+    contentJson.addProperty("description", createToolchainEventOptions.description());
+    contentJson.addProperty("content_type", createToolchainEventOptions.contentType());
+    if (createToolchainEventOptions.data() != null) {
+      contentJson.add("data", com.ibm.cloud.sdk.core.util.GsonSingleton.getGson().toJsonTree(createToolchainEventOptions.data()));
+    }
+    builder.bodyJson(contentJson);
+    ResponseConverter<ToolchainEventPost> responseConverter =
+      ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<ToolchainEventPost>() { }.getType());
     return createServiceCall(builder.build(), responseConverter);
   }
 
