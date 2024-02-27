@@ -1,6 +1,6 @@
 # IBM Cloud Continuous Delivery Java SDK Version 1.3.0 
 
-[![Build Status](https://app.travis-ci.com/IBM/continuous-delivery-java-sdk.svg?branch=main)](https://app.travis-ci.com/IBM/continuous-delivery-java-sdk)
+[![Build Status](https://app.travis-ci.com/IBM/continuous-delivery-java-sdk.svg?branch=main)](https://app.travis-ci.com/github/IBM/continuous-delivery-java-sdk)
 [![Release](https://img.shields.io/github/v/release/IBM/continuous-delivery-java-sdk)](https://github.com/IBM/continuous-delivery-java-sdk/releases/latest)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
@@ -21,7 +21,7 @@ The Java client library to interact with the [IBM Cloud Continuous Delivery Tool
 
 <!-- toc -->
 
-- [IBM Cloud Continuous Delivery Java SDK Version 1.3.0](#ibm-cloud-continuous-delivery-java-sdk-version-021)
+- [IBM Cloud Continuous Delivery Java SDK Version 1.3.0](#ibm-cloud-continuous-delivery-java-sdk-version-130)
   - [Table of Contents](#table-of-contents)
   - [Overview](#overview)
   - [Prerequisites](#prerequisites)

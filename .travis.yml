@@ -31,6 +31,13 @@ stages:
 before_install:
   - sudo apt-get update
   - env | grep TRAVIS
+  # Install maven - temporary until Travis focal image is fixed.
+  - wget https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
+  - tar -zxf apache-maven-3.9.6-bin.tar.gz
+  - export MAVEN_HOME=$PWD/apache-maven-3.9.6
+  - export PATH=${MAVEN_HOME}/bin:$PATH
+  - which mvn
+  - mvn -v
 
 jobs:
   include:
