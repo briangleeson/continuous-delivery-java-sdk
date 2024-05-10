@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -31,35 +31,13 @@ public class PropertyTest {
 
   @Test
   public void testProperty() throws Throwable {
-    Property propertyModel = new Property.Builder()
-      .name("testString")
-      .value("testString")
-      .href("testString")
-      .xEnum(java.util.Arrays.asList("testString"))
-      .type("secure")
-      .path("testString")
-      .build();
-    assertEquals(propertyModel.name(), "testString");
-    assertEquals(propertyModel.value(), "testString");
-    assertEquals(propertyModel.href(), "testString");
-    assertEquals(propertyModel.xEnum(), java.util.Arrays.asList("testString"));
-    assertEquals(propertyModel.type(), "secure");
-    assertEquals(propertyModel.path(), "testString");
-
-    String json = TestUtilities.serialize(propertyModel);
-
-    Property propertyModelNew = TestUtilities.deserialize(json, Property.class);
-    assertTrue(propertyModelNew instanceof Property);
-    assertEquals(propertyModelNew.name(), "testString");
-    assertEquals(propertyModelNew.value(), "testString");
-    assertEquals(propertyModelNew.href(), "testString");
-    assertEquals(propertyModelNew.type(), "secure");
-    assertEquals(propertyModelNew.path(), "testString");
+    Property propertyModel = new Property();
+    assertNull(propertyModel.getName());
+    assertNull(propertyModel.getValue());
+    assertNull(propertyModel.getHref());
+    assertNull(propertyModel.getXEnum());
+    assertNull(propertyModel.getType());
+    assertNull(propertyModel.isLocked());
+    assertNull(propertyModel.getPath());
   }
-
-  @Test(expectedExceptions = IllegalArgumentException.class)
-  public void testPropertyError() throws Throwable {
-    new Property.Builder().build();
-  }
-
 }

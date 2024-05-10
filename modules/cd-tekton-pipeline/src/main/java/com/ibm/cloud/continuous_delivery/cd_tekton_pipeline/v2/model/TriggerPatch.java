@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -10,6 +10,7 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
+
 package com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model;
 
 import java.util.ArrayList;
@@ -123,9 +124,9 @@ public class TriggerPatch extends GenericModel {
     }
 
     /**
-     * Adds an tags to tags.
+     * Adds a new element to tags.
      *
-     * @param tags the new tags
+     * @param tags the new element to be added
      * @return the TriggerPatch builder
      */
     public Builder addTags(String tags) {
@@ -139,9 +140,9 @@ public class TriggerPatch extends GenericModel {
     }
 
     /**
-     * Adds an events to events.
+     * Adds a new element to events.
      *
-     * @param events the new events
+     * @param events the new element to be added
      * @return the TriggerPatch builder
      */
     public Builder addEvents(String events) {
@@ -492,6 +493,5 @@ public class TriggerPatch extends GenericModel {
   public Map<String, Object> asPatch() {
     return GsonSingleton.getGson().fromJson(this.toString(), Map.class);
   }
-
 }
 

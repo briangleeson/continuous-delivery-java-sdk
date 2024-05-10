@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -12,7 +12,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 3.76.0-ad3e6f96-20230724-172814
+ * IBM OpenAPI SDK Code Generator Version: 3.89.1-ed9d96f4-20240417-193115
  */
 
 package com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2;
@@ -722,6 +722,9 @@ public class CdTektonPipeline extends BaseService {
     if (createTektonPipelinePropertiesOptions.xEnum() != null) {
       contentJson.add("enum", com.ibm.cloud.sdk.core.util.GsonSingleton.getGson().toJsonTree(createTektonPipelinePropertiesOptions.xEnum()));
     }
+    if (createTektonPipelinePropertiesOptions.locked() != null) {
+      contentJson.addProperty("locked", createTektonPipelinePropertiesOptions.locked());
+    }
     if (createTektonPipelinePropertiesOptions.path() != null) {
       contentJson.addProperty("path", createTektonPipelinePropertiesOptions.path());
     }
@@ -785,6 +788,9 @@ public class CdTektonPipeline extends BaseService {
     }
     if (replaceTektonPipelinePropertyOptions.xEnum() != null) {
       contentJson.add("enum", com.ibm.cloud.sdk.core.util.GsonSingleton.getGson().toJsonTree(replaceTektonPipelinePropertyOptions.xEnum()));
+    }
+    if (replaceTektonPipelinePropertyOptions.locked() != null) {
+      contentJson.addProperty("locked", replaceTektonPipelinePropertyOptions.locked());
     }
     if (replaceTektonPipelinePropertyOptions.path() != null) {
       contentJson.addProperty("path", replaceTektonPipelinePropertyOptions.path());
@@ -1093,6 +1099,9 @@ public class CdTektonPipeline extends BaseService {
     if (createTektonPipelineTriggerPropertiesOptions.path() != null) {
       contentJson.addProperty("path", createTektonPipelineTriggerPropertiesOptions.path());
     }
+    if (createTektonPipelineTriggerPropertiesOptions.locked() != null) {
+      contentJson.addProperty("locked", createTektonPipelineTriggerPropertiesOptions.locked());
+    }
     builder.bodyJson(contentJson);
     ResponseConverter<TriggerProperty> responseConverter =
       ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<TriggerProperty>() { }.getType());
@@ -1157,6 +1166,9 @@ public class CdTektonPipeline extends BaseService {
     }
     if (replaceTektonPipelineTriggerPropertyOptions.path() != null) {
       contentJson.addProperty("path", replaceTektonPipelineTriggerPropertyOptions.path());
+    }
+    if (replaceTektonPipelineTriggerPropertyOptions.locked() != null) {
+      contentJson.addProperty("locked", replaceTektonPipelineTriggerPropertyOptions.locked());
     }
     builder.bodyJson(contentJson);
     ResponseConverter<TriggerProperty> responseConverter =
