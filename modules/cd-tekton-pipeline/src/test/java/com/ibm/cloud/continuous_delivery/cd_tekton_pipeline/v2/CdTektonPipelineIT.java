@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -57,6 +57,7 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
   String propertyName = "prop1";
   String triggerName = "start-deploy";
   String triggerPropName = "triggerProp1";
+  String triggerPropValue = "triggerPropValue1";
 
   /**
    * This method provides our config filename to the base class.
@@ -362,11 +363,11 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
 
       Property propertyResult = response.getResult();
       assertNotNull(propertyResult);
-      assertNotNull(propertyResult.getHref());
-      assertEquals(propertyResult.isLocked(), true);
-      assertEquals(propertyResult.getName(), propertyName);
-      assertEquals(propertyResult.getType(), "text");
-      assertEquals(propertyResult.getValue(), "prop1Value");
+      assertNotNull(propertyResult.href());
+      assertEquals(propertyResult.locked(), true);
+      assertEquals(propertyResult.name(), propertyName);
+      assertEquals(propertyResult.type(), "text");
+      assertEquals(propertyResult.value(), "prop1Value");
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -389,11 +390,11 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
 
       Property propertyResult = response.getResult();
       assertNotNull(propertyResult);
-      assertNotNull(propertyResult.getHref());
-      assertEquals(propertyResult.isLocked(), true);
-      assertEquals(propertyResult.getName(), propertyName);
-      assertEquals(propertyResult.getType(), "text");
-      assertEquals(propertyResult.getValue(), "prop1Value");
+      assertNotNull(propertyResult.href());
+      assertEquals(propertyResult.locked(), true);
+      assertEquals(propertyResult.name(), propertyName);
+      assertEquals(propertyResult.type(), "text");
+      assertEquals(propertyResult.value(), "prop1Value");
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -420,11 +421,11 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
 
       Property propertyResult = response.getResult();
       assertNotNull(propertyResult);
-      assertNotNull(propertyResult.getHref());
-      assertEquals(propertyResult.isLocked(), false);
-      assertEquals(propertyResult.getName(), propertyName);
-      assertEquals(propertyResult.getType(), "text");
-      assertEquals(propertyResult.getValue(), "editedValue");
+      assertNotNull(propertyResult.href());
+      assertEquals(propertyResult.locked(), false);
+      assertEquals(propertyResult.name(), propertyName);
+      assertEquals(propertyResult.type(), "text");
+      assertEquals(propertyResult.value(), "editedValue");
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -448,11 +449,11 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
       PropertiesCollection propertiesCollectionResult = response.getResult();
       assertNotNull(propertiesCollectionResult);
       Property propertyResult = propertiesCollectionResult.getXProperties().get(0);
-      assertNotNull(propertyResult.getHref());
-      assertEquals(propertyResult.isLocked(), false);
-      assertEquals(propertyResult.getName(), propertyName);
-      assertEquals(propertyResult.getType(), "text");
-      assertEquals(propertyResult.getValue(), "editedValue");
+      assertNotNull(propertyResult.href());
+      assertEquals(propertyResult.locked(), false);
+      assertEquals(propertyResult.name(), propertyName);
+      assertEquals(propertyResult.type(), "text");
+      assertEquals(propertyResult.value(), "editedValue");
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -614,10 +615,10 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
       CreateTektonPipelineTriggerPropertiesOptions createTektonPipelineTriggerPropertiesOptions = new CreateTektonPipelineTriggerPropertiesOptions.Builder()
         .pipelineId(pipelineIdLink)
         .triggerId(triggerIdLink)
-        .name(propertyName)
+        .name(triggerPropName)
         .locked(true)
         .type("text")
-        .value(triggerPropName)
+        .value(triggerPropValue)
         .build();
 
       // Invoke operation
@@ -629,10 +630,10 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
       TriggerProperty triggerPropertyResult = response.getResult();
       assertNotNull(triggerPropertyResult);
       assertNotNull(triggerPropertyResult.getHref());
-      assertEquals(triggerPropertyResult.getName(), propertyName);
+      assertEquals(triggerPropertyResult.getName(), triggerPropName);
       assertEquals(triggerPropertyResult.isLocked(), true);
       assertEquals(triggerPropertyResult.getType(), "text");
-      assertEquals(triggerPropertyResult.getValue(), triggerPropName);
+      assertEquals(triggerPropertyResult.getValue(), triggerPropValue);
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -683,7 +684,7 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
       GetTektonPipelineTriggerPropertyOptions getTektonPipelineTriggerPropertyOptions = new GetTektonPipelineTriggerPropertyOptions.Builder()
         .pipelineId(pipelineIdLink)
         .triggerId(triggerIdLink)
-        .propertyName(propertyName)
+        .propertyName(triggerPropName)
         .build();
 
       // Invoke operation
@@ -695,10 +696,10 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
       TriggerProperty triggerPropertyResult = response.getResult();
       assertNotNull(triggerPropertyResult);
       assertNotNull(triggerPropertyResult.getHref());
-      assertEquals(triggerPropertyResult.getName(), propertyName);
+      assertEquals(triggerPropertyResult.getName(), triggerPropName);
       assertEquals(triggerPropertyResult.isLocked(), true);
       assertEquals(triggerPropertyResult.getType(), "text");
-      assertEquals(triggerPropertyResult.getValue(), triggerPropName);
+      assertEquals(triggerPropertyResult.getValue(), triggerPropValue);
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -711,9 +712,9 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
       ReplaceTektonPipelineTriggerPropertyOptions replaceTektonPipelineTriggerPropertyOptions = new ReplaceTektonPipelineTriggerPropertyOptions.Builder()
         .pipelineId(pipelineIdLink)
         .triggerId(triggerIdLink)
-        .propertyName(propertyName)
-        .locked(true)
-        .name(propertyName)
+        .propertyName(triggerPropName)
+        .locked(false)
+        .name(triggerPropName)
         .type("text")
         .value("triggerPropEdited")
         .build();
@@ -727,7 +728,7 @@ public class CdTektonPipelineIT extends SdkIntegrationTestBase {
       TriggerProperty triggerPropertyResult = response.getResult();
       assertNotNull(triggerPropertyResult);
       assertNotNull(triggerPropertyResult.getHref());
-      assertEquals(triggerPropertyResult.getName(), propertyName);
+      assertEquals(triggerPropertyResult.getName(), triggerPropName);
       assertEquals(triggerPropertyResult.isLocked(), false);
       assertEquals(triggerPropertyResult.getType(), "text");
       assertEquals(triggerPropertyResult.getValue(), "triggerPropEdited");
