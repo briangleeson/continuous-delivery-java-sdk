@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -38,6 +38,7 @@ public class ReplaceTektonPipelinePropertyOptionsTest {
       .type("secure")
       .value("testString")
       .xEnum(java.util.Arrays.asList("testString"))
+      .locked(false)
       .path("testString")
       .build();
     assertEquals(replaceTektonPipelinePropertyOptionsModel.pipelineId(), "94619026-912b-4d92-8f51-6c74f0692d90");
@@ -46,6 +47,7 @@ public class ReplaceTektonPipelinePropertyOptionsTest {
     assertEquals(replaceTektonPipelinePropertyOptionsModel.type(), "secure");
     assertEquals(replaceTektonPipelinePropertyOptionsModel.value(), "testString");
     assertEquals(replaceTektonPipelinePropertyOptionsModel.xEnum(), java.util.Arrays.asList("testString"));
+    assertEquals(replaceTektonPipelinePropertyOptionsModel.locked(), Boolean.valueOf(false));
     assertEquals(replaceTektonPipelinePropertyOptionsModel.path(), "testString");
   }
 

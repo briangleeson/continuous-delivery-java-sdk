@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -40,6 +40,7 @@ public class ReplaceTektonPipelineTriggerPropertyOptionsTest {
       .value("testString")
       .xEnum(java.util.Arrays.asList("testString"))
       .path("testString")
+      .locked(false)
       .build();
     assertEquals(replaceTektonPipelineTriggerPropertyOptionsModel.pipelineId(), "94619026-912b-4d92-8f51-6c74f0692d90");
     assertEquals(replaceTektonPipelineTriggerPropertyOptionsModel.triggerId(), "1bb892a1-2e04-4768-a369-b1159eace147");
@@ -49,6 +50,7 @@ public class ReplaceTektonPipelineTriggerPropertyOptionsTest {
     assertEquals(replaceTektonPipelineTriggerPropertyOptionsModel.value(), "testString");
     assertEquals(replaceTektonPipelineTriggerPropertyOptionsModel.xEnum(), java.util.Arrays.asList("testString"));
     assertEquals(replaceTektonPipelineTriggerPropertyOptionsModel.path(), "testString");
+    assertEquals(replaceTektonPipelineTriggerPropertyOptionsModel.locked(), Boolean.valueOf(false));
   }
 
   @Test(expectedExceptions = IllegalArgumentException.class)

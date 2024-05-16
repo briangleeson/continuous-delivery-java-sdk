@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -10,6 +10,7 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
+
 package com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model;
 
 import java.util.List;
@@ -45,6 +46,7 @@ public class TriggerProperty extends GenericModel {
   protected List<String> xEnum;
   protected String type;
   protected String path;
+  protected Boolean locked;
 
   protected TriggerProperty() { }
 
@@ -113,6 +115,18 @@ public class TriggerProperty extends GenericModel {
    */
   public String getPath() {
     return path;
+  }
+
+  /**
+   * Gets the locked.
+   *
+   * When true, this property cannot be overridden at runtime. Attempting to override it will result in run requests
+   * being rejected. The default is false.
+   *
+   * @return the locked
+   */
+  public Boolean isLocked() {
+    return locked;
   }
 }
 

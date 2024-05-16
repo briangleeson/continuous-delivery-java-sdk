@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -10,6 +10,7 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
+
 package com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model;
 
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ public class CreateTektonPipelineTriggerPropertiesOptions extends GenericModel {
   protected String value;
   protected List<String> xEnum;
   protected String path;
+  protected Boolean locked;
 
   /**
    * Builder.
@@ -57,6 +59,7 @@ public class CreateTektonPipelineTriggerPropertiesOptions extends GenericModel {
     private String value;
     private List<String> xEnum;
     private String path;
+    private Boolean locked;
 
     /**
      * Instantiates a new Builder from an existing CreateTektonPipelineTriggerPropertiesOptions instance.
@@ -71,6 +74,7 @@ public class CreateTektonPipelineTriggerPropertiesOptions extends GenericModel {
       this.value = createTektonPipelineTriggerPropertiesOptions.value;
       this.xEnum = createTektonPipelineTriggerPropertiesOptions.xEnum;
       this.path = createTektonPipelineTriggerPropertiesOptions.path;
+      this.locked = createTektonPipelineTriggerPropertiesOptions.locked;
     }
 
     /**
@@ -104,9 +108,9 @@ public class CreateTektonPipelineTriggerPropertiesOptions extends GenericModel {
     }
 
     /**
-     * Adds an xEnum to xEnum.
+     * Adds a new element to xEnum.
      *
-     * @param xEnum the new xEnum
+     * @param xEnum the new element to be added
      * @return the CreateTektonPipelineTriggerPropertiesOptions builder
      */
     public Builder addXEnum(String xEnum) {
@@ -196,6 +200,17 @@ public class CreateTektonPipelineTriggerPropertiesOptions extends GenericModel {
       this.path = path;
       return this;
     }
+
+    /**
+     * Set the locked.
+     *
+     * @param locked the locked
+     * @return the CreateTektonPipelineTriggerPropertiesOptions builder
+     */
+    public Builder locked(Boolean locked) {
+      this.locked = locked;
+      return this;
+    }
   }
 
   protected CreateTektonPipelineTriggerPropertiesOptions() { }
@@ -216,6 +231,7 @@ public class CreateTektonPipelineTriggerPropertiesOptions extends GenericModel {
     value = builder.value;
     xEnum = builder.xEnum;
     path = builder.path;
+    locked = builder.locked;
   }
 
   /**
@@ -303,6 +319,18 @@ public class CreateTektonPipelineTriggerPropertiesOptions extends GenericModel {
    */
   public String path() {
     return path;
+  }
+
+  /**
+   * Gets the locked.
+   *
+   * When true, this property cannot be overridden at runtime. Attempting to override it will result in run requests
+   * being rejected. The default is false.
+   *
+   * @return the locked
+   */
+  public Boolean locked() {
+    return locked;
   }
 }
 
