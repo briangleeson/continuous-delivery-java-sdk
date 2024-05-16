@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/IBM/continuous-delivery-java-sdk/compare/1.3.0...1.4.0) (2024-05-16)
+
+
+### Features
+
+* **tekton:** locked properties ([#39](https://github.com/IBM/continuous-delivery-java-sdk/issues/39)) ([3d903b8](https://github.com/IBM/continuous-delivery-java-sdk/commit/3d903b89a17a0c4522d772d9bdc942f24f9d620c))
+
 # [1.3.0](https://github.com/IBM/continuous-delivery-java-sdk/compare/1.2.0...1.3.0) (2023-12-15)
 
 
