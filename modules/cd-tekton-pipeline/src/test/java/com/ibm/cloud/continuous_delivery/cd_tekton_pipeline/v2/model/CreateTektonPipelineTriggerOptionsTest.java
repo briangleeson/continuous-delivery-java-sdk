@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -83,6 +83,7 @@ public class CreateTektonPipelineTriggerOptionsTest {
       .timezone("America/Los_Angeles, CET, Europe/London, GMT, US/Eastern, or UTC")
       .source(triggerSourcePrototypeModel)
       .events(java.util.Arrays.asList("push", "pull_request"))
+      .filter("header['x-github-event'] == 'push' && body.ref == 'refs/heads/main'")
       .favorite(false)
       .build();
     assertEquals(createTektonPipelineTriggerOptionsModel.pipelineId(), "94619026-912b-4d92-8f51-6c74f0692d90");
@@ -98,6 +99,7 @@ public class CreateTektonPipelineTriggerOptionsTest {
     assertEquals(createTektonPipelineTriggerOptionsModel.timezone(), "America/Los_Angeles, CET, Europe/London, GMT, US/Eastern, or UTC");
     assertEquals(createTektonPipelineTriggerOptionsModel.source(), triggerSourcePrototypeModel);
     assertEquals(createTektonPipelineTriggerOptionsModel.events(), java.util.Arrays.asList("push", "pull_request"));
+    assertEquals(createTektonPipelineTriggerOptionsModel.filter(), "header['x-github-event'] == 'push' && body.ref == 'refs/heads/main'");
     assertEquals(createTektonPipelineTriggerOptionsModel.favorite(), Boolean.valueOf(false));
   }
 

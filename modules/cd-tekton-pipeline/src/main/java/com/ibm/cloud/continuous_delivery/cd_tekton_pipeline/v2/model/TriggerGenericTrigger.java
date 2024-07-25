@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -18,7 +18,20 @@ package com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model;
  */
 public class TriggerGenericTrigger extends Trigger {
 
+  protected String filter;
 
   protected TriggerGenericTrigger() { }
+
+  /**
+   * Gets the filter.
+   *
+   * Stores the CEL (Common Expression Language) expression value which is used for event filtering against the webhook
+   * payloads.
+   *
+   * @return the filter
+   */
+  public String getFilter() {
+    return filter;
+  }
 }
 

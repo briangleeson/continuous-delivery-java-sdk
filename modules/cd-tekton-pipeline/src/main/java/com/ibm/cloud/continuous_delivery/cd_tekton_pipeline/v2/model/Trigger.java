@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -57,6 +57,7 @@ public class Trigger extends GenericModel {
   protected Boolean favorite;
   protected TriggerSource source;
   protected List<String> events;
+  protected String filter;
   protected String cron;
   protected String timezone;
   protected GenericSecret secret;
@@ -124,7 +125,8 @@ public class Trigger extends GenericModel {
   /**
    * Gets the xProperties.
    *
-   * Optional trigger properties used to override or supplement the pipeline properties when triggering a pipeline run.
+   * Optional trigger properties are used to override or supplement the pipeline properties when triggering a pipeline
+   * run.
    *
    * @return the xProperties
    */
@@ -169,7 +171,7 @@ public class Trigger extends GenericModel {
   /**
    * Gets the enabled.
    *
-   * Flag whether the trigger is enabled.
+   * Flag to check if the trigger is enabled.
    *
    * @return the enabled
    */
@@ -204,9 +206,9 @@ public class Trigger extends GenericModel {
   /**
    * Gets the events.
    *
-   * Only needed for Git triggers. List of events to which a Git trigger listens. Choose one or more from: 'push',
-   * 'pull_request' and 'pull_request_closed'. For SCM repositories that use 'merge request' events, such events map to
-   * the equivalent 'pull request' events.
+   * Either 'events' or 'filter' is required specifically for Git triggers. Stores a list of events that a Git trigger
+   * listens to. Choose one or more from 'push', 'pull_request', and 'pull_request_closed'. If SCM repositories use the
+   * 'merge request' term, they correspond to the generic term i.e. 'pull request'.
    *
    * @return the events
    */
@@ -215,11 +217,23 @@ public class Trigger extends GenericModel {
   }
 
   /**
+   * Gets the filter.
+   *
+   * Either 'events' or 'filter' can be used. Stores the CEL (Common Expression Language) expression value which is used
+   * for event filtering against the Git webhook payloads.
+   *
+   * @return the filter
+   */
+  public String getFilter() {
+    return filter;
+  }
+
+  /**
    * Gets the cron.
    *
-   * Only needed for timer triggers. Cron expression that indicates when this trigger will activate. Maximum frequency
+   * Only needed for timer triggers. CRON expression that indicates when this trigger will activate. Maximum frequency
    * is every 5 minutes. The string is based on UNIX crontab syntax: minute, hour, day of month, month, day of week.
-   * Example: 0 *_/2 * * * - every 2 hours.
+   * Example: The CRON expression 0 *_/2 * * * - translates to - every 2 hours.
    *
    * @return the cron
    */
@@ -230,7 +244,7 @@ public class Trigger extends GenericModel {
   /**
    * Gets the timezone.
    *
-   * Only used for timer triggers. Specify the timezone used for this timer trigger, which will ensure the cron
+   * Only used for timer triggers. Specify the timezone used for this timer trigger, which will ensure the CRON
    * activates this trigger relative to the specified timezone. If no timezone is specified, the default timezone used
    * is UTC. Valid timezones are those listed in the IANA timezone database, https://www.iana.org/time-zones.
    *
@@ -243,7 +257,7 @@ public class Trigger extends GenericModel {
   /**
    * Gets the secret.
    *
-   * Only needed for generic webhook trigger type. Secret used to start generic webhook trigger.
+   * Only needed for Generic Webhook trigger type. The secret is used to start the Generic Webhook trigger.
    *
    * @return the secret
    */

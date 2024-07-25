@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -231,8 +231,9 @@ public class TektonPipeline extends GenericModel {
   /**
    * Gets the enableNotifications.
    *
-   * Flag whether to enable notifications for this pipeline. When enabled, pipeline run events will be published on all
-   * slack integration specified channels in the parent toolchain. If omitted, this feature is disabled by default.
+   * Flag to enable notifications for this pipeline. If enabled, the Tekton pipeline run events will be published to all
+   * the destinations specified by the Slack and Event Notifications integrations in the parent toolchain. If omitted,
+   * this feature is disabled by default.
    *
    * @return the enableNotifications
    */
@@ -243,9 +244,9 @@ public class TektonPipeline extends GenericModel {
   /**
    * Gets the enablePartialCloning.
    *
-   * Flag whether to enable partial cloning for this pipeline. When partial clone is enabled, only the files contained
-   * within the paths specified in definition repositories are read and cloned, this means that symbolic links might not
-   * work. If omitted, this feature is disabled by default.
+   * Flag to enable partial cloning for this pipeline. When partial clone is enabled, only the files contained within
+   * the paths specified in definition repositories are read and cloned, this means that symbolic links might not work.
+   * If omitted, this feature is disabled by default.
    *
    * @return the enablePartialCloning
    */
@@ -256,7 +257,7 @@ public class TektonPipeline extends GenericModel {
   /**
    * Gets the enabled.
    *
-   * Flag whether this pipeline is enabled.
+   * Flag to check if the trigger is enabled.
    *
    * @return the enabled
    */

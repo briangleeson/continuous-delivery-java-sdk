@@ -10,7 +10,6 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-
 package com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model;
 
 import java.util.ArrayList;
@@ -103,9 +102,9 @@ public class CreateTektonPipelinePropertiesOptions extends GenericModel {
     }
 
     /**
-     * Adds a new element to xEnum.
+     * Adds an xEnum to xEnum.
      *
-     * @param xEnum the new element to be added
+     * @param xEnum the new xEnum
      * @return the CreateTektonPipelinePropertiesOptions builder
      */
     public Builder addXEnum(String xEnum) {

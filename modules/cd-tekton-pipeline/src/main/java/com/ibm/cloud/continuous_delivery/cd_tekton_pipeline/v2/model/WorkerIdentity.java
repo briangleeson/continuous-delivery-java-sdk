@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -15,8 +15,8 @@ package com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
- * Specify the worker used to run the trigger, as a worker object containing the worker ID only. If omitted, or
- * specified as `worker: { id: 'public' }`, the IBM Managed shared workers are used.
+ * Specify the worker that is to be used to run the trigger, indicated by a worker object with only the worker ID. If
+ * not specified or set as `worker: { id: 'public' }`, the IBM Managed shared workers are used.
  */
 public class WorkerIdentity extends GenericModel {
 
