@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -17,8 +17,8 @@ import java.util.List;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
- * Pipeline definitions is a collection of individual definition entries, each entry consists of a repository URL,
- * branch/tag and path.
+ * Pipeline definitions is a collection of individual definition entries, each entry consists of a repository URL, a
+ * repository path, and a branch or tag.
  */
 public class DefinitionsCollection extends GenericModel {
 

@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -206,8 +206,8 @@ public class CreateTektonPipelineRunOptions extends GenericModel {
   /**
    * Gets the triggerProperties.
    *
-   * An object containing string values only that provides additional `text` properties, or overrides existing
-   * pipeline/trigger properties, to use for the created run.
+   * An object containing string values only. It provides additional 'text' properties or overrides existing
+   * pipeline/trigger properties that can be used in the created run.
    *
    * @return the triggerProperties
    */
@@ -218,8 +218,8 @@ public class CreateTektonPipelineRunOptions extends GenericModel {
   /**
    * Gets the secureTriggerProperties.
    *
-   * An object containing string values only that provides additional `secure` properties, or overrides existing
-   * `secure` pipeline/trigger properties, to use for the created run.
+   * An object containing string values only. It provides additional `secure` properties or overrides existing `secure`
+   * pipeline/trigger properties that can be used in the created run.
    *
    * @return the secureTriggerProperties
    */

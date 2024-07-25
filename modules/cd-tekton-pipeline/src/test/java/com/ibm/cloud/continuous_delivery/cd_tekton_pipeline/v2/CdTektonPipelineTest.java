@@ -10,7 +10,6 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-
 package com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2;
 
 import com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.CdTektonPipeline;
@@ -1570,6 +1569,7 @@ public class CdTektonPipelineTest {
       .timezone("testString")
       .source(triggerSourcePrototypeModel)
       .events(java.util.Arrays.asList("push"))
+      .filter("testString")
       .favorite(false)
       .build();
 
@@ -1712,6 +1712,7 @@ public class CdTektonPipelineTest {
       .timezone("America/Los_Angeles, CET, Europe/London, GMT, US/Eastern, or UTC")
       .source(triggerSourcePrototypeModel)
       .events(java.util.Arrays.asList("push", "pull_request"))
+      .filter("header['x-github-event'] == 'push' && body.ref == 'refs/heads/main'")
       .favorite(false)
       .build();
     Map<String, Object> triggerPatchModelAsPatch = triggerPatchModel.asPatch();

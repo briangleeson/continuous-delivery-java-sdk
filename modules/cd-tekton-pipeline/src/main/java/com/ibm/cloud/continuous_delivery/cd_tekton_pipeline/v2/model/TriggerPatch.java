@@ -10,7 +10,6 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-
 package com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model;
 
 import java.util.ArrayList;
@@ -67,6 +66,7 @@ public class TriggerPatch extends GenericModel {
   protected String timezone;
   protected TriggerSourcePrototype source;
   protected List<String> events;
+  protected String filter;
   protected Boolean favorite;
 
   /**
@@ -85,6 +85,7 @@ public class TriggerPatch extends GenericModel {
     private String timezone;
     private TriggerSourcePrototype source;
     private List<String> events;
+    private String filter;
     private Boolean favorite;
 
     /**
@@ -105,6 +106,7 @@ public class TriggerPatch extends GenericModel {
       this.timezone = triggerPatch.timezone;
       this.source = triggerPatch.source;
       this.events = triggerPatch.events;
+      this.filter = triggerPatch.filter;
       this.favorite = triggerPatch.favorite;
     }
 
@@ -124,9 +126,9 @@ public class TriggerPatch extends GenericModel {
     }
 
     /**
-     * Adds a new element to tags.
+     * Adds an tags to tags.
      *
-     * @param tags the new element to be added
+     * @param tags the new tags
      * @return the TriggerPatch builder
      */
     public Builder addTags(String tags) {
@@ -140,9 +142,9 @@ public class TriggerPatch extends GenericModel {
     }
 
     /**
-     * Adds a new element to events.
+     * Adds an events to events.
      *
-     * @param events the new element to be added
+     * @param events the new events
      * @return the TriggerPatch builder
      */
     public Builder addEvents(String events) {
@@ -290,6 +292,17 @@ public class TriggerPatch extends GenericModel {
     }
 
     /**
+     * Set the filter.
+     *
+     * @param filter the filter
+     * @return the TriggerPatch builder
+     */
+    public Builder filter(String filter) {
+      this.filter = filter;
+      return this;
+    }
+
+    /**
      * Set the favorite.
      *
      * @param favorite the favorite
@@ -316,6 +329,7 @@ public class TriggerPatch extends GenericModel {
     timezone = builder.timezone;
     source = builder.source;
     events = builder.events;
+    filter = builder.filter;
     favorite = builder.favorite;
   }
 
@@ -411,7 +425,7 @@ public class TriggerPatch extends GenericModel {
   /**
    * Gets the secret.
    *
-   * Only needed for generic webhook trigger type. Secret used to start generic webhook trigger.
+   * Only needed for Generic Webhook trigger type. The secret is used to start the Generic Webhook trigger.
    *
    * @return the secret
    */
@@ -422,9 +436,9 @@ public class TriggerPatch extends GenericModel {
   /**
    * Gets the cron.
    *
-   * Only needed for timer triggers. Cron expression that indicates when this trigger will activate. Maximum frequency
+   * Only needed for timer triggers. CRON expression that indicates when this trigger will activate. Maximum frequency
    * is every 5 minutes. The string is based on UNIX crontab syntax: minute, hour, day of month, month, day of week.
-   * Example: 0 *_/2 * * * - every 2 hours.
+   * Example: The CRON expression 0 *_/2 * * * - translates to - every 2 hours.
    *
    * @return the cron
    */
@@ -435,7 +449,7 @@ public class TriggerPatch extends GenericModel {
   /**
    * Gets the timezone.
    *
-   * Only used for timer triggers. Specify the timezone used for this timer trigger, which will ensure the cron
+   * Only used for timer triggers. Specify the timezone used for this timer trigger, which will ensure the CRON
    * activates this trigger relative to the specified timezone. If no timezone is specified, the default timezone used
    * is UTC. Valid timezones are those listed in the IANA timezone database, https://www.iana.org/time-zones.
    *
@@ -461,14 +475,26 @@ public class TriggerPatch extends GenericModel {
   /**
    * Gets the events.
    *
-   * Only needed for Git triggers. List of events to which a Git trigger listens. Choose one or more from: 'push',
-   * 'pull_request' and 'pull_request_closed'. For SCM repositories that use 'merge request' events, such events map to
-   * the equivalent 'pull request' events.
+   * Either 'events' or 'filter' is required specifically for Git triggers. Stores a list of events that a Git trigger
+   * listens to. Choose one or more from 'push', 'pull_request', and 'pull_request_closed'. If SCM repositories use the
+   * 'merge request' term, they correspond to the generic term i.e. 'pull request'.
    *
    * @return the events
    */
   public List<String> events() {
     return events;
+  }
+
+  /**
+   * Gets the filter.
+   *
+   * Either 'events' or 'filter' can be used. Stores the CEL (Common Expression Language) expression value which is used
+   * for event filtering against the Git webhook payloads.
+   *
+   * @return the filter
+   */
+  public String filter() {
+    return filter;
   }
 
   /**
@@ -493,5 +519,6 @@ public class TriggerPatch extends GenericModel {
   public Map<String, Object> asPatch() {
     return GsonSingleton.getGson().fromJson(this.toString(), Map.class);
   }
+
 }
 

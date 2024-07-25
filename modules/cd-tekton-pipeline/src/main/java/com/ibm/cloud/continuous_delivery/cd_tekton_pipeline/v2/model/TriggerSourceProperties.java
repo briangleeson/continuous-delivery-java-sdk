@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -45,7 +45,7 @@ public class TriggerSourceProperties extends GenericModel {
   /**
    * Gets the branch.
    *
-   * Name of a branch from the repo. One of branch or pattern must be specified, but only one or the other.
+   * Name of a branch from the repo. Only one of branch, pattern, or filter should be specified.
    *
    * @return the branch
    */
@@ -56,11 +56,10 @@ public class TriggerSourceProperties extends GenericModel {
   /**
    * Gets the pattern.
    *
-   * The pattern of Git branch or tag to which to listen. You can specify a glob pattern such as '!test' or '*master' to
-   * match against multiple tags/branches in the repository. The glob pattern used must conform to Bash 4.3
-   * specifications, see bash documentation for more info:
-   * https://www.gnu.org/software/bash/manual/bash.html#Pattern-Matching. One of branch or pattern must be specified,
-   * but only one or the other.
+   * The pattern of Git branch or tag. You can specify a glob pattern such as '!test' or '*master' to match against
+   * multiple tags or branches in the repository.The glob pattern used must conform to Bash 4.3 specifications, see bash
+   * documentation for more info: https://www.gnu.org/software/bash/manual/bash.html#Pattern-Matching. Only one of
+   * branch, pattern, or filter should be specified.
    *
    * @return the pattern
    */
@@ -83,7 +82,7 @@ public class TriggerSourceProperties extends GenericModel {
   /**
    * Gets the hookId.
    *
-   * ID of the webhook from the repo. Computed upon creation of the trigger.
+   * Repository webhook ID. It is generated upon trigger creation.
    *
    * @return the hookId
    */

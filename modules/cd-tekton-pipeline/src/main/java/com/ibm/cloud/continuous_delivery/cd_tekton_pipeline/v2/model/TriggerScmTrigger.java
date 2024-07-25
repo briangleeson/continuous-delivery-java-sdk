@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -13,8 +13,8 @@
 package com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model;
 
 /**
- * Git type trigger, which automatically triggers a pipeline run when the Tekton Pipeline Service receives a
- * corresponding Git webhook event.
+ * Git trigger type. It automatically triggers a pipeline run when the Tekton Pipeline Service receives a corresponding
+ * Git webhook event.
  */
 public class TriggerScmTrigger extends Trigger {
 
