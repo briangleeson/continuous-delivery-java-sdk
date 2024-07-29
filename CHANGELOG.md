@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/IBM/continuous-delivery-java-sdk/compare/1.4.0...1.5.0) (2024-07-29)
+
+
+### Features
+
+* **tekton:** Add support for CEL filtering ([1669225](https://github.com/IBM/continuous-delivery-java-sdk/commit/1669225ae19176bd2e5df5f6ad377ec50fa0b50d))
+
 # [1.4.0](https://github.com/IBM/continuous-delivery-java-sdk/compare/1.3.0...1.4.0) (2024-05-16)
 
 
