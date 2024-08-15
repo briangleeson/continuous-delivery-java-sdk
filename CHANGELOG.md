@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/IBM/continuous-delivery-java-sdk/compare/1.5.0...1.5.1) (2024-08-15)
+
+
+### Bug Fixes
+
+* bump dependencies ([#41](https://github.com/IBM/continuous-delivery-java-sdk/issues/41)) ([88efd51](https://github.com/IBM/continuous-delivery-java-sdk/commit/88efd51a69614e5aea7bd8903940c1085e4bf46c))
+
 # [1.5.0](https://github.com/IBM/continuous-delivery-java-sdk/compare/1.4.0...1.5.0) (2024-07-29)
 
 
