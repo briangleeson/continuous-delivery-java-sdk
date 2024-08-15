@@ -25,11 +25,11 @@
             of the SDK generator used to generate your SDK code.
             See this link for details: https://github.ibm.com/CloudEngineering/openapi-sdkgen/wiki/Compatibility-Chart
         -->
-        <sdk-core-version>9.20.1</sdk-core-version>
+        <sdk-core-version>9.21.1</sdk-core-version>
 
         <git-repository-name>continuous-delivery-java-sdk</git-repository-name>
 
-        <testng-version>7.8.0</testng-version>
+        <testng-version>7.10.2</testng-version>
         <okhttp3-version>4.12.0</okhttp3-version>
         <surefire-version>3.1.2</surefire-version>
         <jacoco-plugin-version>0.8.10</jacoco-plugin-version>
@@ -46,7 +46,7 @@
         <maven-reports-plugin-version>3.4.5</maven-reports-plugin-version>
         <maven-failsafe-plugin-version>3.1.2</maven-failsafe-plugin-version>
         <maven-buildnumber-plugin-version>3.2.0</maven-buildnumber-plugin-version>
-        <slf4j-version>2.0.9</slf4j-version>
+        <slf4j-version>2.0.16</slf4j-version>
 
         <maven-enforcer-version>3.4.1</maven-enforcer-version>
         <min-jdk-version>11</min-jdk-version>
@@ -107,11 +107,6 @@
     </ciManagement>
 
     <repositories>
-        <!-- these definitions are useful only for internal SDK projects -->
-        <repository>
-            <id>na-artifactory-ibmcloud-sdks</id>
-            <url>https://na.artifactory.swg-devops.com:443/artifactory/wcp-ibmcloud-sdks-team-maven-local/</url>
-        </repository>
     </repositories>
 
     <!-- This section is commented out because we use an alternate deploy plugin.

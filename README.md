@@ -21,7 +21,7 @@ The Java client library to interact with the [IBM Cloud Continuous Delivery Tool
 
 <!-- toc -->
 
-- [IBM Cloud Continuous Delivery Java SDK Version 1.5.0](#ibm-cloud-continuous-delivery-java-sdk-version-130)
+- [IBM Cloud Continuous Delivery Java SDK Version 1.5.0](#ibm-cloud-continuous-delivery-java-sdk-version-150)
   - [Table of Contents](#table-of-contents)
   - [Overview](#overview)
   - [Prerequisites](#prerequisites)
