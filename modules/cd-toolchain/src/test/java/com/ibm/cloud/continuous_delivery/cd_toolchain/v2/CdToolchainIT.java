@@ -23,13 +23,8 @@ import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.GetToolchainByIdO
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ListToolchainsOptions;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ListToolsOptions;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolModel;
-import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolModelReferent;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.Toolchain;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainCollection;
-import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainCollectionFirst;
-import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainCollectionLast;
-import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainCollectionNext;
-import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainCollectionPrevious;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainEventPost;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainEventPrototypeData;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainEventPrototypeDataApplicationJson;
@@ -39,10 +34,6 @@ import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainPost;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainPrototypePatch;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainTool;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainToolCollection;
-import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainToolCollectionFirst;
-import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainToolCollectionLast;
-import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainToolCollectionNext;
-import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainToolCollectionPrevious;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainToolPatch;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainToolPost;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainToolPrototypePatch;
@@ -56,16 +47,28 @@ import com.ibm.cloud.sdk.core.http.Response;
 import com.ibm.cloud.sdk.core.service.exception.ServiceResponseException;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.sdk.core.util.CredentialUtils;
-import com.ibm.cloud.sdk.core.util.DateUtils;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static org.testng.Assert.*;
+
+/*
+ * Required environment variables:
+ * CD_TOOLCHAIN_APIKEY=<IAM apikey>
+ * CD_TOOLCHAIN_AUTHTYPE=iam
+ * CD_TOOLCHAIN_EVENT_NOTIFICATIONS_SERVICE_CRN=<event notifications service CRN>
+ * CD_TOOLCHAIN_RESOURCE_GROUP_ID=<resource group where resources will be created>
+ * CD_TOOLCHAIN_URL=<service base url>
+ */
 
 /**
  * Integration test class for the CdToolchain service.
@@ -79,6 +82,9 @@ public class CdToolchainIT extends SdkIntegrationTestBase {
   // Variables to hold link values
   String toolIdLink = null;
   String toolchainIdLink = null;
+
+  SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
+  String toolchainName = "TestJavaSdk_" + formatter.format(new Date());
 
   /**
    * This method provides our config filename to the base class.
@@ -114,7 +120,7 @@ public class CdToolchainIT extends SdkIntegrationTestBase {
   public void testCreateToolchain() throws Exception {
     try {
       CreateToolchainOptions createToolchainOptions = new CreateToolchainOptions.Builder()
-        .name("TestToolchainV2")
+        .name(toolchainName)
         .resourceGroupId(config.get("RESOURCE_GROUP_ID"))
         .description("A sample toolchain to test the API")
         .build();
@@ -167,7 +173,7 @@ public class CdToolchainIT extends SdkIntegrationTestBase {
       ListToolchainsOptions listToolchainsOptions = new ListToolchainsOptions.Builder()
         .resourceGroupId(config.get("RESOURCE_GROUP_ID"))
         .limit(Long.valueOf("10"))
-        .name("TestToolchainV2")
+        .name(toolchainName)
         .build();
 
       // Invoke operation
@@ -191,27 +197,30 @@ public class CdToolchainIT extends SdkIntegrationTestBase {
       ListToolchainsOptions options = new ListToolchainsOptions.Builder()
         .resourceGroupId(config.get("RESOURCE_GROUP_ID"))
         .limit(Long.valueOf("10"))
-        .name("TestToolchainV2")
+        .name(toolchainName)
         .build();
 
       // Test getNext().
-      List<ToolchainModel> allResults = new ArrayList<>();
+      List<ToolchainModel> filteredResults = new ArrayList<>();
       ToolchainsPager pager = new ToolchainsPager(service, options);
       while (pager.hasNext()) {
         List<ToolchainModel> nextPage = pager.getNext();
         assertNotNull(nextPage);
-        allResults.addAll(nextPage);
+        List<ToolchainModel> filteredPage = nextPage.stream().filter(f -> f.getName().equals(toolchainName)).collect(Collectors.toList());
+        filteredResults.addAll(filteredPage);
       }
-      assertFalse(allResults.isEmpty());
+      assertFalse(filteredResults.isEmpty());
 
       // Test getAll();
       pager = new ToolchainsPager(service, options);
       List<ToolchainModel> allItems = pager.getAll();
       assertNotNull(allItems);
-      assertFalse(allItems.isEmpty());
 
-      assertEquals(allItems.size(), allResults.size());
-      System.out.println(String.format("Retrieved a total of %d item(s) with pagination.", allResults.size()));
+      List<ToolchainModel> filteredItems = allItems.stream().filter(f -> f.getName().equals(toolchainName)).collect(Collectors.toList());
+      assertFalse(filteredItems.isEmpty());
+
+      assertEquals(filteredItems.size(), filteredResults.size());
+      System.out.println(String.format("Retrieved a total of %d item(s) with pagination.", filteredResults.size()));
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -269,43 +278,34 @@ public class CdToolchainIT extends SdkIntegrationTestBase {
     }
   }
 
-  // Skip test for now as its not working
-  /* @Test(dependsOnMethods = { "testUpdateToolchain" })
-  public void testCreateToolchainEvent() throws Exception {
+  @Test(dependsOnMethods = { "testUpdateToolchain" })
+  public void testCreateEventNotificationsTool() throws Exception {
     try {
-      ToolchainEventPrototypeDataApplicationJson toolchainEventPrototypeDataApplicationJsonModel = new ToolchainEventPrototypeDataApplicationJson.Builder()
-        .content(java.util.Collections.singletonMap("anyKey", "anyValue"))
-        .build();
-
-      ToolchainEventPrototypeData toolchainEventPrototypeDataModel = new ToolchainEventPrototypeData.Builder()
-        .applicationJson(toolchainEventPrototypeDataApplicationJsonModel)
-        .build();
-
-      CreateToolchainEventOptions createToolchainEventOptions = new CreateToolchainEventOptions.Builder()
+      HashMap<String,Object> params = new HashMap<>();
+      params.put("name", "test-en-tool");
+      params.put("instance-crn", config.get("EVENT_NOTIFICATIONS_SERVICE_CRN"));
+      CreateToolOptions createToolOptions = new CreateToolOptions.Builder()
         .toolchainId(toolchainIdLink)
-        .title("My-custom-event")
-        .description("This is my custom event")
-        .contentType("application/json")
-        .data(toolchainEventPrototypeDataModel)
+        .toolTypeId("eventnotifications")
+        .parameters(params)
         .build();
 
       // Invoke operation
-      Response<ToolchainEventPost> response = service.createToolchainEvent(createToolchainEventOptions).execute();
+      Response<ToolchainToolPost> response = service.createTool(createToolOptions).execute();
+
       // Validate response
       assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
-
-      ToolchainEventPost toolchainEventPostResult = response.getResult();
-
-      assertNotNull(toolchainEventPostResult);
+      assertEquals(response.getStatusCode(), 201);
+      
+      ToolchainToolPost toolchainToolPostResult = response.getResult();
+      assertNotNull(toolchainToolPostResult);
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
     }
   }
-  */
 
-  @Test(dependsOnMethods = { "testUpdateToolchain" })
+  @Test(dependsOnMethods = { "testCreateEventNotificationsTool" })
   public void testCreateToolchainEvent() throws Exception {
     try {
       ToolchainEventPrototypeDataApplicationJson toolchainEventPrototypeDataApplicationJsonModel = new ToolchainEventPrototypeDataApplicationJson.Builder()
@@ -314,7 +314,6 @@ public class CdToolchainIT extends SdkIntegrationTestBase {
 
       ToolchainEventPrototypeData toolchainEventPrototypeDataModel = new ToolchainEventPrototypeData.Builder()
         .applicationJson(toolchainEventPrototypeDataApplicationJsonModel)
-        .textPlain("This event is dispatched because the pipeline failed")
         .build();
 
       CreateToolchainEventOptions createToolchainEventOptions = new CreateToolchainEventOptions.Builder()
