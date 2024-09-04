@@ -1,3 +1,23 @@
+# [1.6.0](https://github.com/IBM/continuous-delivery-java-sdk/compare/1.5.1...1.6.0) (2024-09-04)
+
+
+### Bug Fixes
+
+* bump dependencies ([c2188de](https://github.com/IBM/continuous-delivery-java-sdk/commit/c2188dedd008b7a7fd3009eb693acfa8532f64c8))
+* bump dependencies ([3a59df0](https://github.com/IBM/continuous-delivery-java-sdk/commit/3a59df00952a49100ccf36c3e3690921276b0f63))
+* bump dependencies ([ac1e39b](https://github.com/IBM/continuous-delivery-java-sdk/commit/ac1e39b30ec68f200174799907d20277118ae6bd))
+* toolchain pom.xml ([cb4480f](https://github.com/IBM/continuous-delivery-java-sdk/commit/cb4480f7f9826a50d18dd6758dad28fdb9d8ba58))
+* toolchain pom.xml ([f49a1ea](https://github.com/IBM/continuous-delivery-java-sdk/commit/f49a1ea0f9c8f6723a8d7bb9890207e067529890))
+* toolchain pom.xml ([4eb25a9](https://github.com/IBM/continuous-delivery-java-sdk/commit/4eb25a9549cafa74f43c1d90e307af0bb87c9ebe))
+
+
+### Features
+
+* **toolchain:** add eu-es region ([e88fe81](https://github.com/IBM/continuous-delivery-java-sdk/commit/e88fe81fc9e42ef4e5a6f3fca720ff73abe22e20))
+* **toolchain:** add function to create toolchain event ([f456ee7](https://github.com/IBM/continuous-delivery-java-sdk/commit/f456ee708d23b4d20ecc79f6a87c574bca2b7bf3))
+* **toolchain:** add function to create toolchain event ([9dd9851](https://github.com/IBM/continuous-delivery-java-sdk/commit/9dd9851d382ccda77895e4e39e1df4c97955f602))
+* **toolchain:** add function to create toolchain event ([1e6e5c0](https://github.com/IBM/continuous-delivery-java-sdk/commit/1e6e5c02c1787a7de4d42c5d11fdb3079b60d69a))
+
 ## [1.5.1](https://github.com/IBM/continuous-delivery-java-sdk/compare/1.5.0...1.5.1) (2024-08-15)
 
 
