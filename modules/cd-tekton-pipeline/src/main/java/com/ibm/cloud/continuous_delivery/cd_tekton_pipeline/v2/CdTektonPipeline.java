@@ -340,6 +340,9 @@ public class CdTektonPipeline extends BaseService {
     }
     builder.header("Accept", "application/json");
     final JsonObject contentJson = new JsonObject();
+    if (createTektonPipelineRunOptions.description() != null) {
+      contentJson.addProperty("description", createTektonPipelineRunOptions.description());
+    }
     if (createTektonPipelineRunOptions.triggerName() != null) {
       contentJson.addProperty("trigger_name", createTektonPipelineRunOptions.triggerName());
     }

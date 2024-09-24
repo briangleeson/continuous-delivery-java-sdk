@@ -22,6 +22,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 public class CreateTektonPipelineRunOptions extends GenericModel {
 
   protected String pipelineId;
+  protected String description;
   protected String triggerName;
   protected Map<String, Object> triggerProperties;
   protected Map<String, Object> secureTriggerProperties;
@@ -34,6 +35,7 @@ public class CreateTektonPipelineRunOptions extends GenericModel {
    */
   public static class Builder {
     private String pipelineId;
+    private String description;
     private String triggerName;
     private Map<String, Object> triggerProperties;
     private Map<String, Object> secureTriggerProperties;
@@ -48,6 +50,7 @@ public class CreateTektonPipelineRunOptions extends GenericModel {
      */
     private Builder(CreateTektonPipelineRunOptions createTektonPipelineRunOptions) {
       this.pipelineId = createTektonPipelineRunOptions.pipelineId;
+      this.description = createTektonPipelineRunOptions.description;
       this.triggerName = createTektonPipelineRunOptions.triggerName;
       this.triggerProperties = createTektonPipelineRunOptions.triggerProperties;
       this.secureTriggerProperties = createTektonPipelineRunOptions.secureTriggerProperties;
@@ -88,6 +91,17 @@ public class CreateTektonPipelineRunOptions extends GenericModel {
      */
     public Builder pipelineId(String pipelineId) {
       this.pipelineId = pipelineId;
+      return this;
+    }
+
+    /**
+     * Set the description.
+     *
+     * @param description the description
+     * @return the CreateTektonPipelineRunOptions builder
+     */
+    public Builder description(String description) {
+      this.description = description;
       return this;
     }
 
@@ -164,6 +178,7 @@ public class CreateTektonPipelineRunOptions extends GenericModel {
     com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.pipelineId,
       "pipelineId cannot be empty");
     pipelineId = builder.pipelineId;
+    description = builder.description;
     triggerName = builder.triggerName;
     triggerProperties = builder.triggerProperties;
     secureTriggerProperties = builder.secureTriggerProperties;
@@ -190,6 +205,17 @@ public class CreateTektonPipelineRunOptions extends GenericModel {
    */
   public String pipelineId() {
     return pipelineId;
+  }
+
+  /**
+   * Gets the description.
+   *
+   * Optional description for the created PipelineRun.
+   *
+   * @return the description
+   */
+  public String description() {
+    return description;
   }
 
   /**
