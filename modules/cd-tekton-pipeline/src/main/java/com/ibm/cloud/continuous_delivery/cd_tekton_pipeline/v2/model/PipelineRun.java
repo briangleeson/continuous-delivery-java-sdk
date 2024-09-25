@@ -10,7 +10,6 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-
 package com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model;
 
 import java.util.Date;
@@ -54,6 +53,7 @@ public class PipelineRun extends GenericModel {
   @SerializedName("definition_id")
   protected String definitionId;
   protected RunDefinition definition;
+  protected Object description;
   protected PipelineRunWorker worker;
   @SerializedName("pipeline_id")
   protected String pipelineId;
@@ -143,6 +143,17 @@ public class PipelineRun extends GenericModel {
    */
   public RunDefinition getDefinition() {
     return definition;
+  }
+
+  /**
+   * Gets the description.
+   *
+   * A description of the PipelineRun.
+   *
+   * @return the description
+   */
+  public Object getDescription() {
+    return description;
   }
 
   /**
