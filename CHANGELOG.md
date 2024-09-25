@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/IBM/continuous-delivery-java-sdk/compare/1.6.0...1.7.0) (2024-09-25)
+
+
+### Features
+
+* **tekton:** add run description for pipeline runs ([73524e3](https://github.com/IBM/continuous-delivery-java-sdk/commit/73524e3e08a7b5682d0007248e643d9b83ca5ea7))
+
 # [1.6.0](https://github.com/IBM/continuous-delivery-java-sdk/compare/1.5.1...1.6.0) (2024-09-04)
 
 
