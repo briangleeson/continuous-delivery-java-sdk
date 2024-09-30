@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/IBM/continuous-delivery-java-sdk/compare/1.7.0...1.8.0) (2024-09-30)
+
+
+### Features
+
+* **tekton:** Add fork events option ([b0ff2b0](https://github.com/IBM/continuous-delivery-java-sdk/commit/b0ff2b0e1bced2c95eee0a14ea51251a5e393b6f))
+
 # [1.7.0](https://github.com/IBM/continuous-delivery-java-sdk/compare/1.6.0...1.7.0) (2024-09-25)
 
 
