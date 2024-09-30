@@ -48,6 +48,7 @@ public class TriggerScmTriggerTest {
     assertNull(triggerScmTriggerModel.getMaxConcurrentRuns());
     assertNull(triggerScmTriggerModel.isEnabled());
     assertNull(triggerScmTriggerModel.isFavorite());
+    assertNull(triggerScmTriggerModel.isEnableEventsFromForks());
     assertNull(triggerScmTriggerModel.getSource());
     assertNull(triggerScmTriggerModel.getEvents());
     assertNull(triggerScmTriggerModel.getFilter());

@@ -55,6 +55,8 @@ public class Trigger extends GenericModel {
   protected Long maxConcurrentRuns;
   protected Boolean enabled;
   protected Boolean favorite;
+  @SerializedName("enable_events_from_forks")
+  protected Boolean enableEventsFromForks;
   protected TriggerSource source;
   protected List<String> events;
   protected String filter;
@@ -188,6 +190,17 @@ public class Trigger extends GenericModel {
    */
   public Boolean isFavorite() {
     return favorite;
+  }
+
+  /**
+   * Gets the enableEventsFromForks.
+   *
+   * When enabled, pull request events from forks of the selected repository will trigger a pipeline run.
+   *
+   * @return the enableEventsFromForks
+   */
+  public Boolean isEnableEventsFromForks() {
+    return enableEventsFromForks;
   }
 
   /**
