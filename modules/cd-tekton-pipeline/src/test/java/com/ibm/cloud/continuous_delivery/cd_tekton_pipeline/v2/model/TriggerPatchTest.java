@@ -85,6 +85,7 @@ public class TriggerPatchTest {
       .events(java.util.Arrays.asList("push", "pull_request"))
       .filter("header['x-github-event'] == 'push' && body.ref == 'refs/heads/main'")
       .favorite(false)
+      .enableEventsFromForks(false)
       .build();
     assertEquals(triggerPatchModel.type(), "manual");
     assertEquals(triggerPatchModel.name(), "start-deploy");
@@ -100,6 +101,7 @@ public class TriggerPatchTest {
     assertEquals(triggerPatchModel.events(), java.util.Arrays.asList("push", "pull_request"));
     assertEquals(triggerPatchModel.filter(), "header['x-github-event'] == 'push' && body.ref == 'refs/heads/main'");
     assertEquals(triggerPatchModel.favorite(), Boolean.valueOf(false));
+    assertEquals(triggerPatchModel.enableEventsFromForks(), Boolean.valueOf(false));
 
     String json = TestUtilities.serialize(triggerPatchModel);
 
@@ -117,6 +119,7 @@ public class TriggerPatchTest {
     assertEquals(triggerPatchModelNew.source().toString(), triggerSourcePrototypeModel.toString());
     assertEquals(triggerPatchModelNew.filter(), "header['x-github-event'] == 'push' && body.ref == 'refs/heads/main'");
     assertEquals(triggerPatchModelNew.favorite(), Boolean.valueOf(false));
+    assertEquals(triggerPatchModelNew.enableEventsFromForks(), Boolean.valueOf(false));
   }
   @Test
   public void testTriggerPatchAsPatch() throws Throwable {
@@ -158,6 +161,7 @@ public class TriggerPatchTest {
       .events(java.util.Arrays.asList("push", "pull_request"))
       .filter("header['x-github-event'] == 'push' && body.ref == 'refs/heads/main'")
       .favorite(false)
+      .enableEventsFromForks(false)
       .build();
 
     Map<String, Object> mergePatch = triggerPatchModel.asPatch();
@@ -176,6 +180,7 @@ public class TriggerPatchTest {
     assertTrue(mergePatch.containsKey("events"));
     assertEquals(mergePatch.get("filter"), "header['x-github-event'] == 'push' && body.ref == 'refs/heads/main'");
     assertTrue(mergePatch.containsKey("favorite"));
+    assertTrue(mergePatch.containsKey("enable_events_from_forks"));
   }
 
 }

@@ -928,6 +928,9 @@ public class CdTektonPipeline extends BaseService {
     if (createTektonPipelineTriggerOptions.favorite() != null) {
       contentJson.addProperty("favorite", createTektonPipelineTriggerOptions.favorite());
     }
+    if (createTektonPipelineTriggerOptions.enableEventsFromForks() != null) {
+      contentJson.addProperty("enable_events_from_forks", createTektonPipelineTriggerOptions.enableEventsFromForks());
+    }
     builder.bodyJson(contentJson);
     ResponseConverter<Trigger> responseConverter =
       ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<Trigger>() { }.getType());

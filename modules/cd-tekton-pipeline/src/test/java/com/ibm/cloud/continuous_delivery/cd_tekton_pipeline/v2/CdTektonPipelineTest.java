@@ -1572,6 +1572,7 @@ public class CdTektonPipelineTest {
       .events(java.util.Arrays.asList("push"))
       .filter("testString")
       .favorite(false)
+      .enableEventsFromForks(false)
       .build();
 
     // Invoke createTektonPipelineTrigger() with a valid options model and verify the result
@@ -1715,6 +1716,7 @@ public class CdTektonPipelineTest {
       .events(java.util.Arrays.asList("push", "pull_request"))
       .filter("header['x-github-event'] == 'push' && body.ref == 'refs/heads/main'")
       .favorite(false)
+      .enableEventsFromForks(false)
       .build();
     Map<String, Object> triggerPatchModelAsPatch = triggerPatchModel.asPatch();
 
