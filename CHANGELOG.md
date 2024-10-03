@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/IBM/continuous-delivery-java-sdk/compare/1.8.0...1.9.0) (2024-10-03)
+
+
+### Features
+
+* **tekton:** more fork support ([cebf13c](https://github.com/IBM/continuous-delivery-java-sdk/commit/cebf13cd5cdf95a22a219c3b908b89b59077c7e1))
+
 # [1.8.0](https://github.com/IBM/continuous-delivery-java-sdk/compare/1.7.0...1.8.0) (2024-09-30)
 
 
