@@ -68,6 +68,8 @@ public class TriggerPatch extends GenericModel {
   protected List<String> events;
   protected String filter;
   protected Boolean favorite;
+  @SerializedName("enable_events_from_forks")
+  protected Boolean enableEventsFromForks;
 
   /**
    * Builder.
@@ -87,6 +89,7 @@ public class TriggerPatch extends GenericModel {
     private List<String> events;
     private String filter;
     private Boolean favorite;
+    private Boolean enableEventsFromForks;
 
     /**
      * Instantiates a new Builder from an existing TriggerPatch instance.
@@ -108,6 +111,7 @@ public class TriggerPatch extends GenericModel {
       this.events = triggerPatch.events;
       this.filter = triggerPatch.filter;
       this.favorite = triggerPatch.favorite;
+      this.enableEventsFromForks = triggerPatch.enableEventsFromForks;
     }
 
     /**
@@ -312,6 +316,17 @@ public class TriggerPatch extends GenericModel {
       this.favorite = favorite;
       return this;
     }
+
+    /**
+     * Set the enableEventsFromForks.
+     *
+     * @param enableEventsFromForks the enableEventsFromForks
+     * @return the TriggerPatch builder
+     */
+    public Builder enableEventsFromForks(Boolean enableEventsFromForks) {
+      this.enableEventsFromForks = enableEventsFromForks;
+      return this;
+    }
   }
 
   protected TriggerPatch() { }
@@ -331,6 +346,7 @@ public class TriggerPatch extends GenericModel {
     events = builder.events;
     filter = builder.filter;
     favorite = builder.favorite;
+    enableEventsFromForks = builder.enableEventsFromForks;
   }
 
   /**
@@ -506,6 +522,18 @@ public class TriggerPatch extends GenericModel {
    */
   public Boolean favorite() {
     return favorite;
+  }
+
+  /**
+   * Gets the enableEventsFromForks.
+   *
+   * Only used for SCM triggers. When enabled, pull request events from forks of the selected repository will trigger a
+   * pipeline run.
+   *
+   * @return the enableEventsFromForks
+   */
+  public Boolean enableEventsFromForks() {
+    return enableEventsFromForks;
   }
 
   /**

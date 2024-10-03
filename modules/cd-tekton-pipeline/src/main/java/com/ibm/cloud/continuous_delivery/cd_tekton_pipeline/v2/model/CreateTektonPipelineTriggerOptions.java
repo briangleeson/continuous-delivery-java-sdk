@@ -64,6 +64,7 @@ public class CreateTektonPipelineTriggerOptions extends GenericModel {
   protected List<String> events;
   protected String filter;
   protected Boolean favorite;
+  protected Boolean enableEventsFromForks;
 
   /**
    * Builder.
@@ -84,6 +85,7 @@ public class CreateTektonPipelineTriggerOptions extends GenericModel {
     private List<String> events;
     private String filter;
     private Boolean favorite;
+    private Boolean enableEventsFromForks;
 
     /**
      * Instantiates a new Builder from an existing CreateTektonPipelineTriggerOptions instance.
@@ -106,6 +108,7 @@ public class CreateTektonPipelineTriggerOptions extends GenericModel {
       this.events = createTektonPipelineTriggerOptions.events;
       this.filter = createTektonPipelineTriggerOptions.filter;
       this.favorite = createTektonPipelineTriggerOptions.favorite;
+      this.enableEventsFromForks = createTektonPipelineTriggerOptions.enableEventsFromForks;
     }
 
     /**
@@ -336,6 +339,17 @@ public class CreateTektonPipelineTriggerOptions extends GenericModel {
       this.favorite = favorite;
       return this;
     }
+
+    /**
+     * Set the enableEventsFromForks.
+     *
+     * @param enableEventsFromForks the enableEventsFromForks
+     * @return the CreateTektonPipelineTriggerOptions builder
+     */
+    public Builder enableEventsFromForks(Boolean enableEventsFromForks) {
+      this.enableEventsFromForks = enableEventsFromForks;
+      return this;
+    }
   }
 
   protected CreateTektonPipelineTriggerOptions() { }
@@ -364,6 +378,7 @@ public class CreateTektonPipelineTriggerOptions extends GenericModel {
     events = builder.events;
     filter = builder.filter;
     favorite = builder.favorite;
+    enableEventsFromForks = builder.enableEventsFromForks;
   }
 
   /**
@@ -551,6 +566,18 @@ public class CreateTektonPipelineTriggerOptions extends GenericModel {
    */
   public Boolean favorite() {
     return favorite;
+  }
+
+  /**
+   * Gets the enableEventsFromForks.
+   *
+   * Only used for SCM triggers. When enabled, pull request events from forks of the selected repository will trigger a
+   * pipeline run.
+   *
+   * @return the enableEventsFromForks
+   */
+  public Boolean enableEventsFromForks() {
+    return enableEventsFromForks;
   }
 }
 
