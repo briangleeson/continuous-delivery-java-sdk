@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -15,6 +15,7 @@ package com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model;
 
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainEventPrototypeData;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainEventPrototypeDataApplicationJson;
+import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainEventPrototypeDataTextPlain;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.utils.TestUtilities;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import java.io.InputStream;
@@ -37,18 +38,23 @@ public class ToolchainEventPrototypeDataTest {
       .build();
     assertEquals(toolchainEventPrototypeDataApplicationJsonModel.content(), java.util.Collections.singletonMap("anyKey", "anyValue"));
 
+    ToolchainEventPrototypeDataTextPlain toolchainEventPrototypeDataTextPlainModel = new ToolchainEventPrototypeDataTextPlain.Builder()
+      .content("This event is dispatched because the pipeline failed")
+      .build();
+    assertEquals(toolchainEventPrototypeDataTextPlainModel.content(), "This event is dispatched because the pipeline failed");
+
     ToolchainEventPrototypeData toolchainEventPrototypeDataModel = new ToolchainEventPrototypeData.Builder()
       .applicationJson(toolchainEventPrototypeDataApplicationJsonModel)
-      .textPlain("This event is dispatched because the pipeline failed")
+      .textPlain(toolchainEventPrototypeDataTextPlainModel)
       .build();
     assertEquals(toolchainEventPrototypeDataModel.applicationJson(), toolchainEventPrototypeDataApplicationJsonModel);
-    assertEquals(toolchainEventPrototypeDataModel.textPlain(), "This event is dispatched because the pipeline failed");
+    assertEquals(toolchainEventPrototypeDataModel.textPlain(), toolchainEventPrototypeDataTextPlainModel);
 
     String json = TestUtilities.serialize(toolchainEventPrototypeDataModel);
 
     ToolchainEventPrototypeData toolchainEventPrototypeDataModelNew = TestUtilities.deserialize(json, ToolchainEventPrototypeData.class);
     assertTrue(toolchainEventPrototypeDataModelNew instanceof ToolchainEventPrototypeData);
     assertEquals(toolchainEventPrototypeDataModelNew.applicationJson().toString(), toolchainEventPrototypeDataApplicationJsonModel.toString());
-    assertEquals(toolchainEventPrototypeDataModelNew.textPlain(), "This event is dispatched because the pipeline failed");
+    assertEquals(toolchainEventPrototypeDataModelNew.textPlain().toString(), toolchainEventPrototypeDataTextPlainModel.toString());
   }
 }

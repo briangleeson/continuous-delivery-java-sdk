@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -12,7 +12,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 3.77.0-42417df0-20230811-192318
+ * IBM OpenAPI SDK Code Generator Version: 3.96.0-d6dec9d7-20241008-212902
  */
 
 package com.ibm.cloud.continuous_delivery.cd_toolchain.v2;
@@ -51,16 +51,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-/**
- * This swagger document describes the options and endpoints of the Toolchain API.&lt;br&gt;&lt;br&gt; All calls require
- * an &lt;strong&gt;Authorization&lt;/strong&gt; HTTP header to be set with a bearer token, which can be generated using
- * the &lt;a href="https://cloud.ibm.com/apidocs/iam-identity-token-api"&gt;Identity and Access Management (IAM)
- * API&lt;/a&gt;.&lt;br&gt;&lt;br&gt;Note that all resources must have a corresponding
- * &lt;b&gt;resource_group_id&lt;/b&gt; to use the API, resources within a Cloud Foundry organization cannot be accessed
- * or modified using the API.
- *
- * API Version: 2.0.0
- */
 public class CdToolchain extends BaseService {
 
   /**
@@ -270,7 +260,7 @@ public class CdToolchain extends BaseService {
       builder.header(header.getKey(), header.getValue());
     }
     builder.header("Accept", "application/json");
-    builder.bodyContent(com.ibm.cloud.sdk.core.util.GsonSingleton.getGsonWithoutPrettyPrinting().toJson(updateToolchainOptions.toolchainPrototypePatch()), "application/merge-patch+json");
+    builder.bodyContent(com.ibm.cloud.sdk.core.util.GsonSingleton.getGsonWithSerializeNulls().toJson(updateToolchainOptions.toolchainPrototypePatch()), "application/merge-patch+json");
     ResponseConverter<ToolchainPatch> responseConverter =
       ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<ToolchainPatch>() { }.getType());
     return createServiceCall(builder.build(), responseConverter);
@@ -279,8 +269,8 @@ public class CdToolchain extends BaseService {
   /**
    * Create a toolchain event.
    *
-   * Creates and sends a custom event to Event Notifications. This requires an Event Notification tool. This method is
-   * BETA and subject to change.
+   * Creates and sends a custom event to each Event Notifications instance configured as a tool into the toolchain. This
+   * operation will fail if no Event Notifications instances are configured into the toolchain.
    *
    * @param createToolchainEventOptions the {@link CreateToolchainEventOptions} containing the options for the call
    * @return a {@link ServiceCall} with a result of type {@link ToolchainEventPost}
@@ -441,7 +431,7 @@ public class CdToolchain extends BaseService {
       builder.header(header.getKey(), header.getValue());
     }
     builder.header("Accept", "application/json");
-    builder.bodyContent(com.ibm.cloud.sdk.core.util.GsonSingleton.getGsonWithoutPrettyPrinting().toJson(updateToolOptions.toolchainToolPrototypePatch()), "application/merge-patch+json");
+    builder.bodyContent(com.ibm.cloud.sdk.core.util.GsonSingleton.getGsonWithSerializeNulls().toJson(updateToolOptions.toolchainToolPrototypePatch()), "application/merge-patch+json");
     ResponseConverter<ToolchainToolPatch> responseConverter =
       ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<ToolchainToolPatch>() { }.getType());
     return createServiceCall(builder.build(), responseConverter);

@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -10,6 +10,7 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
+
 package com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model;
 
 import java.util.Map;
@@ -94,7 +95,8 @@ public class ToolchainEventPrototypeDataApplicationJson extends GenericModel {
   /**
    * Gets the content.
    *
-   * JSON-formatted key-value pairs representing any additional information to be included with the event.
+   * JSON-formatted key-value pairs representing any additional information to be included with the event. The payload
+   * is constrained to a maximum depth of 5, and keys that must satisfy the pattern ^[a-zA-Z0-9-_]+$.
    *
    * @return the content
    */

@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -28,6 +28,7 @@ import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainCollecti
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainEventPost;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainEventPrototypeData;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainEventPrototypeDataApplicationJson;
+import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainEventPrototypeDataTextPlain;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainModel;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainPatch;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainPost;
@@ -132,8 +133,8 @@ public class CdToolchainIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 201);
 
       ToolchainPost toolchainPostResult = response.getResult();
-
       assertNotNull(toolchainPostResult);
+
       toolchainIdLink = toolchainPostResult.getId();
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
@@ -158,8 +159,8 @@ public class CdToolchainIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 201);
 
       ToolchainToolPost toolchainToolPostResult = response.getResult();
-
       assertNotNull(toolchainToolPostResult);
+
       toolIdLink = toolchainToolPostResult.getId();
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
@@ -183,8 +184,8 @@ public class CdToolchainIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 200);
 
       ToolchainCollection toolchainCollectionResult = response.getResult();
-
       assertNotNull(toolchainCollectionResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -241,8 +242,8 @@ public class CdToolchainIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 200);
 
       Toolchain toolchainResult = response.getResult();
-
       assertNotNull(toolchainResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -270,8 +271,8 @@ public class CdToolchainIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 200);
 
       ToolchainPatch toolchainPatchResult = response.getResult();
-
       assertNotNull(toolchainPatchResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -306,7 +307,7 @@ public class CdToolchainIT extends SdkIntegrationTestBase {
   }
 
   @Test(dependsOnMethods = { "testCreateEventNotificationsTool" })
-  public void testCreateToolchainEvent() throws Exception {
+  public void testCreateToolchainEventApplicationJson() throws Exception {
     try {
       ToolchainEventPrototypeDataApplicationJson toolchainEventPrototypeDataApplicationJsonModel = new ToolchainEventPrototypeDataApplicationJson.Builder()
         .content(java.util.Collections.singletonMap("anyKey", "anyValue"))
@@ -331,15 +332,49 @@ public class CdToolchainIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 200);
 
       ToolchainEventPost toolchainEventPostResult = response.getResult();
-
       assertNotNull(toolchainEventPostResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
     }
   }
 
-  @Test(dependsOnMethods = { "testCreateToolchainEvent" })
+  @Test(dependsOnMethods = { "testCreateToolchainEventApplicationJson" })
+  public void testCreateToolchainEventTextPlain() throws Exception {
+    try {
+      ToolchainEventPrototypeDataTextPlain toolchainEventPrototypeDataTextPlainModel = new ToolchainEventPrototypeDataTextPlain.Builder()
+        .content("This event is dispatched because the pipeline failed")
+        .build();
+
+      ToolchainEventPrototypeData toolchainEventPrototypeDataModel = new ToolchainEventPrototypeData.Builder()
+        .textPlain(toolchainEventPrototypeDataTextPlainModel)
+        .build();
+
+      CreateToolchainEventOptions createToolchainEventOptions = new CreateToolchainEventOptions.Builder()
+        .toolchainId(toolchainIdLink)
+        .title("My-custom-event")
+        .description("This is my custom event")
+        .contentType("text/plain")
+        .data(toolchainEventPrototypeDataModel)
+        .build();
+
+      // Invoke operation
+      Response<ToolchainEventPost> response = service.createToolchainEvent(createToolchainEventOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 200);
+
+      ToolchainEventPost toolchainEventPostResult = response.getResult();
+      assertNotNull(toolchainEventPostResult);
+
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testCreateToolchainEventTextPlain" })
   public void testListTools() throws Exception {
     try {
       ListToolsOptions listToolsOptions = new ListToolsOptions.Builder()
@@ -354,8 +389,8 @@ public class CdToolchainIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 200);
 
       ToolchainToolCollection toolchainToolCollectionResult = response.getResult();
-
       assertNotNull(toolchainToolCollectionResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -409,8 +444,8 @@ public class CdToolchainIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 200);
 
       ToolchainTool toolchainToolResult = response.getResult();
-
       assertNotNull(toolchainToolResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -440,8 +475,8 @@ public class CdToolchainIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 200);
 
       ToolchainToolPatch toolchainToolPatchResult = response.getResult();
-
       assertNotNull(toolchainToolPatchResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));

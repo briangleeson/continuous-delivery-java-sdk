@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -10,9 +10,9 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
+
 package com.ibm.cloud.continuous_delivery.cd_toolchain.v2;
 
-import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.CdToolchain;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.CreateToolOptions;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.CreateToolchainEventOptions;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.CreateToolchainOptions;
@@ -23,13 +23,8 @@ import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.GetToolchainByIdO
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ListToolchainsOptions;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ListToolsOptions;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolModel;
-import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolModelReferent;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.Toolchain;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainCollection;
-import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainCollectionFirst;
-import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainCollectionLast;
-import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainCollectionNext;
-import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainCollectionPrevious;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainEventPost;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainEventPrototypeData;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainEventPrototypeDataApplicationJson;
@@ -39,10 +34,6 @@ import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainPost;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainPrototypePatch;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainTool;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainToolCollection;
-import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainToolCollectionFirst;
-import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainToolCollectionLast;
-import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainToolCollectionNext;
-import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainToolCollectionPrevious;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainToolPatch;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainToolPost;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.ToolchainToolPrototypePatch;
@@ -52,10 +43,7 @@ import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.UpdateToolOptions
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model.UpdateToolchainOptions;
 import com.ibm.cloud.continuous_delivery.cd_toolchain.v2.utils.TestUtilities;
 import com.ibm.cloud.sdk.core.http.Response;
-import com.ibm.cloud.sdk.core.security.Authenticator;
-import com.ibm.cloud.sdk.core.security.NoAuthAuthenticator;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
-import com.ibm.cloud.sdk.core.util.DateUtils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -460,7 +448,6 @@ public class CdToolchainTest {
     // Construct an instance of the ToolchainEventPrototypeData model
     ToolchainEventPrototypeData toolchainEventPrototypeDataModel = new ToolchainEventPrototypeData.Builder()
       .applicationJson(toolchainEventPrototypeDataApplicationJsonModel)
-      .textPlain("This event is dispatched because the pipeline failed")
       .build();
 
     // Construct an instance of the CreateToolchainEventOptions model

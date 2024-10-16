@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -10,6 +10,7 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
+
 package com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model;
 
 import com.google.gson.annotations.SerializedName;
@@ -23,14 +24,14 @@ public class ToolchainEventPrototypeData extends GenericModel {
   @SerializedName("application_json")
   protected ToolchainEventPrototypeDataApplicationJson applicationJson;
   @SerializedName("text_plain")
-  protected String textPlain;
+  protected ToolchainEventPrototypeDataTextPlain textPlain;
 
   /**
    * Builder.
    */
   public static class Builder {
     private ToolchainEventPrototypeDataApplicationJson applicationJson;
-    private String textPlain;
+    private ToolchainEventPrototypeDataTextPlain textPlain;
 
     /**
      * Instantiates a new Builder from an existing ToolchainEventPrototypeData instance.
@@ -74,7 +75,7 @@ public class ToolchainEventPrototypeData extends GenericModel {
      * @param textPlain the textPlain
      * @return the ToolchainEventPrototypeData builder
      */
-    public Builder textPlain(String textPlain) {
+    public Builder textPlain(ToolchainEventPrototypeDataTextPlain textPlain) {
       this.textPlain = textPlain;
       return this;
     }
@@ -114,7 +115,7 @@ public class ToolchainEventPrototypeData extends GenericModel {
    *
    * @return the textPlain
    */
-  public String textPlain() {
+  public ToolchainEventPrototypeDataTextPlain textPlain() {
     return textPlain;
   }
 }
