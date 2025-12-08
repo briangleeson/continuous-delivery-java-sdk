@@ -107,6 +107,8 @@ public class CdTektonPipeline extends BaseService {
 
     m.put("eu-de", "https://api.eu-de.devops.cloud.ibm.com/pipeline/v2"); // The host URL for Tekton Pipeline Service in the eu-de region.
 
+    m.put("eu-fr2", "https://api.eu-fr2.devops.cloud.ibm.com/pipeline/v2"); // Paris (eu-fr2) is a limited availability region and not generally available. The host URL for Tekton Pipeline Service in the Paris region.
+
     m.put("eu-gb", "https://api.eu-gb.devops.cloud.ibm.com/pipeline/v2"); // The host URL for Tekton Pipeline Service in the eu-gb region.
 
     m.put("eu-es", "https://api.eu-es.devops.cloud.ibm.com/pipeline/v2"); // The host URL for Tekton Pipeline Service in the eu-es region.
