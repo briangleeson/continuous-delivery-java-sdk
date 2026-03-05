@@ -1,3 +1,10 @@
+## [2.0.5](https://github.com/IBM/continuous-delivery-java-sdk/compare/2.0.4...2.0.5) (2026-03-05)
+
+
+### Bug Fixes
+
+* migrate to github actions build ([ba86aa6](https://github.com/IBM/continuous-delivery-java-sdk/commit/ba86aa640d3103cf30228a1b123eb8e3373b27f0))
+
 ## [2.0.4](https://github.com/IBM/continuous-delivery-java-sdk/compare/2.0.3...2.0.4) (2025-08-19)
 
 
