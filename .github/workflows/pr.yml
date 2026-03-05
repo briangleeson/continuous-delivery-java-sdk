@@ -28,8 +28,7 @@ jobs:
 
       - name: Install detect-secrets
         run: |
-          pip install boxsdk
-          pip install --upgrade "git+https://github.com/ibm/detect-secrets.git@0.13.1+ibm.62.dss#egg=detect-secrets"
+          pip install --upgrade "git+https://github.com/ibm/detect-secrets.git@0.13.1+ibm.64.dss#egg=detect-secrets"
 
       - name: Run detect-secrets
         run: |
