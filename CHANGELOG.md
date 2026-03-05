@@ -1,3 +1,10 @@
+## [2.0.6](https://github.com/IBM/continuous-delivery-java-sdk/compare/2.0.5...2.0.6) (2026-03-05)
+
+
+### Bug Fixes
+
+* publish github action issue ([41f2ec5](https://github.com/IBM/continuous-delivery-java-sdk/commit/41f2ec563546f4945684d2d4a16eadae5998d671))
+
 ## [2.0.5](https://github.com/IBM/continuous-delivery-java-sdk/compare/2.0.4...2.0.5) (2026-03-05)
 
 
