@@ -1,9 +1,8 @@
-name: release
+name: publish
 
 on:
-  push:
-    branches:
-      - main
+  release:
+    types: [created]
   workflow_dispatch:
     inputs:
       publish_maven:
@@ -11,7 +10,6 @@ on:
         required: false
         type: boolean
         default: true
-    inputs:
       publish_javadoc:
         description: 'Publish JavaDoc to gh-pages branch'
         required: false
@@ -29,10 +27,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     # Only publish when semantic-release creates a release commit (starts with "chore(release):")
-    if: (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'chore(release):')) || (github.event_name == 'workflow_dispatch' && inputs.publish_javadoc)
+    # if: (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'chore(release):')) || (github.event_name == 'workflow_dispatch' && inputs.publish_javadoc)
 
     permissions:
       contents: write
+      pages: write
 
     steps:
       - name: Checkout code
@@ -52,9 +51,9 @@ jobs:
 
       - name: Publish Javadocs
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          GH_REPO_SLUG: ${{ github.repository }}
-          GH_TAG: ${{ github.ref_name}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPO_SLUG: ${{ github.repository }}
+          GITHUB_TAG: ${{ github.ref_name}}
         run: |
           mvn clean javadoc:aggregate --settings build/.github.settings.xml
           build/publishJavadoc-gha.sh
@@ -63,11 +62,10 @@ jobs:
     # Requires GPG_KEYNAME, GPG_PRIVATE_KEY, GPG_PASSPHRASE, CP_USERNAME, CP_PASSWORD
     # Missing: GPG_PRIVATE_KEY, GPG_PASSPHRASE, CP_PASSWORD
     name: Publish to Maven Central
-    needs: semantic-release
     runs-on: ubuntu-latest
     timeout-minutes: 30
     # Only publish when semantic-release creates a release commit (starts with "chore(release):")
-    if: (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'chore(release):')) || (github.event_name == 'workflow_dispatch' && inputs.publish_maven)
+    # if: (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'chore(release):')) || (github.event_name == 'workflow_dispatch' && inputs.publish_maven)
 
     steps:
       - name: Checkout code
