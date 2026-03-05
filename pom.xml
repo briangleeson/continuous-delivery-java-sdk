@@ -102,8 +102,8 @@
 
     <!-- >>> Update these values to reflect your project -->
     <ciManagement>
-        <system>Travis-CI</system>
-        <url>https://travis.ibm.com/IBM/continuous-delivery-java-sdk/</url>
+        <system>GitHub Actions</system>
+        <url>https://github.com/IBM/continuous-delivery-java-sdk/actions</url>
     </ciManagement>
 
     <repositories>
@@ -539,7 +539,7 @@
                 </plugins>
             </build>
             <properties>
-                <!-- Configure the gpg plugin to use the env vars defined in the Travis build settings -->
+                <!-- Configure the gpg plugin to use the env vars defined in the GitHub Actions secrets -->
                 <gpg.keyname>${env.GPG_KEYNAME}</gpg.keyname>
                 <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
             </properties>
