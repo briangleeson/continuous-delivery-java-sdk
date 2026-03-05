@@ -1,4 +1,4 @@
-# IBM Cloud Continuous Delivery Java SDK Version 2.0.4 
+# IBM Cloud Continuous Delivery Java SDK Version 
 
 [![Build Status](https://app.travis-ci.com/IBM/continuous-delivery-java-sdk.svg?branch=main)](https://app.travis-ci.com/github/IBM/continuous-delivery-java-sdk)
 [![Release](https://img.shields.io/github/v/release/IBM/continuous-delivery-java-sdk)](https://github.com/IBM/continuous-delivery-java-sdk/releases/latest)
@@ -21,7 +21,7 @@ The Java client library to interact with the [IBM Cloud Continuous Delivery Tool
 
 <!-- toc -->
 
-- [IBM Cloud Continuous Delivery Java SDK Version 2.0.4](#ibm-cloud-continuous-delivery-java-sdk-version-203)
+- [IBM Cloud Continuous Delivery Java SDK Version](#ibm-cloud-continuous-delivery-java-sdk-version)
   - [Table of Contents](#table-of-contents)
   - [Overview](#overview)
   - [Prerequisites](#prerequisites)
@@ -96,13 +96,6 @@ compile 'com.ibm.cloud:cd-tekton-pipeline:2.0.4'
 ## Using the SDK
 
 For general SDK usage information, please see [this link](https://github.com/IBM/ibm-cloud-sdk-common/blob/main/README.md)
-
-## Questions
-
-If you are having difficulties using this SDK or have a question about the IBM Cloud services,
-please ask a question at
-[Stack Overflow](http://stackoverflow.com/questions/ask?tags=ibm-cloud).
-Alternatively, you can reach out to the IBM Cloud Continuous Delivery development team by joining us on [Slack](https://ic-devops-slack-invite.us-south.devops.cloud.ibm.com/).
 
 ## Issues
 
