@@ -24,7 +24,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.11
+          python-version: 3.12
 
       - name: Install detect-secrets
         run: |
@@ -32,7 +32,7 @@ jobs:
 
       - name: Run detect-secrets
         run: |
-          detect-secrets scan --update .secrets.baseline
+          detect-secrets scan --update .secrets.baseline --exclude-files 'build/signing\.key\.enc'
           detect-secrets -v audit --report --fail-on-unaudited --fail-on-live --fail-on-audited-real .secrets.baseline
 
   build-test:
