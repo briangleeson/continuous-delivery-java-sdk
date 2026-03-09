@@ -44,7 +44,7 @@ popd
 pushd gh-pages
 
 printf "\n>>>>> Generating gh-pages index.html...\n"
-build/generateJavadocIndex.sh > index.html
+../main/build/generateJavadocIndex.sh > index.html
 
 printf "\n>>>>> Committing new javadoc...\n"
 git add -f .
