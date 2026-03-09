@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Required environment variables:
-# GITHUB_TOKEN
+# GH_TOKEN
 # GITHUB_REPO_SLUG
 # GITHUB_TAG
 
@@ -9,12 +9,9 @@ printf "\n>>>>> Publishing javadoc for release build: repo=%s tag=%s\n" ${GITHUB
 
 printf "\n>>>>> Cloning repository's gh-pages branch into directory 'gh-pages'\n"
 rm -fr ./gh-pages
-git config --global user.email "idsorg@us.ibm.com"
-git config --global user.name "idsorg"
+git config --global user.email "github-actions[bot]@users.noreply.github.com"
+git config --global user.name "github-actions[bot]"
 git clone --branch=gh-pages https://${GH_TOKEN}@github.com/${GITHUB_REPO_SLUG}.git gh-pages
-# git clone --branch=gh-pages https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPO_SLUG}.git gh-pages
-# Configure the remote URL with the token for pushing
-# git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPO_SLUG}.git
 printf "\n>>>>> Finished cloning...\n"
 
 gh auth status
