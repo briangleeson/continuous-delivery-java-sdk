@@ -12,6 +12,7 @@ rm -fr ./gh-pages
 git config --global user.email "devxsdk@us.ibm.com"
 git config --global user.name "ibm-devx-sdk"
 git clone --branch=gh-pages https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPO_SLUG}.git gh-pages
+git config --global url."x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPO_SLUG}.git"
 # Configure the remote URL with the token for pushing
 # git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPO_SLUG}.git
 printf "\n>>>>> GH version...\n"
@@ -39,7 +40,7 @@ git commit -m "docs: latest javadoc for ${GITHUB_TAG}"
 printf "\n>>>>> Committed changes...\n"
 git remote -v
 # git push -f origin gh-pages 
-gh push origin gh-pages
+git push --repo="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPO_SLUG}.git" -f gh-pages
 printf "\n>>>>> Pushed changes...\n"
 
 popd
