@@ -9,17 +9,17 @@ printf "\n>>>>> Publishing javadoc for release build: repo=%s tag=%s\n" ${GITHUB
 
 printf "\n>>>>> Cloning repository's gh-pages branch into directory 'gh-pages'\n"
 rm -fr ./gh-pages
-# git config --global user.email "devxsdk@us.ibm.com"
-# git config --global user.name "ibm-devx-sdk"
+git config --global user.email "idsorg@us.ibm.com"
+git config --global user.name "idsorg"
+git clone --branch=gh-pages https://${GH_TOKEN}@github.com/${GITHUB_REPO_SLUG}.git gh-pages
 # git clone --branch=gh-pages https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPO_SLUG}.git gh-pages
-# git config --global url."x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPO_SLUG}.git"
 # Configure the remote URL with the token for pushing
 # git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPO_SLUG}.git
-
-git config --global user.email "devxsdk@us.ibm.com"
-git config --global user.name "ibm-devx-sdk"
-git clone --branch=gh-pages https://${GH_TOKEN}@github.com/IBM/platform-services-java-sdk.git gh-pages
 printf "\n>>>>> Finished cloning...\n"
+
+gh auth status
+
+printf "\n>>>>> Finished checking gh auth status...\n"
 
 pushd gh-pages
 
