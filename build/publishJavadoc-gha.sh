@@ -7,8 +7,8 @@
 
 printf "\n>>>>> Publishing javadoc for release build: repo=%s tag=%s\n" ${GITHUB_REPO_SLUG} ${GITHUB_TAG}
 
+printf "\n>>>>> Checking gh auth status...\n"
 gh auth status
-
 printf "\n>>>>> Finished checking gh auth status...\n"
 
 printf "\n>>>>> Checking out gh-pages branch...\n"
@@ -17,6 +17,10 @@ git config --global user.email "github-actions[bot]@users.noreply.github.com"
 git config --global user.name "github-actions[bot]"
 git checkout -b gh-pages origin/gh-pages
 printf "\n>>>>> Finished checking out...\n"
+
+printf "\n>>>>> Generating Javadoc...\n"
+mvn clean javadoc:aggregate --settings build/.github.settings.xml
+printf "\n>>>>> Finished  generating Javadoc...\n"
 
 # Create a new directory for this branch/tag and copy the javadocs there.
 printf "\n>>>>> Copying javadocs to new directory: docs/%s\n" ${GITHUB_TAG}
