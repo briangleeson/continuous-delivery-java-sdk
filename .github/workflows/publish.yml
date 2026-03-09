@@ -67,12 +67,14 @@ jobs:
 
   publish-maven-central:
     # Requires GPG_KEYNAME, GPG_PRIVATE_KEY, GPG_PASSPHRASE, CP_USERNAME, CP_PASSWORD
-    # Missing: GPG_PRIVATE_KEY, GPG_PASSPHRASE, CP_PASSWORD
     name: Publish to Maven Central
     runs-on: ubuntu-latest
     timeout-minutes: 30
     # Only publish when semantic-release creates a release commit (starts with "chore(release):")
     if: (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'chore(release):')) || (github.event_name == 'workflow_dispatch' && inputs.publish_maven)
+
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout code
@@ -104,4 +106,4 @@ jobs:
           CP_USERNAME: ${{ secrets.CP_USERNAME }}
           CP_PASSWORD: ${{ secrets.CP_PASSWORD }}
         run: |
-          mvn deploy --settings build/.github.settings.xml -DskipTests -P central
+          mvn -e -B -ntp deploy --settings build/.github.settings.xml -DskipTests -P central
