@@ -48,9 +48,6 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Set artifact version to ${{ github.ref_name }}
-        run: mvn -B versions:set -DnewVersion=${{ github.ref_name}} -DgenerateBackupPoms=false
-
       - name: Publish Javadocs
         env:
           # GH_TOKEN: ${{ secrets.GH_TOKEN }}
