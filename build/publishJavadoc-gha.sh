@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+# set -e
 
 # Required environment variables:
 # GITHUB_REPO_SLUG
@@ -47,6 +47,8 @@ printf "\n>>>>> Generating gh-pages index.html...\n"
 ../main/build/generateJavadocIndex.sh > index.html
 
 printf "\n>>>>> Committing new javadoc...\n"
+git config user.email "github-actions[bot]@users.noreply.github.com"
+git config user.name "github-actions[bot]"
 git add -f .
 printf "\n>>>>> Added files...\n"
 git commit -m "docs: latest javadoc for ${GITHUB_TAG}"
