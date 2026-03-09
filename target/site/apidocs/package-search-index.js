@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2"},{"l":"com.ibm.cloud.continuous_delivery.cd_tekton_pipeline.v2.model"},{"l":"com.ibm.cloud.continuous_delivery.cd_toolchain.v2"},{"l":"com.ibm.cloud.continuous_delivery.cd_toolchain.v2.model"},{"l":"com.ibm.cloud.continuous_delivery.common"}]
