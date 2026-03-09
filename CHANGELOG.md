@@ -1,3 +1,10 @@
+## [2.0.7](https://github.com/IBM/continuous-delivery-java-sdk/compare/2.0.6...2.0.7) (2026-03-09)
+
+
+### Bug Fixes
+
+* finalise maven publish action ([46cfc92](https://github.com/IBM/continuous-delivery-java-sdk/commit/46cfc92771bca1062b3297ee83e16a02a677aa0b))
+
 ## [2.0.6](https://github.com/IBM/continuous-delivery-java-sdk/compare/2.0.5...2.0.6) (2026-03-05)
 
 
