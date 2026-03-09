@@ -7,19 +7,20 @@
 
 printf "\n>>>>> Publishing javadoc for release build: repo=%s tag=%s\n" ${GITHUB_REPO_SLUG} ${GITHUB_TAG}
 
+gh auth status
+
+printf "\n>>>>> Finished checking gh auth status...\n"
+
 printf "\n>>>>> Cloning repository's gh-pages branch into directory 'gh-pages'\n"
 rm -fr ./gh-pages
 # TODO this approach doesnt work when using GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} in workflow
 git config --global user.email "github-actions[bot]@users.noreply.github.com"
 git config --global user.name "github-actions[bot]"
-git clone --branch=gh-pages https://${GH_TOKEN}@github.com/${GITHUB_REPO_SLUG}.git gh-pages
+# git clone --branch=gh-pages https://${GH_TOKEN}@github.com/${GITHUB_REPO_SLUG}.git gh-pages
+git clone --branch=gh-pages https://github.com/${GITHUB_REPO_SLUG}.git gh-pages
 # TODO For now using a hardcoded token in the repo settings secrets, tied to brian.gleeson@ie.ibm.com
 # git clone --branch=gh-pages https://${GH_TOKEN}@github.com/${GITHUB_REPO_SLUG}.git gh-pages
 printf "\n>>>>> Finished cloning...\n"
-
-gh auth status
-
-printf "\n>>>>> Finished checking gh auth status...\n"
 
 pushd gh-pages
 
