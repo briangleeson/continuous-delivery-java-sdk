@@ -6,6 +6,11 @@ on:
       - main
   workflow_dispatch:
     inputs:
+      version:
+        description: 'Version number (e.g. 2.0.8) - leave empty to use branch/tag name'
+        required: false
+        type: string
+        default: ''
       publish_maven:
         description: 'Publish to Maven'
         required: false
@@ -58,10 +63,19 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
+      - name: Determine version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ -n "${{ inputs.version }}" ]; then
+            echo "version=${{ inputs.version }}" >> $GITHUB_OUTPUT
+          else
+            echo "version=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+          fi
+
       - name: Publish Javadocs
         env:
           GITHUB_REPO_SLUG: ${{ github.repository }}
-          GITHUB_TAG: ${{ github.ref_name}}
+          GITHUB_TAG: ${{ steps.version.outputs.version }}
         run: |
           main/build/publishJavadoc-gha.sh
 
@@ -93,8 +107,17 @@ jobs:
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
 
+      - name: Determine version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ -n "${{ inputs.version }}" ]; then
+            echo "version=${{ inputs.version }}" >> $GITHUB_OUTPUT
+          else
+            echo "version=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+          fi
+
       - name: Set Maven version
-        run: mvn versions:set -DnewVersion=${{ github.ref_name }} -DgenerateBackupPoms=false
+        run: mvn versions:set -DnewVersion=${{ steps.version.outputs.version }} -DgenerateBackupPoms=false
 
       - name: Deploy to Maven Central
         env:
