@@ -58,7 +58,6 @@ jobs:
           GITHUB_REPO_SLUG: ${{ github.repository }}
           GITHUB_TAG: ${{ github.ref_name}}
         run: |
-          mvn clean javadoc:aggregate --settings build/.github.settings.xml
           build/publishJavadoc-gha.sh
 
   publish-maven-central:
