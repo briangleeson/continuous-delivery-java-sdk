@@ -16,9 +16,11 @@ rm -fr ./gh-pages
 git config --global user.email "github-actions[bot]@users.noreply.github.com"
 git config --global user.name "github-actions[bot]"
 git checkout -b gh-pages origin/gh-pages
+git status
 printf "\n>>>>> Finished checking out...\n"
 
 printf "\n>>>>> Generating Javadoc...\n"
+mvn -B versions:set -DnewVersion="${GITHUB_TAG}" -DgenerateBackupPoms=false
 mvn clean javadoc:aggregate --settings build/.github.settings.xml
 printf "\n>>>>> Finished  generating Javadoc...\n"
 
