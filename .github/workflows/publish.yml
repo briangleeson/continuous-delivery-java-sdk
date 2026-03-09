@@ -66,7 +66,7 @@ jobs:
           main/build/publishJavadoc-gha.sh
 
   publish-maven-central:
-    # Requires GPG_KEYNAME, GPG_PRIVATE_KEY, GPG_PASSPHRASE, CP_USERNAME, CP_PASSWORD
+    # Requires GPG_KEYNAME, GPG_PRIVATE_KEY, GPG_PASSPHRASE, CP_USERNAME, and CP_PASSWORD
     name: Publish to Maven Central
     runs-on: ubuntu-latest
     timeout-minutes: 30
@@ -93,12 +93,6 @@ jobs:
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
 
-      - name: Verify GPG key import
-        run: |
-          gpg --version
-          gpg --list-secret-keys --keyid-format LONG
-          echo "GPG_KEYNAME from secret: ${{ vars.GPG_KEYNAME }}"
-
       - name: Set Maven version
         run: mvn versions:set -DnewVersion=${{ github.ref_name }} -DgenerateBackupPoms=false
 
@@ -112,4 +106,4 @@ jobs:
           CP_USERNAME: ${{ vars.CP_USERNAME }}
           CP_PASSWORD: ${{ secrets.CP_PASSWORD }}
         run: |
-          mvn -e -B -ntp deploy --settings build/.github.settings.xml -DskipTests -P central
+          mvn -B -ntp deploy --settings build/.github.settings.xml -DskipTests -P central
