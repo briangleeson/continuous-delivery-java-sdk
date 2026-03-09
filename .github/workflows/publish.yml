@@ -39,7 +39,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          # ref: gh-pages
 
       - name: Set up Java 11
         uses: actions/setup-java@v4
@@ -53,8 +52,7 @@ jobs:
 
       - name: Publish Javadocs
         env:
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
           GITHUB_REPO_SLUG: ${{ github.repository }}
           GITHUB_TAG: ${{ github.ref_name}}
         run: |
