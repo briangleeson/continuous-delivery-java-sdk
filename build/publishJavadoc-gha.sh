@@ -8,10 +8,6 @@ set -e
 
 printf "\n>>>>> Publishing javadoc for release build: repo=%s tag=%s\n" ${GITHUB_REPO_SLUG} ${GITHUB_TAG}
 
-printf "\n>>>>> [DEBUG] Checking gh auth status...\n"
-gh auth status
-printf "\n>>>>> [DEBUG] Finished checking gh auth status...\n"
-
 printf "\n>>>>> Checking out gh-pages branch...\n"
 git config --global user.email "github-actions[bot]@users.noreply.github.com"
 git config --global user.name "github-actions[bot]"
