@@ -9,17 +9,16 @@ printf "\n>>>>> Publishing javadoc for release build: repo=%s tag=%s\n" ${GITHUB
 
 printf "\n>>>>> Cloning repository's gh-pages branch into directory 'gh-pages'\n"
 rm -fr ./gh-pages
-git config --global user.email "devxsdk@us.ibm.com"
-git config --global user.name "ibm-devx-sdk"
-git clone --branch=gh-pages https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPO_SLUG}.git gh-pages
-git config --global url."x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPO_SLUG}.git"
+# git config --global user.email "devxsdk@us.ibm.com"
+# git config --global user.name "ibm-devx-sdk"
+# git clone --branch=gh-pages https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPO_SLUG}.git gh-pages
+# git config --global url."x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPO_SLUG}.git"
 # Configure the remote URL with the token for pushing
 # git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPO_SLUG}.git
-printf "\n>>>>> GH version...\n"
-gh --version
-printf "\n>>>>> GH auth status...\n"
-gh auth status
 
+git config --global user.email "devxsdk@us.ibm.com"
+git config --global user.name "ibm-devx-sdk"
+git clone --branch=gh-pages https://${GH_TOKEN}@github.com/IBM/platform-services-java-sdk.git gh-pages
 printf "\n>>>>> Finished cloning...\n"
 
 pushd gh-pages
@@ -39,8 +38,7 @@ printf "\n>>>>> Added files...\n"
 git commit -m "docs: latest javadoc for ${GITHUB_TAG}"
 printf "\n>>>>> Committed changes...\n"
 git remote -v
-# git push -f origin gh-pages 
-git push --repo="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPO_SLUG}.git" -f gh-pages
+git push -f origin gh-pages
 printf "\n>>>>> Pushed changes...\n"
 
 popd
