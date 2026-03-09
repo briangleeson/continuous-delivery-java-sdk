@@ -6,7 +6,7 @@
         <!-- >>> Replace this with the parent pom's artifactId -->
         <artifactId>continuous-delivery</artifactId>
         <groupId>com.ibm.cloud</groupId>
-        <version>99-SNAPSHOT</version>
+        <version>publishTesting</version>
         <relativePath>../..</relativePath>
     </parent>
 

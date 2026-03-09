@@ -14,7 +14,7 @@
     <url>https://github.com/IBM/continuous-delivery-java-sdk</url>
 
     <groupId>com.ibm.cloud</groupId>
-    <version>99-SNAPSHOT</version>
+    <version>publishTesting</version>
     <packaging>pom</packaging>
 
     <properties>
