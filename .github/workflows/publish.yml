@@ -31,7 +31,7 @@ jobs:
     if: (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'chore(release):')) || (github.event_name == 'workflow_dispatch' && inputs.publish_javadoc)
 
     permissions:
-      contents: write
+      contents: read
       pages: write
 
     steps:
@@ -52,7 +52,8 @@ jobs:
 
       - name: Publish Javadocs
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          # GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPO_SLUG: ${{ github.repository }}
           GITHUB_TAG: ${{ github.ref_name}}
         run: |
