@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Required environment variables:
-# GH_TOKEN
 # GITHUB_REPO_SLUG
 # GITHUB_TAG
 
@@ -15,12 +14,16 @@ printf "\n>>>>> Checking out gh-pages branch...\n"
 rm -fr ./gh-pages
 git config --global user.email "github-actions[bot]@users.noreply.github.com"
 git config --global user.name "github-actions[bot]"
-git checkout -b gh-pages origin/gh-pages
+# Checkout the gh-pages branch as a copy of latest in main
+git checkout -b gh-pages --no-guess
 git status
 printf "\n>>>>> Finished checking out...\n"
 
 printf "\n>>>>> Generating Javadoc...\n"
 mvn -B versions:set -DnewVersion="${GITHUB_TAG}" -DgenerateBackupPoms=false
+printf "\n>>>>> [DEBUG] build fodler contents...\n"
+ls -la build
+printf "\n>>>>> [/DEBUG] build fodler contents...\n"
 mvn clean javadoc:aggregate --settings build/.github.settings.xml
 printf "\n>>>>> Finished  generating Javadoc...\n"
 
