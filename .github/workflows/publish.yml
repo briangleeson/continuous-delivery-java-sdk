@@ -93,6 +93,12 @@ jobs:
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
 
+      - name: Verify GPG key import
+        run: |
+          gpg --version
+          gpg --list-secret-keys --keyid-format LONG
+          echo "GPG_KEYNAME from secret: ${{ vars.GPG_KEYNAME }}"
+
       - name: Set Maven version
         run: mvn versions:set -DnewVersion=${{ github.ref_name }} -DgenerateBackupPoms=false
 
@@ -100,10 +106,10 @@ jobs:
         env:
           # Required variables and secrets for publishing to Maven Central
           # GNU Privacy Guard variables
-          GPG_KEYNAME: ${{ secrets.GPG_KEYNAME }}
+          GPG_KEYNAME: ${{ vars.GPG_KEYNAME }}
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           # Central portal username and password
-          CP_USERNAME: ${{ secrets.CP_USERNAME }}
+          CP_USERNAME: ${{ vars.CP_USERNAME }}
           CP_PASSWORD: ${{ secrets.CP_PASSWORD }}
         run: |
           mvn -e -B -ntp deploy --settings build/.github.settings.xml -DskipTests -P central
