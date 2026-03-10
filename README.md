@@ -1,7 +1,9 @@
 # IBM Cloud Continuous Delivery Java SDK Version 
 
-[![Build Status](https://app.travis-ci.com/IBM/continuous-delivery-java-sdk.svg?branch=main)](https://app.travis-ci.com/github/IBM/continuous-delivery-java-sdk)
-[![Release](https://img.shields.io/github/v/release/IBM/continuous-delivery-java-sdk)](https://github.com/IBM/continuous-delivery-java-sdk/releases/latest)
+[![publish](https://github.com/IBM/continuous-delivery-java-sdk/actions/workflows/publish.yml/badge.svg)](https://github.com/IBM/continuous-delivery-java-sdk/actions/workflows/publish.yml)
+[![release](https://github.com/IBM/continuous-delivery-java-sdk/actions/workflows/release.yml/badge.svg)](https://github.com/IBM/continuous-delivery-java-sdk/actions/workflows/release.yml)
+[![Maven](https://maven-badges.sml.io/sonatype-central/com.ibm.cloud/continuous-delivery/badge.svg?subject=maven)](https://central.sonatype.com/artifact/com.ibm.cloud/continuous-delivery)
+[![Version](https://img.shields.io/github/v/release/IBM/continuous-delivery-java-sdk)](https://github.com/IBM/continuous-delivery-java-sdk/releases/latest)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
@@ -63,7 +65,7 @@ The current version of this SDK is: 2.0.7
 Each service's artifact coordinates are listed in the table above.
 
 The project artifacts are published on the public [Maven Central](https://repo1.maven.org/maven2/)
-artifact repository.  This is the default public repository used by maven when searching for dependencies.
+artifact repository. This is the default public repository used by maven when searching for dependencies.
 To use this repository within a gradle build, please see
 [this link](https://docs.gradle.org/current/userguide/declaring_repositories.html).
 
